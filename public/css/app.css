@@ -1,0 +1,314 @@
+/* public/css/app.css */
+
+body {
+    font-family: 'Urbanist', sans-serif; 
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #ffffff; 
+    padding: 15px; 
+}
+
+.sub-navbar {
+    background-color: #005599; 
+    padding: 10px 0; 
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto; 
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px; 
+}
+
+.navbar .btn {
+    background-color: #005599;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+.navbar .btn:hover {
+    background-color: #073d69;
+    color: #ffffff;
+    transition: 1s;
+}
+
+.school-name {
+    color: black; 
+    font-size: 1.5em; 
+    margin-left: 20px; 
+}
+
+.nav-links {
+    list-style: none; 
+    display: flex;
+    gap: 20px; 
+}
+
+.nav-links li {
+    position: relative; 
+}
+
+.nav-links li a {
+    color: black; 
+    text-decoration: none; 
+    font-weight: bold; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+}
+
+.nav-links li a:hover {
+    background-color: white; 
+    color: #003366; 
+    transition: background-color 0.3s ease; 
+}
+
+.nav-links .dropdown-content {
+    display: none; 
+    position: absolute; 
+    background-color: white; 
+    min-width: 200px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    z-index: 1; 
+}
+
+.nav-links .dropdown:hover .dropdown-content {
+    display: block; 
+}
+
+.dropdown-content a {
+    color: black; 
+    padding: 12px 16px; 
+    text-decoration: none; 
+    display: block; 
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1; 
+}
+
+.sub-nav-links {
+    list-style: none; 
+    display: flex;
+    justify-content: space-around; 
+    margin-left: auto;
+}
+
+.sub-nav-links li a {
+    color: white; 
+    text-decoration: none; 
+    padding: 10px;
+}
+
+.welcome {
+    margin-top: 120px;
+    padding: 20px;
+    background-color: #ffffff; 
+}
+
+.welcome .text h3 {
+    font-size: 30px; 
+    font-weight: 400;
+    color: #000000; 
+    margin-bottom: 0;
+}
+
+.welcome .text h2 {
+    font-size: 50px; 
+    color: #000000; 
+    margin: 20px 0;
+    width: 450px;
+    text-transform: uppercase;
+}
+
+.welcome .text p {
+    font-size: 15px;
+    font-style: italic;
+    margin-bottom: 45px;
+}
+
+.welcome .text .btn {
+    background-color: #005599;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+.welcome .text .btn:hover {
+    background-color: #073d69;
+    color: #ffffff;
+    transition: 1s;
+}
+
+.welcome .image img {
+    border-radius: 15px;
+}
+
+.visi-misi {
+    padding: 20px;
+    background-color: #ffffff; 
+}
+
+.visi-misi .container {
+    display: block; 
+    text-align: center; 
+}
+
+.visi, .misi {
+    flex: 1; 
+    margin: 0 10px; 
+}
+
+/*buat bagian visi misi*/
+.visi h2, .misi h2 {
+    font-size: 1.8em; 
+    color: #000000; 
+    margin-bottom: 10px; 
+}
+
+.visi p, .misi p {
+    margin-bottom: 20px; 
+    line-height: 1.6; 
+}
+
+.misi .misi-card {
+    display: flex;
+    gap: 10px;
+}
+
+.misi .misi-card .body {
+    font-size: 15px;
+    width: 33%;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 13px 37px rgba(92,107,121,.1);
+    border-radius: 13px;;
+    text-align: left;
+}
+
+.kontak {
+    padding: 20px;
+    background-color: #ffffff; 
+}
+
+.kontak h2 {
+    font-size: 45px;
+    margin-top: 30px; 
+}
+
+.kontak h3 {
+    font-weight: 500;
+}
+
+.kontak p {
+    font-style: italic;
+}
+
+.kontak iframe {
+    border-radius: 35px;
+}
+
+/* Footer */
+.footer {
+    background-color: #003366; 
+    color: white;
+    padding: 70px 0 40px; 
+}
+
+.footer-contact {
+    width: 50%;
+    padding: 5px;
+}
+
+.footer-contact .contact-info {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-contact .contact-info .icon {
+    font-size: 20px;
+    background-color: #305c89;
+    border-radius: 100%;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.footer-contact .contact-info .text {
+    font-size: 15px;
+}
+
+.footer-contact .contact-info .text p {
+    margin-bottom: 10px;
+}
+
+.footer-contact .contact-info .text b {
+    font-size: 15px;
+}
+
+.footer-info {
+    width: 50%;
+    padding: 15px 5px 5px;
+    margin-bottom: auto;
+}
+
+.footer-info h3 {
+    margin: 0;
+}
+
+.footer-info .about {
+    margin-top: 40px;
+    letter-spacing: 1px;
+    line-height: 2rem;
+    margin-bottom: 50px;
+}
+
+.footer-contact {
+    width: 50%;
+    padding: 5px;
+}
+
+.footer-socmed {
+    display: flex;
+}
+
+.footer-socmed-split {
+    width: 50%;
+}
+
+.footer-socmed .contact-info {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-socmed .contact-info .icon {
+    font-size: 20px;
+    background-color: #305c89;
+    border-radius: 100%;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.footer-socmed .contact-info .text {
+    font-size: 15px;
+}
+
+.footer-socmed .contact-info .text p {
+    margin-bottom: 10px;
+}
