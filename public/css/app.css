@@ -1,133 +1,139 @@
-/* public/css/app.css */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css');
 
 body {
-    font-family: 'Urbanist', sans-serif; 
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.navbar {
-    background-color: #ffffff; 
-    padding: 15px; 
-}
-
-.sub-navbar {
-    background-color: #005599; 
-    padding: 10px 0; 
 }
 
 .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1400px;
-    margin: 0 auto; 
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
+h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
 }
 
-.logo img {
-    height: 50px; 
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px;
 }
 
-.navbar .btn {
-    background-color: #005599;
-    color: #ffffff;
-    border-radius: 20px;
+.navbar .logo img {
+    height: 50px;
 }
 
-.navbar .btn:hover {
-    background-color: #073d69;
-    color: #ffffff;
-    transition: 1s;
-}
-
+/*nama sekolah */ 
 .school-name {
-    color: black; 
-    font-size: 1.5em; 
-    margin-left: 20px; 
+    color: black;
+    font-size: 1.5em;
+    margin-left: 20px;
+    text-align: center;
 }
 
 .nav-links {
-    list-style: none; 
+    list-style: none;
     display: flex;
-    gap: 20px; 
+    gap: 20px;
 }
 
 .nav-links li {
-    position: relative; 
+    position: relative;
 }
 
 .nav-links li a {
-    color: black; 
-    text-decoration: none; 
-    font-weight: bold; 
-    padding: 10px 15px; 
-    border-radius: 5px; 
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 4px;
+    border-radius: 5px;
+}
+
+.nav-links li .btn {
+    background-color: #005599;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 15px 30px;
+    text-decoration: none;
 }
 
 .nav-links li a:hover {
-    background-color: white; 
-    color: #003366; 
-    transition: background-color 0.3s ease; 
+    background-color: white;
+    color: #005599;
+    transition: background-color 0.3s ease;
 }
 
 .nav-links .dropdown-content {
-    display: none; 
-    position: absolute; 
-    background-color: white; 
-    min-width: 200px; 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-    z-index: 1; 
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .nav-links .dropdown:hover .dropdown-content {
-    display: block; 
+    display: block;
 }
 
 .dropdown-content a {
-    color: black; 
-    padding: 12px 16px; 
-    text-decoration: none; 
-    display: block; 
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1; 
+    background-color: #f1f1f1;
+}
+
+/* Sub Navbar */
+.sub-navbar {
+    background-color: #005599;
+    padding: 10px 0;
 }
 
 .sub-nav-links {
-    list-style: none; 
+    list-style: none;
     display: flex;
-    justify-content: space-around; 
+    justify-content: space-around;
     margin-left: auto;
 }
 
 .sub-nav-links li a {
-    color: white; 
-    text-decoration: none; 
+    color: white;
+    text-decoration: none;
     padding: 10px;
 }
 
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Welcome Section */
 .welcome {
-    margin-top: 120px;
     padding: 20px;
-    background-color: #ffffff; 
+    background-color: #ffffff;
 }
 
 .welcome .text h3 {
-    font-size: 30px; 
+    font-size: 30px;
     font-weight: 400;
-    color: #000000; 
+    color: #000000;
     margin-bottom: 0;
 }
 
 .welcome .text h2 {
-    font-size: 50px; 
-    color: #000000; 
+    font-size: 50px;
+    color: #000000;
     margin: 20px 0;
     width: 450px;
     text-transform: uppercase;
@@ -156,6 +162,54 @@ body {
 .welcome .image img {
     border-radius: 15px;
 }
+
+
+/* Pencapaian Section */
+.pencapaian {
+    background-color: #2f4b7c;
+    padding: 20px 0; 
+    color: #ffffff;
+}
+
+
+.pencapaian-title {
+    font-size: 36px; 
+    font-weight: bold; 
+    text-align: center; 
+    color: #ffffff; 
+    margin-bottom: 30px; 
+}
+
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+}
+
+/* buat kolom yang ada warna biru*/
+.card .card-bg {
+    background-color: #2f4b7c;
+    height: 150px;
+}
+
+
+.card p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
 
 .visi-misi {
     padding: 20px;
@@ -187,6 +241,7 @@ body {
 .misi .misi-card {
     display: flex;
     gap: 10px;
+    text-align: left;
 }
 
 .misi .misi-card .body {
@@ -199,6 +254,7 @@ body {
     text-align: left;
 }
 
+/* visi misi */
 .kontak {
     padding: 20px;
     background-color: #ffffff; 
@@ -221,9 +277,13 @@ body {
     border-radius: 35px;
 }
 
+
 /* Footer */
 .footer {
-    background-color: #003366; 
+    background-image: url('../assets/buat foto fitur abdimas/bagianBawah_sd.png'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     color: white;
     padding: 70px 0 40px; 
 }
@@ -242,7 +302,7 @@ body {
 
 .footer-contact .contact-info .icon {
     font-size: 20px;
-    background-color: #305c89;
+    background-color: #005599;
     border-radius: 100%;
     padding: 10px 15px;
     margin-right: 10px;
@@ -260,10 +320,12 @@ body {
     font-size: 15px;
 }
 
+/* bagian tulisan Tentang SD Negeri 012 Babakan Ciparay bagian paling bawah*/
 .footer-info {
     width: 50%;
     padding: 15px 5px 5px;
     margin-bottom: auto;
+    margin-right: 51px
 }
 
 .footer-info h3 {
@@ -282,6 +344,7 @@ body {
     padding: 5px;
 }
 
+/* .footer-socmed */
 .footer-socmed {
     display: flex;
 }
@@ -297,9 +360,10 @@ body {
     margin-bottom: 15px;
 }
 
+/* logo sosmed*/
 .footer-socmed .contact-info .icon {
     font-size: 20px;
-    background-color: #305c89;
+    background-color: #1b3f63;
     border-radius: 100%;
     padding: 10px 15px;
     margin-right: 10px;
@@ -311,4 +375,413 @@ body {
 
 .footer-socmed .contact-info .text p {
     margin-bottom: 10px;
+}
+
+.footer .footer-maps iframe {
+    border-radius: 35px;
+}
+
+/* Bagian Kontribusi */
+.kontribusi-title {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    /*nambahin ini*/
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    max-width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /*nambahin ini*/
+    text-align: left;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+.card-image {
+    background-color: #005599;
+    height: 150px;
+    border-radius: 15px 15px 0 0;
+}
+
+.card-content {
+    padding: 20px;
+    /* text-align: center;*/
+
+}
+
+/*Tulisan pada Lorem Ipsum Dolor Sir Amet*/
+.card-content h3 {
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 10px;
+    /*nambahin ini*/
+    font-size: 18px;
+
+}
+
+.card-content p {
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* bagian FAQ */
+.faq-section {
+    background-color: #f9f9f9; /* Latar belakang bagian FAQ */
+    padding: 50px 0;
+    text-align: center;
+}
+
+/*Frequently Asked Question*/
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.faq-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+
+.faq-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Membagi layout menjadi 2 kolom */
+    gap: 30px; /* Jarak antar item */
+    max-width: 1200px; /* Lebar maksimum container */
+    margin: 0 auto; /* Pusatkan container */
+    padding: 20px;
+}
+
+.faq-item {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    gap: 20px; /* Jarak antara ikon dan teks */
+    align-items: flex-start;
+}
+
+.faq-icon {
+    min-width: 50px;
+    height: 50px;
+    background-color: #304675;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.faq-item h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #304675;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .faq-container {
+        grid-template-columns: 1fr; /* Satu kolom pada layar kecil */
+    }
+}
+
+.faq-icon {
+    min-width: 50px;
+    height: 50px;
+    background-color: #304675; /* Warna ikon */
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem; /* Ukuran ikon lebih besar */
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Menambahkan shadow pada ikon */
+}
+
+
+/*Baagian profil guru*/
+.teacher-profile {
+    padding: 30px 0;
+    background-color: #f9f9f9; /* Warna latar */
+    text-align: center;
+}
+
+.profile-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+    transform: translateY(-20px); /* Menggeser judul ke atas */
+}
+
+.profile-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; /* Jarak antar card */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Membuat gambar menjadi lingkaran */
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.profile-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #304675;
+}
+
+.profile-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.profile-card p:last-child {
+    font-style: italic;
+    color: #999;
+}
+
+
+/* fasilitas sekolah*/
+.fasilitas-sekolah {
+    padding: 40px 0;
+    font-family: 'Poppins', sans-serif
+}
+
+.fasilitas-sekolah .section-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.facility-section {
+    margin-top: 20px;
+}
+
+.facility-items,
+.staff-stats,
+.educator-background {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+/* .facility-item{
+    box-shadow: 0 .75rem 2rem 9px rgb(0 0 0 / 8%);
+} */
+.facility-item {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facility-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.facility-item,
+.staff-stat,
+.educator-item {
+    text-align: center;
+    flex: 1;
+}
+
+.facility-item img {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+}
+.facility-item-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 8px 0;
+}
+
+.number {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+/* bagian tulisan pada gambar profil fasilitas*/
+.facility-item p {
+    font-weight: bold;
+    color: #000;
+    font-size: 20px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/*Tenaga didik*/
+.facility-section {
+    margin: 20px 0;
+}
+
+.facility-section h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.facility-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.staff-stat {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px 10px;
+    text-align: center;
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.staff-stat .number {
+    font-size: 80px;
+    color: #005599;
+    margin: 0;
+    line-height: 1;
+}
+
+.staff-stat p {
+    color: #005599; /* Warna teks deskripsi */
+    margin: 0 0 0 10px;
+    font-weight: normal; /* Tidak terlalu tebal */
+}
+
+.staff-stat .text {
+    margin-left: 10px;
+    text-align: left;
+}
+
+.staff-stat .text p {
+    font-size: 32px;
+    line-height: 38px   ;
+}
+
+
+
+/* Latar Belakang Pendidik */
+.facility-section-background {
+    margin: 20px 0;
+}
+
+.facility-section-background h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.facility-section-background .staff-stats {
+    display: flex;
+    gap: 20px; 
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.facility-section-background  .staff-stat {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px 10px;
+    text-align: center;
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.facility-section-background .staff-stat .number {
+    font-size: 80px;
+    color: #005599;
+    margin: 0;
+    line-height: 1;
+}
+
+.facility-section-background .staff-stat p {
+    color: #005599; /* Warna teks deskripsi */
+    margin: 0 0 0 10px;
+    font-weight: normal; /* Tidak terlalu tebal */
+}
+
+.facility-section-background .staff-stat .text {
+    margin-left: 10px;
+    text-align: left;
+}
+
+.facility-section-background .staff-stat .text p {
+    font-size: 32px;
+    line-height: 38px   ;
+}
+
+.facility-section .facility-list {
+    list-style: none;
 }

@@ -8,7 +8,7 @@ class AdmissionController extends Controller
 {
     public function index()
     {
-        $admission = Admission::first(); // Mengambil data pendaftaran
-        return view('admissions', compact('admission')); // Mengirim data ke view
+        $admission = Admission::first(); 
+        return view('admissions', compact('admission')); 
     }
 }

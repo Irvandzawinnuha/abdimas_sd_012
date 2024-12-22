@@ -15,7 +15,6 @@
         <p>Telepon: {{ $contact->phone }}</p>
         <p>Email: {{ $contact->email }}</p>
         <h2>Lokasi</h2>
-        <!-- Google Maps embed -->
     </section>
 </body>
 </html>
