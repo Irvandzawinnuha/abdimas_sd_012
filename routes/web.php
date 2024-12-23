@@ -1,4 +1,5 @@
 <?php
+//front end
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilController;
@@ -10,6 +11,16 @@ use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\ProfilGuruController;
 use App\Http\Controllers\TestimonialsController;
+use App\Http\Controllers\PrivacyPolicyController;
+
+
+
+
+
+
+
+
+
 
 
 //backend
@@ -22,9 +33,10 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EditController;
 use App\Http\Controllers\Backend\KalenderController;
 use App\Http\Controllers\Backend\KontakController;
+use App\Http\Controllers\Backend\LupaPaswordController;
 
 
-
+// Route backend
 Route::prefix('backend')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('backend.index');
     Route::get('/galeri', [GaleriController::class, 'html'])->name('backend.galeri');
@@ -35,6 +47,8 @@ Route::prefix('backend')->group(function () {
     Route::get('/editprofil', [EditController::class, 'html'])->name('backend.editprofil');
     Route::get('/kalender', [KalenderController::class, 'html'])->name('backend.kalender');
     Route::get('/kontak', [KontakController::class, 'html'])->name('backend.kontak');
+    Route::get('/lupapasword', [LupaPaswordController::class, 'html'])->name('backend.lupapasword');
+
 
 
 });
@@ -80,3 +94,6 @@ Route::get('/profil-guru', [ProfilGuruController::class, 'index'])->name('profil
 
 // Testimoni
 Route::get('/testimonials', [TestimonialsController::class, 'index'])->name('testimonials.index');
+
+//privacy-policy
+Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');

@@ -20,38 +20,22 @@
         </div>
         <ul class="nav-links">
             <li><a href="/">Beranda</a></li>
-            <!-- Dropdown Profil Sekolah -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Profil Sekolah <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/profil/histori">Sejarah Singkat Sekolah</a>
-                    <a href="/profil/visi-misi">Visi dan Misi</a>
-                    <a href="profil-guru">Profil Guru</a>
-                    <a href="/profil/fasilitas">Fasilitas Sekolah</a>
-                </div>
-            </li>
-            <!-- Dropdown Informasi Akademik -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Informasi Akademik <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/academic/curriculum">Kurikulum</a>
-                    <a href="/academic/program">Program Pembelajaran</a>
-                    <a href="/academic/calendar">Kalender Akademik</a>
-                </div>
-            </li>
-            <!-- Dropdown Berita dan Pengumuman -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Berita dan Pengumuman <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/news/latest">Berita Terbaru</a>
-                    <a href="/news/announcements">Pengumuman</a>
-                    <a href="/news/events">Kegiatan Sekolah</a>
-                </div>
-            </li>
-            <li><a href="/admissions" class="btn"><i class="fa fa-graduation-cap"></i> Informasi PPDB</a></li>
-        </ul>
-    </div>
-</nav>
+                    <!-- Dropdown Profil Sekolah -->
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Profil Sekolah <i class="fa fa-angle-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="/profil/histori">Sejarah Singkat Sekolah</a>
+                            <a href="/profil/visi-misi">Visi dan Misi</a>
+                            <a href="/profil-guru">Profil Guru</a>
+                            <a href="/profil/fasilitas">Fasilitas Sekolah</a>
+                        </div>
+                    </li>
+                    <li><a href="/">Informasi Akademik</a></li>
+                    <li><a href="/">Berita dan Pengumuman</a></li>
+                    <li><a href="/admissions" class="btn"><i class="fa fa-graduation-cap"></i> Informasi PPDB</a></li>
+                </ul>
+            </div>
+        </nav>
 
     <!-- Sub Navbar -->
     <div class="sub-navbar">
@@ -60,9 +44,9 @@
                 <li><a href="/extracurricular">Kegiatan Ekstrakurikuler</a></li>
                 <li><a href="/gallery">Galeri Foto dan Video</a></li>
                 <li><a href="#">Kontak dan Lokasi</a></li>
-                <li><a href="#">Testimoni</a></li>
+                <li><a href="/testimonials">Testimoni</a></li>
                 <li><a href="/faq">FAQ</a></li>
-                <li><a href="#">Keamanan dan Kebijakan Privasi</a></li>
+                <li><a href="/privacy-policy">Keamanan dan Kebijakan Privasi</a></li>
             </ul>
         </div>
     </div>
@@ -93,7 +77,7 @@
     
 
         <!-- Footer -->
-        <footer class="footer" style="background-color: #005599; padding: 40px 0;">
+    <footer class="footer">
     <div class="container" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; color: white;">
         <!-- Kontak Info -->
         <div class="footer-contact" style="flex: 1;">
@@ -103,7 +87,7 @@
                 </div>
                 <div class="text">
                     <p>Jl. Caringin No.106, Babakan Ciparay, Kota Bandung</p>
-                    <b>Kota Bandung, Jawa Barat, 40223.</b>
+                    <b>Kota Bandung, Jawa Barat, 40223.</b> <br>
                 </div>
             </div>
             <div class="contact-info">
@@ -111,7 +95,7 @@
                     <i class="fa fa-phone"></i>
                 </div>
                 <div class="text">
-                    <p>(+62) 812 0812 0812</p>
+                    <p style="margin-top: 30px;">082130168612</p> <br>
                 </div>
             </div>
             <div class="contact-info">
@@ -119,7 +103,7 @@
                     <i class="fa fa-envelope"></i>
                 </div>
                 <div class="text">
-                    <p>admin@gmail.com</p>
+                    <p>dapodiksdn012bacip@gmail.com</p>
                 </div>
             </div>
             <div class="contact-info">
@@ -127,7 +111,7 @@
                     <i class="fa fa-globe"></i>
                 </div>
                 <div class="text">
-                    <p>www.admin.com</p>
+                    <p style="margin-top: 30px;">www.admin.com</p> <br>
                 </div>
             </div>
         </div>
@@ -135,61 +119,11 @@
         <!-- Informasi Sekolah -->
         <div class="footer-info" style="flex: 1;">
             <h3>Tentang SD Negeri 012 Babakan Ciparay</h3>
-            <p class="about">Lorem Ipsum Dolor Sir Amet Lorem Ipsum Dolor Sir Amet Lorem Ipsum Dolor Sir Amet Lorem Ipsum Dolor Sir Amet Lorem Ipsum Dolor Sir Amet Lorem Ipsum Dolor Sir Amet Lorem Ipsum Dolor Sir Amet</p>
-            <div class="footer-socmed" style="display: flex; gap: 20px; margin-top: 15px;">
-                <div class="footer-socmed-split">
-                    <div class="contact-info">
-                        <div class="icon">
-                            <i class="fa fa-facebook"></i>
-                        </div>
-                        <div class="text">
-                            <p>Lorem Ipsum</p>
-                        </div>
-                    </div>
-                    <div class="contact-info">
-                        <div class="icon">
-                            <i class="fa fa-youtube-play"></i>
-                        </div>
-                        <div class="text">
-                            <p>Lorem Ipsum</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-socmed-split">
-                    <div class="contact-info">
-                        <div class="icon">
-                            <i class="fa fa-instagram"></i>
-                        </div>
-                        <div class="text">
-                            <p>Lorem Ipsum</p>
-                        </div>
-                    </div>
-                    <div class="contact-info">
-                        <div class="icon">
-                            <i class="fa fa-linkedin"></i>
-                        </div>
-                        <div class="text">
-                            <p>Lorem Ipsum</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="about">SD Negeri 012 Babakan Ciparay Kota Bandung berdomisili di perkotaan yang berdekatan dengan Pasar Induk Caringin Bandung, dengan pengembangan ekonomi dan wilayah perdagangan dengan keterjangkauan lokasi yang mudah ditempuh melalui sarana transportasi dari berbagai rute.</p>
         </div>
-
-        <!-- Google Maps -->
-        <div class="footer-maps" style="flex: 1;">
-                <iframe   iframe 
-                    src="https://maps.google.com/maps?q=Jl.%20Caringin%20No.106,%20Babakan%20Ciparay&t=&z=13&ie=UTF8&output=embed" 
-                    width="100%" 
-                    height="250" 
-                    style="border: 1px solid #ddd; border-radius: 10px;" 
-                    allowfullscreen="" 
-                    loading="lazy">
-                    </iframe>
+        <div class="footer-maps">
+                <iframe src="https://maps.google.com/maps?q=Jl.%20Caringin%20No.106,%20Babakan%20Ciparay&t=&z=13&ie=UTF8&output=embed" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-        </div>
-    </footer>
-
-
+    </footer> 
 </body>
 </html>

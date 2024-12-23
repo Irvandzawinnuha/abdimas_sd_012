@@ -30,24 +30,8 @@
                     <a href="/profil/fasilitas">Fasilitas Sekolah</a>
                 </div>
             </li>
-            <!-- Dropdown Informasi Akademik -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Informasi Akademik <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/academic/curriculum">Kurikulum</a>
-                    <a href="/academic/program">Program Pembelajaran</a>
-                    <a href="/academic/calendar">Kalender Akademik</a>
-                </div>
-            </li>
-            <!-- Dropdown Berita dan Pengumuman -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Berita dan Pengumuman <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/news/latest">Berita Terbaru</a>
-                    <a href="/news/announcements">Pengumuman</a>
-                    <a href="/news/events">Kegiatan Sekolah</a>
-                </div>
-            </li>
+            <li><a href="/">Informasi Akademik</a></li>
+            <li><a href="/">Berita dan Pengumuman</a></li>
             <li><a href="/admissions" class="btn"><i class="fa fa-graduation-cap"></i> Informasi PPDB</a></li>
         </ul>
     </div>
@@ -65,12 +49,12 @@
             </ul>
         </div>
     </div>
-
+    <br><br><br>
     <!-- Header -->
     <section class="welcome">
         <div class="container">
         <div class="image" style="margin-right: 100px;">
-                <img src="{{ asset('beranda_sd.png') }}" alt="Gambar">
+                <img src="{{ asset('assets/buat foto fitur abdimas/bagian_profil_sd/profil_sekolah_sd.png') }}" alt="Gambar" width="700">
             </div>
             <div class="text">
             <h2 style="font-size: 28px; font-weight: bold; color: #000000; margin-bottom: 20px;">Tentang SD NEGERI 012 BABAKAN CIPARAY</h2>
@@ -108,42 +92,12 @@
         <div class="container" style="max-width: 1200px; margin: 0 auto; text-align: center; display: block;">
         <h2 class="kontribusi-title">Kontribusi Kepada Masyarakat</h2>
             <div class="kontribusi-gallery">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Boseh (Rebo Sehat).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Donasi Palestina.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Donasi Palestina(1).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Donasi Palestina(2).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Donasi Palestina(3).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Jumroh (jumat Rohani).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Kamis Nyunda.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Kamis Siang Kombel-PMM Day.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Kegiatan P5.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Kegiatan P5(1).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Kontribusi Kepada Masyarakat.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Kontribusi Kepada Masyarakat(1).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Kontribusi Kepada Masyarakat(2).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Literasi Asyik.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Makan Sehat Bersama.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Paskibra.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Pencak Silat.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Pramuka.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik Lomba Mewarnai.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik Lomba Mewarnai(1).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik Pencak Silat.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik Tenis Meja Putri.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik(1).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik(2).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Prestasi Peserta Didik(3).png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/Sabar.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_1.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_2.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_3.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_4.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_5.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_6.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_7.png') }}" alt="Kegiatan 1" class="gallery-item">
-                <img src="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_8.png') }}" alt="Kegiatan 1" class="gallery-item">
-
+                <img src="{{ asset('assets/buat foto fitur abdimas/kontribusi_masyarakat_sd/Kontribusi_1.png') }}" alt="Deskripsi Gambar 1" class="gallery-item">
+                <img src="{{ asset('assets/buat foto fitur abdimas/kontribusi_masyarakat_sd/Kontribusi_2.png') }}" alt="Kegiatan 1" class="gallery-item">
+                <img src="{{ asset('assets/buat foto fitur abdimas/kontribusi_masyarakat_sd/Kontribusi_3.png') }}" alt="Kegiatan 1" class="gallery-item">
+                <img src="{{ asset('assets/buat foto fitur abdimas/kontribusi_masyarakat_sd/Kontribusi_4.jpg') }}" alt="Kegiatan 1" class="gallery-item">
+                <img src="{{ asset('assets/buat foto fitur abdimas/kontribusi_masyarakat_sd/Kontribusi_5.jpg') }}" alt="Kegiatan 1" class="gallery-item">
+                <img src="{{ asset('assets/buat foto fitur abdimas/kontribusi_masyarakat_sd/Kontribusi_6.jpg') }}" alt="Kegiatan 1" class="gallery-item">
             </div>
         </div>
     </section>

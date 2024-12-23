@@ -21,37 +21,21 @@
         <ul class="nav-links">
             <li><a href="/">Beranda</a></li>
             <!-- Dropdown Profil Sekolah -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Profil Sekolah <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/profil/histori">Sejarah Singkat Sekolah</a>
-                    <a href="/profil/visi-misi">Visi dan Misi</a>
-                    <a href="/profil-guru">Profil Guru</a>
-                    <a href="/profil/fasilitas">Fasilitas Sekolah</a>
-                </div>
-            </li>
-            <!-- Dropdown Informasi Akademik -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Informasi Akademik <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/academic/curriculum">Kurikulum</a>
-                    <a href="/academic/program">Program Pembelajaran</a>
-                    <a href="/academic/calendar">Kalender Akademik</a>
-                </div>
-            </li>
-            <!-- Dropdown Berita dan Pengumuman -->
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Berita dan Pengumuman <i class="fa fa-angle-down"></i></a>
-                <div class="dropdown-content">
-                    <a href="/news/latest">Berita Terbaru</a>
-                    <a href="/news/announcements">Pengumuman</a>
-                    <a href="/news/events">Kegiatan Sekolah</a>
-                </div>
-            </li>
-            <li><a href="/admissions" class="btn"><i class="fa fa-graduation-cap"></i> Informasi PPDB</a></li>
-        </ul>
-    </div>
-</nav>
+                <li class="dropdown">
+                        <a href="#" class="dropbtn">Profil Sekolah <i class="fa fa-angle-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="/profil/histori">Sejarah Singkat Sekolah</a>
+                            <a href="/profil/visi-misi">Visi dan Misi</a>
+                            <a href="/profil-guru">Profil Guru</a>
+                            <a href="/profil/fasilitas">Fasilitas Sekolah</a>
+                        </div>
+                    </li>
+                    <li><a href="/">Informasi Akademik</a></li>
+                    <li><a href="/">Berita dan Pengumuman</a></li>
+                    <li><a href="/admissions" class="btn"><i class="fa fa-graduation-cap"></i> Informasi PPDB</a></li>
+                </ul>
+            </div>
+        </nav>
 
     <!-- Sub Navbar -->
     <div class="sub-navbar">
@@ -61,7 +45,7 @@
                 <li><a href="/gallery">Galeri Foto dan Video</a></li>
                 <li><a href="/testimonials">Testimoni</a></li>
                 <li><a href="/faq">FAQ</a></li>
-                <li><a href="#">Keamanan dan Kebijakan Privasi</a></li>
+                <li><a href="/privacy-policy">Keamanan dan Kebijakan Privasi</a></li>
             </ul>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<!-- buat akademik-->
+<!--Informasi Akademik-->
 <!DOCTYPE html>
 <html lang="id">
 <head>

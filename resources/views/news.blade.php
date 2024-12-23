@@ -1,4 +1,4 @@
-<!-- buat views/news.blade.php -->
+<!-- Berita dan Pengumuman -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
