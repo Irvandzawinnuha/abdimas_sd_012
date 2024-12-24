@@ -8,20 +8,12 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\Backend\AddPostController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\ProfilGuruController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\PrivacyPolicyController;
-
-
-
-
-
-
-
-
-
-
+use App\Http\Controllers\BeritaController;
 
 //backend
 use App\Http\Controllers\Backend\GaleriController;
@@ -34,6 +26,16 @@ use App\Http\Controllers\Backend\EditController;
 use App\Http\Controllers\Backend\KalenderController;
 use App\Http\Controllers\Backend\KontakController;
 use App\Http\Controllers\Backend\LupaPaswordController;
+use App\Http\Controllers\Backend\EmailBerhasilController;
+use App\Http\Controllers\Backend\EmailResetController;
+use App\Http\Controllers\Backend\FormValidasiController;
+use App\Http\Controllers\Backend\IconController;
+use App\Http\Controllers\Backend\LandingPageController;
+use App\Http\Controllers\Backend\LayoutDarkController;
+use App\Http\Controllers\Backend\MaintenanceController;
+use App\Http\Controllers\Backend\ResetSandiController;
+use App\Http\Controllers\Backend\SearchController;
+use App\Http\Controllers\Backend\TabelProgressController;
 
 
 // Route backend
@@ -48,9 +50,18 @@ Route::prefix('backend')->group(function () {
     Route::get('/kalender', [KalenderController::class, 'html'])->name('backend.kalender');
     Route::get('/kontak', [KontakController::class, 'html'])->name('backend.kontak');
     Route::get('/lupapasword', [LupaPaswordController::class, 'html'])->name('backend.lupapasword');
-
-
-
+    Route::get('/addpost', [AddPostController::class, 'html'])->name('backend.addpost');
+    Route::get('/email-berhasil', [EmailBerhasilController::class, 'html'])->name('backend.email.berhasil');
+    Route::get('/email-reset', [EmailResetController::class, 'html'])->name('backend.email.reset');
+    Route::get('/faq', [FaqController::class, 'html'])->name('backend.faq');
+    Route::get('/form-validasi', [FormValidasiController::class, 'html'])->name('backend.form.validasi');
+    Route::get('/icon', [IconController::class, 'html'])->name('backend.icon');
+    Route::get('/landing-page', [LandingPageController::class, 'html'])->name('backend.landing.page');
+    Route::get('/layout-dark', [LayoutDarkController::class, 'html'])->name('backend.layout.dark');
+    Route::get('/maintenance', [MaintenanceController::class, 'html'])->name('backend.maintenance');
+    Route::get('/reset-sandi', [ResetSandiController::class, 'html'])->name('backend.reset.sandi');
+    Route::get('/search', [SearchController::class, 'html'])->name('backend.search');
+    Route::get('/tabel-progress', [TabelProgressController::class, 'html'])->name('backend.tabel.progress');
 });
 
 
