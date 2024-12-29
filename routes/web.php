@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfilGuruController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\NewsDetailController;
 
 //backend
 use App\Http\Controllers\Backend\GaleriController;
@@ -108,3 +109,6 @@ Route::get('/testimonials', [TestimonialsController::class, 'index'])->name('tes
 
 //privacy-policy
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
+
+//bagian news detail atau berita pengumuman semuanya
+Route::get('news_detail', [NewsDetailController::class, 'index'])->name('news_detail');

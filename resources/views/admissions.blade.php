@@ -4,19 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informasi Pendaftaran Siswa Baru</title>
+    <title>SD Negeri 012 Babakan Ciparay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Informasi Pendaftaran Siswa Baru</h1>
-    </header>
-    <section>
-        <h2>Persyaratan</h2>
-        <p>{{ $admission->requirements }}</p>
-        <h2>Jadwal</h2>
-        <p>{{ $admission->schedule }}</p>
-        <h2>Biaya</h2>
-        <p>{{ $admission->fees }}</p>
-    </section>
+    
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012"> 
+            <h1 class="school-name">SD NEGERI 012 BABAKAN CIPARAY</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Beranda</a></li>
+            <!-- Dropdown Profil Sekolah -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Profil Sekolah <i class="fa fa-angle-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="/profil/histori">Sejarah Singkat Sekolah</a>
+                    <a href="/profil/visi-misi">Visi dan Misi</a>
+                    <a href="/profil-guru">Profil Guru</a>
+                    <a href="/profil/fasilitas">Fasilitas Sekolah</a>
+                </div>
+            </li>
+            <li><a href="/academic">Informasi Akademik</a></li>
+            <li><a href="/news">Berita dan Pengumuman</a></li>
+            <!-- Tombol Informasi PPDB -->
+            <li>
+                <a href="https://wa.me/6282130168612?text=Halo%20Kak,%20saya%20ingin%20bertanya%20mengenai%20PPDB%20SDN%20012%20Babakan%20Ciparay%20yang%20di%20alamat%20Jl.%20Caringin%20No.%20106%20RT%2002,%20RW%2004%20Kec.%20Babakan%20Ciparay%20kota%20Bandung,%20kode%20pos%2020233"
+                   class="btn" 
+                   target="_blank" 
+                   style="background-color: #005599; color: white; font-weight: bold;">
+                    <i class="fa fa-graduation-cap"></i> Informasi PPDB
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Sub Navbar -->
+<div class="sub-navbar">
+    <div class="container">
+        <ul class="sub-nav-links">
+            <li><a href="/extracurricular">Kegiatan Ekstrakurikuler</a></li>
+            <li><a href="/gallery">Galeri Foto dan Video</a></li>
+            <li><a href="/testimonials">Testimoni</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/privacy-policy">Keamanan dan Kebijakan Privasi</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Informasi PPDB -->
+<section class="info-ppdb" style="text-align: center; margin: 50px 0;">
+    <h2>Informasi Penerimaan Peserta Didik Baru</h2>
+    <p style="font-size: 18px; margin: 20px 0;">
+        Untuk informasi lengkap mengenai Penerimaan Peserta Didik Baru (PPDB) SD Negeri 012 Babakan Ciparay, 
+        silakan klik tombol di bawah ini dan hubungi kami melalui WhatsApp. Kami siap membantu menjawab semua pertanyaan Anda.
+    </p>
+    <!-- Tombol WhatsApp -->
+    <a href="https://wa.me/6282130168612?text=Halo%20Kak,%20saya%20ingin%20bertanya%20mengenai%20PPDB%20SDN%20012%20Babakan%20Ciparay%20yang%20di%20alamat%20Jl.%20Caringin%20No.%20106%20RT%2002,%20RW%2004%20Kec.%20Babakan%20Ciparay%20kota%20Bandung,%20kode%20pos%2020233"
+       style="display: inline-block; padding: 10px 20px; background-color: #005599; color: white; font-size: 18px; font-weight: bold; border-radius: 5px; text-decoration: none;">
+        <i class="fab fa-whatsapp"></i> Hubungi Kami via WhatsApp
+    </a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; color: white;">
+        <!-- Kontak Info -->
+        <div class="footer-contact" style="flex: 1;">
+            <div class="contact-info">
+                <div class="icon">
+                    <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="text">
+                    <p>Jl. Caringin No.106 RT 02, RW 04 Kec. Babakan Ciparay, Kota Bandung</p>
+                    <b>Kota Bandung, Jawa Barat, 20233.</b> <br>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="text">
+                    <p style="margin-top: 30px;">082130168612</p> <br>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="icon">
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <div class="text">
+                    <p>dapodiksdn012bacip@gmail.com</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="icon">
+                    <i class="fa fa-globe"></i>
+                </div>
+                <div class="text">
+                    <p style="margin-top: 30px;">www.admin.com</p> <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informasi Sekolah -->
+        <div class="footer-info" style="flex: 1;">
+            <h3>Tentang SD Negeri 012 Babakan Ciparay</h3>
+            <p class="about">SD Negeri 012 Babakan Ciparay Kota Bandung berdomisili di perkotaan yang berdekatan dengan Pasar Induk Caringin Bandung, dengan pengembangan ekonomi dan wilayah perdagangan dengan keterjangkauan lokasi yang mudah ditempuh melalui sarana transportasi dari berbagai rute.</p>
+        </div>
+        <div class="footer-maps">
+            <iframe src="https://maps.google.com/maps?q=Jl.%20Caringin%20No.106,%20Babakan%20Ciparay&t=&z=13&ie=UTF8&output=embed" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</footer> 
 </body>
 </html>

@@ -30,8 +30,8 @@
                     <a href="/profil/fasilitas">Fasilitas Sekolah</a>
                 </div>
             </li>
-            <li><a href="/">Informasi Akademik</a></li>
-            <li><a href="/">Berita dan Pengumuman</a></li>
+            <li><a href="/academic">Informasi Akademik</a></li>
+            <li><a href="/news">Berita dan Pengumuman</a></li>
             <li><a href="/admissions" class="btn"><i class="fa fa-graduation-cap"></i> Informasi PPDB</a></li>
         </ul>
     </div>
@@ -45,7 +45,7 @@
                 <li><a href="/gallery">Galeri Foto dan Video</a></li>
                 <li><a href="/testimonials">Testimoni</a></li>
                 <li><a href="/faq">FAQ</a></li>
-                <li><a href="#">Keamanan dan Kebijakan Privasi</a></li>
+                <li><a href="privacy-policy">Keamanan dan Kebijakan Privasi</a></li>
             </ul>
         </div>
     </div>

@@ -30,8 +30,8 @@
                         <a href="/profil/fasilitas">Fasilitas Sekolah</a>
                     </div>
                 </li>
-                <li><a href="/">Informasi Akademik</a></li>
-                <li><a href="/">Berita dan Pengumuman</a></li>
+                <li><a href="/academic">Informasi Akademik</a></li>
+                <li><a href="/news">Berita dan Pengumuman</a></li>
                 <li><a href="/admissions" class="btn"><i class="fa fa-graduation-cap"></i> Informasi PPDB</a></li>
             </ul>
         </div>
