@@ -102,41 +102,107 @@
 
 
     <!-- Footer -->
-    <footer class="footer">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; color: white;">
+<footer class="footer">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; color: white;">
+        <style>
+            .footer {
+                background-color: #2e3b55; /* Warna latar */
+                padding: 20px;
+                color: white;
+                font-family: Arial, sans-serif;
+            }
+
+            .footer a {
+                text-decoration: none; /* Menghilangkan underline */
+                color: white; /* Pastikan teks tetap putih */
+            }
+
+            .footer-contact {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .contact-info {
+                display: flex;
+                align-items: center;
+                gap: 10px; /* Jarak antara ikon dan teks */
+            }
+
+            .contact-info .icon {
+                width: 14px0px; /* Lebar lingkaran ikon */
+                height: 20px; /* Tinggi lingkaran ikon */
+                background-color: #0073e6; /* Warna background lingkaran ikon */
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .contact-info .icon i {
+                font-size: 14px; /* Ukuran ikon lebih kecil */
+                color: white;
+            }
+
+            .contact-info .text p {
+                margin: 0;
+            }
+
+            .footer-info h3 {
+                margin-bottom: 10px;
+            }
+        </style>
+
         <!-- Kontak Info -->
         <div class="footer-contact" style="flex: 1;">
             <div class="contact-info">
                 <div class="icon">
-                    <i class="fa fa-map-marker"></i>
+                    <a href="https://www.google.com/maps?q=Jl.+Caringin+No.106,+Babakan+Ciparay,+Kota+Bandung" target="_blank">
+                        <i class="fa fa-map-marker"></i>
+                    </a>
                 </div>
                 <div class="text">
-                    <p>Jl. Caringin No.106, Babakan Ciparay, Kota Bandung</p>
-                    <b>Kota Bandung, Jawa Barat, 40223.</b> <br>
+                    <p><a href="https://www.google.com/maps?q=Jl.+Caringin+No.106,+Babakan+Ciparay,+Kota+Bandung" target="_blank">Jl. Caringin No.106, Babakan Ciparay, Kota Bandung</a></p>
+                    <b>Kota Bandung, Jawa Barat, 20233.</b>
                 </div>
             </div>
+
             <div class="contact-info">
                 <div class="icon">
-                    <i class="fa fa-phone"></i>
+                    <a href="https://wa.me/6282130168612?text=Halo%20Kak,%20saya%20ingin%20bertanya%20mengenai%20PPDB%20SDN%20012%20Babakan%20Ciparay" target="_blank">
+                        <i class="fa fa-phone"></i>
+                    </a>
                 </div>
                 <div class="text">
-                    <p style="margin-top: 30px;">082130168612</p> <br>
+                    <p>
+                        <a href="https://wa.me/6282130168612?text=Halo%20Kak,%20saya%20ingin%20bertanya%20mengenai%20informasi%20PPDB." target="_blank">
+                            082130168612
+                        </a>
+                    </p>
                 </div>
             </div>
+
             <div class="contact-info">
                 <div class="icon">
-                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:dapodiksdn012bacip@gmail.com">
+                        <i class="fa fa-envelope"></i>
+                    </a>
                 </div>
                 <div class="text">
-                    <p>dapodiksdn012bacip@gmail.com</p>
+                    <p>
+                        <a href="mailto:dapodiksdn012bacip@gmail.com">dapodiksdn012bacip@gmail.com</a>
+                    </p>
                 </div>
             </div>
+
             <div class="contact-info">
                 <div class="icon">
-                    <i class="fa fa-globe"></i>
+                    <a href="https://www.admin.com" target="_blank">
+                        <i class="fa fa-globe"></i>
+                    </a>
                 </div>
                 <div class="text">
-                    <p style="margin-top: 30px;">www.admin.com</p> <br>
+                    <p><a href="https://www.admin.com" target="_blank">www.admin.com</a></p>
                 </div>
             </div>
         </div>
@@ -146,9 +212,27 @@
             <h3>Tentang SD Negeri 012 Babakan Ciparay</h3>
             <p class="about">SD Negeri 012 Babakan Ciparay Kota Bandung berdomisili di perkotaan yang berdekatan dengan Pasar Induk Caringin Bandung, dengan pengembangan ekonomi dan wilayah perdagangan dengan keterjangkauan lokasi yang mudah ditempuh melalui sarana transportasi dari berbagai rute.</p>
         </div>
-        <div class="footer-maps">
-                <iframe src="https://maps.google.com/maps?q=Jl.%20Caringin%20No.106,%20Babakan%20Ciparay&t=&z=13&ie=UTF8&output=embed" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+        <!-- Peta -->
+        <div class="footer-maps" style="position: relative; width: 300px; height: 300px;">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Jl.%20Caringin%20No.106,%20Babakan%20Ciparay&t=&z=13&ie=UTF8&output=embed" 
+                    width="300" 
+                    height="300" 
+                    style="border: 0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+                <!-- Overlay untuk menangkap klik -->
+                <a 
+                    href="https://www.google.com/maps?q=Jl.+Caringin+No.106,+Babakan+Ciparay,+Kota+Bandung" 
+                    target="_blank" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-decoration: none; z-index: 10;">
+                </a>
             </div>
-    </footer> 
+    </div>
+</footer>
+
+
 </body>
 </html>
