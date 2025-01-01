@@ -66,7 +66,7 @@
             </a>
         </div>
         <div class="image">
-            <img src="{{ asset('beranda_sd.png') }}" alt="Gambar">
+            <img src="{{ asset('assets/buat foto fitur abdimas/beranda_sd/beranda_sd.png') }}" alt="Gambar">
         </div>
     </div>
 </section>

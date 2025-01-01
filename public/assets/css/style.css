@@ -202,6 +202,10 @@
   }
 }
 
+.btn-primary{
+  background-color: #005599 !important;
+border: 1px solid #005599;
+}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -14980,11 +14984,6 @@ input:focus {
   font-weight: 600;
 }
 
-.btn-primary {
-  background-color: var(--theme-default) !important;
-  border: 1px solid var(--theme-default);
-  color: #ffffff;
-}
 .btn-primary:hover, .btn-primary:focus, .btn-primary.active, .btn-primary:active:focus, .btn-primary.show {
   background-color: var(--theme-default);
   border-color: var(--theme-default);
@@ -40898,12 +40897,7 @@ pre {
     height: auto;
   }
 }
-/**=====================
-      09. Error-page CSS Ends
-  ==========================**/
-/**=====================
-    25. Authentication CSS Start
-==========================**/
+
 .login_one_image {
   background-image: url(../images/login/2.jpg);
   background-size: cover;
@@ -40919,7 +40913,7 @@ pre {
 }
 
 .login_two_image {
-  background-image: url(../images/login/3.jpg);
+  background-image: url(../images/login/beranda_sd.png);
   background-size: cover;
   background-position: center center;
 }
@@ -40944,7 +40938,6 @@ pre {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  background: url("../images/login/login_bg.jpg");
   background-position: center;
   padding: 30px 12px;
 }
@@ -41093,6 +41086,7 @@ pre {
 }
 .login-card .login-main .theme-form .form-group a.link {
   float: none;
+  color: #005599;
 }
 @media (max-width: 575.98px) {
   .login-card .login-main .theme-form .form-group {
@@ -41150,7 +41144,7 @@ pre {
 .show-hide span {
   cursor: pointer;
   font-size: 13px;
-  color: var(--theme-default);
+  color: #005599;
 }
 .show-hide span.show:before {
   content: "show";
@@ -47598,4 +47592,9 @@ label {
 }
 .setting-sidebar .customizer-footer .btn svg {
   transition: color 0.3s;
+}
+
+.create-account {
+  color: #005599;
+  text-decoration: none;
 }

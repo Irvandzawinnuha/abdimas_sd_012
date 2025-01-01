@@ -47,7 +47,7 @@
           <div class="col-12">     
             <div class="login-card login-dark">
               <div>
-                <div><a class="logo" href="index.html"><img class="img-fluid for-light m-auto" src="../assets/images/logo/logo1.png" alt="looginpage"><img class="for-dark" src="../assets/images/logo/logo-dark.png" alt="logo"></a></div>
+                <div><a class="logo" href="index.html"></a></div>
                 <div class="login-main"> 
                   <form class="theme-form">                   
                     <h2>Reset Your Password</h2>

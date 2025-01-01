@@ -8,63 +8,96 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\AdmissionController;
-use App\Http\Controllers\Backend\AddPostController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\ProfilGuruController;
 use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\NewsDetailController;
+use App\Http\Controllers\FotoKontribusiController;
+
 
 //backend
-use App\Http\Controllers\Backend\GaleriController;
-use App\Http\Controllers\Backend\IndexController;
-use App\Http\Controllers\Backend\LoginController;
-use App\Http\Controllers\Backend\DaftarController;
-use App\Http\Controllers\Backend\ButtonsController;
-use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\EditController;
-use App\Http\Controllers\Backend\KalenderController;
-use App\Http\Controllers\Backend\KontakController;
-use App\Http\Controllers\Backend\LupaPaswordController;
-use App\Http\Controllers\Backend\EmailBerhasilController;
-use App\Http\Controllers\Backend\EmailResetController;
-use App\Http\Controllers\Backend\FormValidasiController;
-use App\Http\Controllers\Backend\IconController;
-use App\Http\Controllers\Backend\LandingPageController;
-use App\Http\Controllers\Backend\LayoutDarkController;
-use App\Http\Controllers\Backend\MaintenanceController;
-use App\Http\Controllers\Backend\ResetSandiController;
-use App\Http\Controllers\Backend\SearchController;
-use App\Http\Controllers\Backend\TabelProgressController;
+use App\Http\Controllers\backend\GaleriController;
+use App\Http\Controllers\backend\IndexController;
+
+use App\Http\Controllers\backend\LoginController;
+
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+
+
+use App\Http\Controllers\backend\AddPostController;
+use App\Http\Controllers\backend\DaftarController;
+use App\Http\Controllers\backend\ButtonsController;
+use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\EditController;
+use App\Http\Controllers\backend\KalenderController;
+use App\Http\Controllers\backend\LupaPaswordController;
+use App\Http\Controllers\backend\EmailBerhasilController;
+use App\Http\Controllers\backend\EmailResetController;
+use App\Http\Controllers\backend\FormValidasiController;
+use App\Http\Controllers\backend\IconController;
+use App\Http\Controllers\backend\LandingPageController;
+use App\Http\Controllers\backend\LayoutDarkController;
+use App\Http\Controllers\backend\ResetSandiController;
+use App\Http\Controllers\backend\SearchController;
+use App\Http\Controllers\backend\TabelProgressController;
 
 
 // Route backend
 Route::prefix('backend')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('backend.index');
-    Route::get('/galeri', [GaleriController::class, 'html'])->name('backend.galeri');
+
+    // Login Routes
     Route::get('/login', [LoginController::class, 'html'])->name('backend.login');
+    Route::post('/login', [LoginController::class, 'login'])->name('backend.login.post');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('backend.logout');
+
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard')->middleware('auth');
+
+    // Registration Routes
     Route::get('/daftar', [DaftarController::class, 'html'])->name('backend.daftar');
+    Route::post('/daftar', [DaftarController::class, 'store'])->name('backend.daftar.store');
+
+    // Other Routes
+    Route::get('/galeri', [GaleriController::class, 'html'])->name('backend.galeri');
     Route::get('/buttons', [ButtonsController::class, 'html'])->name('backend.buttons');
-    Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard');
     Route::get('/editprofil', [EditController::class, 'html'])->name('backend.editprofil');
     Route::get('/kalender', [KalenderController::class, 'html'])->name('backend.kalender');
-    Route::get('/kontak', [KontakController::class, 'html'])->name('backend.kontak');
-    Route::get('/lupapasword', [LupaPaswordController::class, 'html'])->name('backend.lupapasword');
     Route::get('/addpost', [AddPostController::class, 'html'])->name('backend.addpost');
-    Route::get('/email-berhasil', [EmailBerhasilController::class, 'html'])->name('backend.email.berhasil');
-    Route::get('/email-reset', [EmailResetController::class, 'html'])->name('backend.email.reset');
-    Route::get('/faq', [FaqController::class, 'html'])->name('backend.faq');
-    Route::get('/form-validasi', [FormValidasiController::class, 'html'])->name('backend.form.validasi');
-    Route::get('/icon', [IconController::class, 'html'])->name('backend.icon');
-    Route::get('/landing-page', [LandingPageController::class, 'html'])->name('backend.landing.page');
-    Route::get('/layout-dark', [LayoutDarkController::class, 'html'])->name('backend.layout.dark');
-    Route::get('/maintenance', [MaintenanceController::class, 'html'])->name('backend.maintenance');
-    Route::get('/reset-sandi', [ResetSandiController::class, 'html'])->name('backend.reset.sandi');
-    Route::get('/search', [SearchController::class, 'html'])->name('backend.search');
-    Route::get('/tabel-progress', [TabelProgressController::class, 'html'])->name('backend.tabel.progress');
+});
+// Forgot Password Routes
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Reset Password Routes
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+// Tambah, Edit, dan Hapus pada backend
+Route::prefix('backend')->group(function () {
+    Route::get('/foto-kontribusi', [FotoKontribusiController::class, 'index'])->name('foto.index');
+    Route::get('/foto-kontribusi/create', [FotoKontribusiController::class, 'create'])->name('foto.create'); // Menambahkan rute ini
+    Route::post('/foto-kontribusi/store', [FotoKontribusiController::class, 'store'])->name('foto.store');
+    Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
+    Route::put('/foto-kontribusi/update/{id}', [FotoKontribusiController::class, 'update'])->name('foto.update');
+    Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.delete');
 });
 
+Route::prefix('backend')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard');
+});
+
+Route::prefix('backend')->group(function () {
+    Route::get('/foto-kontribusi', [FotoKontribusiController::class, 'index'])->name('foto.index');
+    Route::get('/foto-kontribusi/create', [FotoKontribusiController::class, 'create'])->name('foto.create');
+    Route::post('/foto-kontribusi/store', [FotoKontribusiController::class, 'store'])->name('foto.store');
+    Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
+    Route::put('/foto-kontribusi/update/{id}', [FotoKontribusiController::class, 'update'])->name('foto.update');
+    Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.delete');
+});
 
 
 // Route Utama
@@ -112,3 +145,10 @@ Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('
 
 //bagian news detail atau berita pengumuman semuanya
 Route::get('news_detail', [NewsDetailController::class, 'index'])->name('news_detail');
+
+// bagian delete dan edit
+Route::prefix('backend')->group(function () {
+    Route::get('/foto-kontribusi', [FotoKontribusiController::class, 'index'])->name('foto.index');
+    Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
+    Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.delete');
+});

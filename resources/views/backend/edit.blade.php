@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0/dist/css/tempus-dominus.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.0.0/dist/js/tempus-dominus.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -276,98 +279,66 @@
 
 
 
-        <!-- Main Content -->
-        <div class="content">
-            <h2>Dashboard</h2>
-            <br>
-            <p>Pada halaman Dashboard, admin sekolah dapat menambah, menghapus, atau mengupdate beberapa fitur seperti <b>Foto Kontribusi, Profile Guru, Berita dan Pengumuman, Kegiatan Ekstrakurikuler, dan Galeri Foto dan Video.</b></p>
-            <br>
+<!-- Main Content -->
+<div class="content">
+    <h2 class="fw-bold mb-4">Input Foto Kontribusi</h2>
+    <p>
+        Pada <b>Foto Kontribusi</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> foto kegiatan 
+        SD Negeri 012 Babakan Ciparay saat kontribusi kepada masyarakat, dengan mencantumkan dokumentasi 
+        berupa <b>foto kegiatan kontribusi SD Negeri 012 Babakan Ciparay.</b>
+    </p>
 
-            <!-- Tabs -->
-            <ul class="nav nav-tabs mb-4">
-                <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#foto-kontribusi">Foto Kontribusi</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-guru">Profile Guru</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#berita-pengumuman">Berita dan Pengumuman</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kegiatan-ekstrakurikuler">Kegiatan Ekstrakurikuler</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#galeri-foto">Galeri Foto dan Video</button>
-                </li>
-            </ul>
+    <form action="{{ route('foto.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
-           <!-- Tab Contents -->
-<div class="tab-content">
-    <div class="tab-pane fade show active" id="foto-kontribusi">
-        <br>
-
-        <!-- Header Foto Kontribusi -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-            <h4 style="margin: 0;">Foto Kontribusi</h4>
-            <!-- Tombol Tambah -->
-            <a href="{{ route('foto.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
-                Tambah +
-            </a>
+        <div class="form-group mb-3">
+            <label for="created_at" class="form-label fw-bold">Created At/Tanggal Publikasi</label>
+            <div class="input-group" id="datetimepicker1" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                <input type="text" id="created_at" name="created_at" class="form-control" data-td-target="#datetimepicker1" placeholder="Pilih tanggal" required>
+                <span class="input-group-text" data-td-target="#datetimepicker1" data-td-toggle="datetimepicker">
+                    <i class="bi bi-calendar"></i>
+                </span>
+            </div>
         </div>
 
-        <!-- Tabel Foto Kontribusi -->
-        <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
-            <thead>
-                <tr style="background-color: #F8F9FA;">
-                    <th style="border: none;">No</th>
-                    <th style="border: none;">Created At</th>
-                    <th style="border: none;">Created By</th>
-                    <th style="border: none;">Foto</th>
-                    <th style="border: none;">Hapus</th>
-                    <th style="border: none;">Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $foto)
-                <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
-                    <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
-                    <td style="border: none; vertical-align: middle;">{{ $foto->created_at->format('d/m/Y') }}</td>
-                    <td style="border: none; vertical-align: middle;">{{ $foto->created_by }}</td>
-                    <td style="border: none;">
-                        <div style="display: flex; justify-content: center;">
-                        <img src="{{ asset('assets/buat foto fitur abdimas/foto back end/Makan Sehat Bersama.png') }}"alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
-                        </div>
-                    </td>
+        <div class="form-group mb-3">
+            <label for="created_by" class="form-label fw-bold">Created By/Dibuat Oleh</label>
+            <input type="text" id="created_by" name="created_by" class="form-control" placeholder="Masukkan pembuat (Contoh: Admin)" required>
+        </div>
 
-                    <!-- Tombol Hapus -->
-                    <td style="border: none; vertical-align: middle;">
-                        <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </form>
-                    </td>
-                    <!-- Tombol Edit -->
-                    <td style="border: none; vertical-align: middle;">
-                        <a href="{{ route('foto.edit', $foto->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; background-color: #005599;">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+        <div class="form-group mb-4">
+            <label for="foto" class="form-label fw-bold">Foto Kontribusi</label>
+            <div class="border border-dashed p-5 text-center rounded" style="border-color: #ccc;">
+                <label for="foto" class="d-block mb-3" style="cursor: pointer; color: #6c757d;">Upload foto disini</label>
+                <input type="file" id="foto" name="foto" class="form-control" style="display: none;">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-2" style="border-radius: 50px;">Tambah</button>
+    </form>
 </div>
-
 
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'), {
+                    display: {
+                        components: {
+                            calendar: true,
+                            date: true,
+                            month: true,
+                            year: true,
+                            decades: true,
+                            clock: false,
+                        }
+                    }
+                });
+            });
+    </script>
+
 </body>
 </html>
