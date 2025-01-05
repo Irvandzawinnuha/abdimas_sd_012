@@ -218,26 +218,31 @@
 
         <!-- Content -->
         <div class="content">
-            <h2>Input Foto Kontribusi</h2>
+            <h2>Input Profile Pendidik dan Tenaga Kependidikan</h2>
             <p>
-                Pada <b>Foto Kontribusi</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> foto kegiatan
-                SD Negeri 012 Babakan Ciparay saat kontribusi kepada masyarakat.
+                Pada <b>Foto Kontribusi</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> foto kegiatan 
+                SD Negeri 012 Babakan Ciparay saat kontribusi kepada masyarakat, dengan mencantumkan dokumentasi 
+                berupa <b>foto kegiatan kontribusi SD Negeri 012 Babakan Ciparay.</b>
             </p>
-            <form action="{{ route('foto.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('profile.guru.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group mb-3">
-                    <label for="created_at">Created At/Tanggal Publikasi</label>
-                    <input type="date" class="form-control" id="created_at" name="created_at" required>
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" required>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="created_by">Created By/Dibuat Oleh</label>
-                    <input type="text" class="form-control" id="created_by" name="created_by" placeholder="Masukkan pembuat (contoh: Admin)" required>
+                <div class="mb-3">
+                    <label for="nip" class="form-label">NIP</label>
+                    <input type="text" class="form-control" id="nip" name="nip" required>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="foto">Foto Kontribusi</label>
-                    <input type="file" class="form-control" id="foto" name="foto" required>
+                <div class="mb-3">
+                    <label for="jabatan" class="form-label">Jabatan</label>
+                    <input type="text" class="form-control" id="jabatan" name="jabatan" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Tambah</button>
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto</label>
+                    <input type="file" class="form-control" id="foto" name="foto">
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>
     </div>

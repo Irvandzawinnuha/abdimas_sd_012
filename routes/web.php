@@ -14,10 +14,10 @@ use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\NewsDetailController;
-use App\Http\Controllers\FotoKontribusiController;
 
 
 //backend
+use App\Http\Controllers\backend\FotoKontribusiController;
 use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\IndexController;
 
@@ -25,6 +25,15 @@ use App\Http\Controllers\backend\LoginController;
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\backend\ProfileGuruController;
+use App\Http\Controllers\BeritaPengumumanController;
+
+
+
+
+
+
+
 
 
 use App\Http\Controllers\backend\AddPostController;
@@ -76,28 +85,84 @@ Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEm
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-// Tambah, Edit, dan Hapus pada backend
-Route::prefix('backend')->group(function () {
-    Route::get('/foto-kontribusi', [FotoKontribusiController::class, 'index'])->name('foto.index');
-    Route::get('/foto-kontribusi/create', [FotoKontribusiController::class, 'create'])->name('foto.create'); // Menambahkan rute ini
-    Route::post('/foto-kontribusi/store', [FotoKontribusiController::class, 'store'])->name('foto.store');
-    Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
-    Route::put('/foto-kontribusi/update/{id}', [FotoKontribusiController::class, 'update'])->name('foto.update');
-    Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.delete');
-});
+
 
 Route::prefix('backend')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard');
 });
 
+
+
 Route::prefix('backend')->group(function () {
-    Route::get('/foto-kontribusi', [FotoKontribusiController::class, 'index'])->name('foto.index');
+    Route::get('/berita-pengumuman', [BeritaPengumumanController::class, 'index'])->name('berita.pengumuman.index');
+    Route::get('/kegiatan-ekstrakurikuler', [KegiatanEkstrakurikulerController::class, 'index'])->name('kegiatan.ekstrakurikuler.index');
+    Route::get('/galeri-foto', [GaleriFotoController::class, 'index'])->name('galeri.foto.index');
+});
+
+Route::prefix('backend')->group(function () {
+    // Menampilkan daftar guru
+    Route::get('/profile-guru', [ProfileGuruController::class, 'index'])->name('profile.guru.index');
+
+    // Menampilkan form tambah guru
+    Route::get('/profile-guru/create', [ProfileGuruController::class, 'create'])->name('profile.guru.create');
+
+    // Menyimpan data guru baru
+    Route::post('/profile-guru/store', [ProfileGuruController::class, 'store'])->name('profile.guru.store');
+
+    // Menampilkan form edit guru
+    Route::get('/profile-guru/edit/{id}', [ProfileGuruController::class, 'edit'])->name('profile.guru.edit');
+
+    // Memperbarui data guru
+    Route::put('/profile-guru/update/{id}', [ProfileGuruController::class, 'update'])->name('profile.guru.update');
+
+    // Menghapus data guru
+    Route::delete('/profile-guru/destroy/{id}', [ProfileGuruController::class, 'destroy'])->name('profile.guru.destroy');
+});
+
+
+Route::prefix('backend')->group(function () {
+    Route::get('/berita', [BeritaPengumumanController::class, 'index'])->name('berita.index');
+    Route::get('/berita/create', [BeritaPengumumanController::class, 'create'])->name('berita.create');
+    Route::post('/berita', [BeritaPengumumanController::class, 'store'])->name('berita.store');
+    Route::get('/berita/{id}/edit', [BeritaPengumumanController::class, 'edit'])->name('berita.edit');
+    Route::put('/berita/{id}', [BeritaPengumumanController::class, 'update'])->name('berita.update');
+    Route::delete('/berita/{id}', [BeritaPengumumanController::class, 'destroy'])->name('berita.destroy');
+});
+
+
+Route::get('/dashboard', [App\Http\Controllers\backend\DashboardController::class, 'html']);
+
+Route::prefix('backend')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard');
+});
+
+
+Route::prefix('backend')->group(function () {
+    Route::get('/password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('backend.password');
+});
+
+Route::prefix('backend')->group(function () {
+    Route::get('/password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('backend.password');
+});
+
+
+Route::prefix('backend')->group(function () {
+    Route::resource('foto', FotoKontribusiController::class);
+});
+
+Route::prefix('backend')->group(function () {
+    Route::get('/dashboard', [FotoKontribusiController::class, 'index'])->name('foto.index');
     Route::get('/foto-kontribusi/create', [FotoKontribusiController::class, 'create'])->name('foto.create');
     Route::post('/foto-kontribusi/store', [FotoKontribusiController::class, 'store'])->name('foto.store');
     Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
     Route::put('/foto-kontribusi/update/{id}', [FotoKontribusiController::class, 'update'])->name('foto.update');
     Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.delete');
 });
+
+
+
+
+
 
 
 // Route Utama
@@ -146,9 +211,3 @@ Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('
 //bagian news detail atau berita pengumuman semuanya
 Route::get('news_detail', [NewsDetailController::class, 'index'])->name('news_detail');
 
-// bagian delete dan edit
-Route::prefix('backend')->group(function () {
-    Route::get('/foto-kontribusi', [FotoKontribusiController::class, 'index'])->name('foto.index');
-    Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
-    Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.delete');
-});

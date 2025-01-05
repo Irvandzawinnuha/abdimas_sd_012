@@ -35,9 +35,9 @@
             <!-- Tombol Informasi PPDB -->
             <li>
                 <a href="https://wa.me/6282130168612?text=Halo%20Kak,%20saya%20ingin%20bertanya%20mengenai%20PPDB%20SDN%20012%20Babakan%20Ciparay%20yang%20di%20alamat%20Jl.%20Caringin%20No.%20106%20RT%2002,%20RW%2004%20Kec.%20Babakan%20Ciparay%20kota%20Bandung,%20kode%20pos%2020233"
-                   class="btn" 
-                   target="_blank" 
-                   style="background-color: #005599; color: white; font-weight: bold;">
+                class="btn" 
+                target="_blank" 
+                style="background-color: #005599; color: white; font-weight: bold;">
                     <i class="fa fa-graduation-cap"></i> Informasi PPDB
                 </a>
             </li>

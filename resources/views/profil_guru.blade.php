@@ -56,6 +56,7 @@
         <h1 class="profile-title">Profil Guru Sekolah</h1>
         <h2 class="profile-subtitle">SDN 012 Babakan Ciparay</h2>
         <div class="profile-grid">
+
             <!-- Card Guru -->
             <div class="profile-card">
                 <img src="{{ asset('assets/buat foto fitur abdimas/foto_guru_fix/1.jpg') }}" alt alt="Ucu Supriatini,S.Pd.">
@@ -91,7 +92,7 @@
                 <p>Guru Kelas 1D</p>
             </div>
 
-        
+
 
             <div class="profile-card">
                 <img src="{{ asset('assets/buat foto fitur abdimas/foto_guru_fix/5.jpg') }}" alt alt="Alia Hildania,S.Pd.">

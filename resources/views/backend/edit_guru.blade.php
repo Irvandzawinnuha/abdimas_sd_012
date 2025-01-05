@@ -13,7 +13,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #ffffff;
+            background-color:  #ffffff;
             color: #000000;
         }
 
@@ -41,7 +41,7 @@
             text-align: center;
             margin-top: 10px;
             margin-bottom: 20px;
-            color: #333333;
+            color: #000000;
         }
         .sidebar .section-title {
             font-size: 14px;
@@ -59,7 +59,7 @@
             margin-bottom: 15px;
         }
         .sidebar ul li a {
-            color: #333333;
+            color: #000000;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -104,15 +104,15 @@
             height: auto;
         }
 
-        .sidebar .logo-container h4 {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333333;
-            margin: 0;
-            text-align: left;
+    .sidebar .logo-container h4 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000000;
+        margin: 0;
+        text-align: left;
         }
 
-        .logout-link {
+.logout-link {
     margin-top: auto;
     text-align: center;
     padding-top: 20px;
@@ -120,7 +120,7 @@
 }
 
     .logout-link a {
-        color: #005599; /* Warna biru */
+          color: #000000; /* Warna biru */
         font-size: 14px;
         text-decoration: none;
         display: flex;
@@ -137,7 +137,7 @@
     }
 
     .logout-link a:hover {
-          background-color: #f5f5f5; /* Background hover */
+          background-color: #ffffff; /* Background hover */
         text-decoration: none;
     }
 
@@ -146,7 +146,7 @@
         .content {
             margin-left: 381px;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             min-height: 100vh;
         }
         .content h2 {
@@ -166,7 +166,7 @@
         }
         .nav-tabs .nav-link {
             font-size: 14px;
-            color: #2C2C2C;
+            color: #000000;
             margin-right: 10px;
         }
         .table img {
@@ -179,7 +179,7 @@
             border: none;
         }
         .btn-primary:hover {
-            background-color: #004080;
+            background-color: #005599;
         }
 
       /* Desain tabel lebih estetik */
@@ -192,7 +192,7 @@
     .table th {
         font-size: 14px;
         font-weight: 600;
-        color: #333333;
+        color: #000000;
         padding: 15px;
         text-align: center;
         border-bottom: none;
@@ -283,37 +283,36 @@
 <div class="content">
     <h2 class="fw-bold mb-4">Input Foto Kontribusi</h2>
     <p>
-        Pada <b>Foto Kontribusi</b>, admin dapat <b>memuat, menghapus, dan memperbarui</b> foto kegiatan SD Negeri 012 Babakan Ciparay 
-        saat kontribusi kepada masyarakat, dengan mencantumkan dokumentasi berupa <b>foto kegiatan kontribusi SD Negeri 012 Babakan Ciparay.</b>
+        Pada <b>Foto Kontribusi</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> foto kegiatan 
+        SD Negeri 012 Babakan Ciparay saat kontribusi kepada masyarakat, dengan mencantumkan dokumentasi 
+        berupa <b>foto kegiatan kontribusi SD Negeri 012 Babakan Ciparay.</b>
     </p>
 
-    <form action="{{ route('foto.update', $foto->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+            <form action="{{ route('profile.guru.update', $guru->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ $guru->nama }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="nip" class="form-label">NIP</label>
+                <input type="text" class="form-control" id="nip" name="nip" value="{{ $guru->nip }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="jabatan" class="form-label">Jabatan</label>
+                <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ $guru->jabatan }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto</label>
+                <input type="file" class="form-control" id="foto" name="foto">
+                @if ($guru->foto)
+                    <img src="{{ asset('storage/' . $guru->foto) }}" alt="Foto Guru" width="100" class="mt-2">
+                @endif
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </form>
 
-        <!-- Input untuk Created By -->
-        <div class="mb-3">
-            <label for="created_by" class="form-label">Created By</label>
-            <input type="text" class="form-control" id="created_by" name="created_by" 
-            value="{{ old('created_by', $foto->created_by) }}" required>
-        </div>
-
-        <!-- Input untuk Upload Foto Baru -->
-        <div class="mb-3">
-            <label for="foto" class="form-label">Ganti Foto (Opsional)</label>
-            <input type="file" class="form-control" id="foto" name="foto">
-            <small class="text-muted">Kosongkan jika tidak ingin mengganti foto.</small>
-        </div>
-
-        <!-- Tampilkan Foto Lama -->
-        <div class="mb-3">
-            <label>Foto Saat Ini:</label><br>
-            <img src="{{ asset('storage/' . $foto->foto) }}" alt="Foto" class="img-thumbnail" style="width: 150px;">
-        </div>
-
-        <!-- Tombol Simpan -->
-        <button type="submit" class="btn btn-primary">Simpan</button>
-    </form>
 </div>
 
             </div>

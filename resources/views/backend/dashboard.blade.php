@@ -180,28 +180,28 @@
         }
 
       /* Desain tabel lebih estetik */
-      .table {
-          width: 100%;
-          border-collapse: separate;
-          border-spacing: 0 15px;
-      }
+    .table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
 
-      .table th {
-          font-size: 14px;
-          font-weight: 600;
-          color: #333333;
-          padding: 15px;
-          text-align: center;
-          border-bottom: none;
-      }
+    .table th {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333333;
+        padding: 15px;
+        text-align: center;
+        border-bottom: none;
+    }
 
-      .table td {
-          font-size: 14px;
-          font-weight: 400;
-          padding: 15px;
-          text-align: center;
-          border: none;
-      }
+    .table td {
+        font-size: 14px;
+        font-weight: 400;
+        padding: 15px;
+        text-align: center;
+        border: none;
+    }
 
     .table img {
         width: 100px;
@@ -230,9 +230,10 @@
     </style>
 </head>
 <body>
+
     <div class="d-flex">
-      <!-- Sidebar -->
-      <div class="sidebar d-flex flex-column">
+    <!-- Sidebar -->
+    <div class="sidebar d-flex flex-column">
     <!-- Bagian logo dan menu -->
     <div class="logo-container">
         <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
@@ -253,6 +254,9 @@
         </li>
     </ul>
     <div class="section-title">Informasi</div>
+
+
+<!-- conect admin to dashboard landing page front end-->
     <ul class="nav flex-column">
         <li class="nav-item">
             <a href="#" class="nav-link"><i class="bi bi-megaphone"></i> Berita dan Pengumuman</a>
@@ -302,7 +306,8 @@
                 </li>
             </ul>
 
-           <!-- Tab Contents -->
+
+<!-- Tab Contents -->
 <div class="tab-content">
     <div class="tab-pane fade show active" id="foto-kontribusi">
         <br>
@@ -328,15 +333,273 @@
                     <th style="border: none;">Edit</th>
                 </tr>
             </thead>
+            
             <tbody>
-                @foreach ($data as $foto)
+    @foreach ($dataFoto as $foto)
+    <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+        <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
+        <td style="border: none; vertical-align: middle;">{{ $foto->created_at->format('d/m/Y') }}</td>
+        <td style="border: none; vertical-align: middle;">{{ $foto->created_by }}</td>
+        <td style="border: none;">
+            <div style="display: flex; justify-content: center;">
+                <img src="{{ asset('storage/' . $foto->foto) }}" alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
+            </div>
+        </td>
+        <td style="border: none; vertical-align: middle;">
+            <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </form>
+        </td>
+        <td style="border: none; vertical-align: middle;">
+            <a href="{{ route('foto.edit', $foto->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px;">
+                <i class="bi bi-pencil"></i>
+            </a>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
+
+        </table>
+    </div>
+
+
+
+<!-- Profile Guru -->
+    <div class="tab-pane fade" id="profile-guru">
+    <br>
+    <!-- Header Profile Guru -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+        <h4 style="margin: 0;">Profile Guru</h4>
+        <!-- Tombol Tambah -->
+        <a href="{{ route('profile.guru.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
+            Tambah +
+        </a>
+    </div>
+    <!-- Tabel Profile Guru -->
+    <div class="table-responsive">
+    <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
+        <thead>
+            <tr style="background-color: #F8F9FA;">
+                <th>No</th>
+                <th>Nama</th>
+                <th>NIP</th>
+                <th>Jabatan</th>
+                <th>Foto</th>
+                <th>Hapus</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($dataGuru as $guru)
+            <tr>
+                <td>{{ $loop->iteration + ($dataGuru->currentPage() - 1) * $dataGuru->perPage() }}</td>
+                <td>{{ $guru->nama }}</td>
+                <td>{{ $guru->nip }}</td>
+                <td>{{ $guru->jabatan }}</td>
+
+                <td>
+                <img src="{{ asset('storage/' . $guru->foto) }}" alt="Foto Guru" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+                </td>
+
+                <td>
+                    <form action="{{ route('profile.guru.destroy', $guru->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Hapus</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{{ route('profile.guru.edit', $guru->id) }}" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-3">
+    {{ $dataGuru->links() }}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="tab-pane fade" id="berita-pengumuman">
+        <br>
+        <!-- Header berita-pengumuman -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <h4 style="margin: 0;">berita pengumuman</h4>
+            <!-- Tombol Tambah -->
+            <a href="{{ route('foto.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
+                Tambah +
+            </a>
+        </div>
+        <!-- Tabel berita-pengumuman -->
+        <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
+            <thead>
+                <tr style="background-color: #F8F9FA;">
+                    <th style="border: none;">No</th>
+                    <th style="border: none;">Created At</th>
+                    <th style="border: none;">Created By</th>
+                    <th style="border: none;">Foto</th>
+                    <th style="border: none;">Hapus</th>
+                    <th style="border: none;">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dataFoto as $foto)
                 <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
                     <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
                     <td style="border: none; vertical-align: middle;">{{ $foto->created_at->format('d/m/Y') }}</td>
                     <td style="border: none; vertical-align: middle;">{{ $foto->created_by }}</td>
                     <td style="border: none;">
                         <div style="display: flex; justify-content: center;">
-                        <img src="{{ asset('assets/buat foto fitur abdimas/foto back end/Makan Sehat Bersama.png') }}"alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
+                        <img src="{{ asset('storage/' . $foto->foto) }}"alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                    </td>
+
+                    <!-- Tombol Hapus -->
+                    <td style="border: none; vertical-align: middle;">
+                        <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <!-- Tombol Edit -->
+                    <td style="border: none; vertical-align: middle;">
+                        <a href="{{ route('foto.edit', $foto->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; background-color: #005599;">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="tab-pane fade" id="kegiatan-ekstrakurikuler">
+        <br>
+        <!-- Header berita-pengumuman -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <h4 style="margin: 0;">kegiatan ekstrakurikuler</h4>
+            <!-- Tombol Tambah -->
+            <a href="{{ route('foto.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
+                Tambah +
+            </a>
+        </div>
+
+        <!-- Tabel berita-pengumuman -->
+        <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
+            <thead>
+                <tr style="background-color: #F8F9FA;">
+                    <th style="border: none;">No</th>
+                    <th style="border: none;">Created At</th>
+                    <th style="border: none;">Created By</th>
+                    <th style="border: none;">Foto</th>
+                    <th style="border: none;">Hapus</th>
+                    <th style="border: none;">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dataFoto as $foto)
+                <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                    <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $foto->created_at->format('d/m/Y') }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $foto->created_by }}</td>
+                    <td style="border: none;">
+                        <div style="display: flex; justify-content: center;">
+                        <img src="{{ asset('storage/' . $foto->foto) }}"alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                    </td>
+
+                    <!-- Tombol Hapus -->
+                    <td style="border: none; vertical-align: middle;">
+                        <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <!-- Tombol Edit -->
+                    <td style="border: none; vertical-align: middle;">
+                        <a href="{{ route('foto.edit', $foto->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; background-color: #005599;">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tab-pane fade" id="galeri-foto">
+        <br>
+        <!-- Header berita-pengumuman -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <h4 style="margin: 0;">galeri foto dan video</h4>
+            <!-- Tombol Tambah -->
+            <a href="{{ route('foto.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
+                Tambah +
+            </a>
+        </div>
+
+        <!-- Tabel berita-pengumuman -->
+        <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
+            <thead>
+                <tr style="background-color: #F8F9FA;">
+                    <th style="border: none;">No</th>
+                    <th style="border: none;">Created At</th>
+                    <th style="border: none;">Created By</th>
+                    <th style="border: none;">Foto</th>
+                    <th style="border: none;">Hapus</th>
+                    <th style="border: none;">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dataFoto as $foto)
+                <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                    <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $foto->created_at->format('d/m/Y') }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $foto->created_by }}</td>
+                    <td style="border: none;">
+                        <div style="display: flex; justify-content: center;">
+                        <img src="{{ asset('storage/' . $foto->foto) }}"alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
                         </div>
                     </td>
 
@@ -367,6 +630,34 @@
             </div>
         </div>
     </div>
+
+
+
+    <script>
+    // Script untuk memastikan tab aktif saat reload
+    const tabLinks = document.querySelectorAll('.nav-tabs .nav-link');
+    tabLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            localStorage.setItem('activeTab', link.getAttribute('data-bs-target'));
+        });
+    });
+
+    const activeTab = localStorage.getItem('activeTab');
+    if (activeTab) {
+        document.querySelector(`.nav-tabs .nav-link[data-bs-target="${activeTab}"]`).classList.add('active');
+        document.querySelector(activeTab).classList.add('show', 'active');
+    }
+
+    // Konfirmasi sebelum menghapus data
+    document.querySelectorAll('.btn-danger').forEach(button => {
+        button.addEventListener('click', function (e) {
+            const confirmDelete = confirm('Apakah Anda yakin ingin menghapus data ini?');
+            if (!confirmDelete) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
