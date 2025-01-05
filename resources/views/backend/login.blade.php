@@ -37,7 +37,7 @@
             <div class="login-main">
                 <form class="theme-form" method="POST" action="{{ route('backend.login.post') }}">
                     @csrf <!-- Laravel CSRF token -->
-                    <h2 class="text-center">Sign in to account</h2>
+                    <h2 class="text-center">Sign in to account</h2> 
                     <p class="text-center">Enter your email &amp; password to login</p>
 
                     <!-- Display error messages -->

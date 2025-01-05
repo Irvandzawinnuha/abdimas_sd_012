@@ -427,6 +427,7 @@
 </div>
 
 
+    <!--berita-pengumuman -->
     <div class="tab-pane fade" id="berita-pengumuman">
         <br>
         <!-- Header berita-pengumuman -->

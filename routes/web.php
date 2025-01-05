@@ -26,6 +26,7 @@ use App\Http\Controllers\backend\LupaPasswordController;
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+
 use App\Http\Controllers\backend\ProfileGuruController;
 use App\Http\Controllers\BeritaPengumumanController;
 use App\Http\Controllers\UserController;
@@ -129,13 +130,13 @@ Route::prefix('backend')->group(function () {
 });
 
 
-Route::prefix('backend')->group(function () {
-    Route::get('/password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('backend.password');
-});
-
-Route::prefix('backend')->group(function () {
-    Route::get('/password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('backend.password');
-});
+//Bagian Sign in to account
+// Forgot Password Routes
+Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Reset Password Routes
+Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 
 Route::prefix('backend')->group(function () {
