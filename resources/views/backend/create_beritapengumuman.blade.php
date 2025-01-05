@@ -61,9 +61,9 @@
 
         <!-- Content -->
         <div class="content">
-            <h2>Input Berita Pengumuman</h2>
+            <h2>Berita & Pengumuman</h2>
             <p>
-                Pada <b>Berita dan Pengumuman</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> berita terkait SD Negeri 012 Babakan Ciparay.
+                Pada <b>Berita & Pengumuman</b>, admin dapat  <b>menambah, menghapus, dan memperbaharui</b> Berita dan Pengumuman terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b> foto, deskripsi kegiatan, tanggal pelaksanaan, dan tempat pelaksanaan.</b>
             </p>
             <form action="{{ route('berita.store') }}" method="POST">
                 @csrf

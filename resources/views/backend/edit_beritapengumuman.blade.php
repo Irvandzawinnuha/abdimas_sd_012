@@ -82,10 +82,9 @@
 
         <!-- Main Content -->
         <div class="content">
-            <h3>Berita Pengumuman</h3>
+            <h3>Berita dan Pengumuman</h3>
             <p>
-                Pada <b>Berita Pengumuman</b>, admin dapat <b>memperbarui informasi</b> terkait pengumuman sekolah, 
-                sehingga siswa dan masyarakat dapat selalu mendapatkan berita terkini.
+                Pada <b>Berita Pengumuman</b>, admin dapat  <b>menambah, menghapus, memperbarui</b>  Berita dan Pengumuman terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b> foto, deskripsi kegiatan, tanggal pelaksanaan, <b> dan </b>tempat pelaksanaan.</b>
             </p>
 
             <form id="editForm" action="{{ route('berita.update', $berita->id) }}" method="POST">

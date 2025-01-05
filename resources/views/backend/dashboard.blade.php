@@ -346,7 +346,7 @@
             </div>
         </td>
         <td style="border: none; vertical-align: middle;">
-            <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
+            <form action="{{ route('foto.destroy', $foto->id) }}" method="POST" style="display: inline-block;">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
@@ -427,24 +427,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="tab-pane fade" id="berita-pengumuman">
         <br>
         <!-- Header berita-pengumuman -->
@@ -481,7 +463,7 @@
 
                     <!-- Tombol Hapus -->
                     <td style="border: none; vertical-align: middle;">
-                        <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
+                        <form action="{{ route('foto.destroy', $foto->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
@@ -548,7 +530,7 @@
 
                     <!-- Tombol Hapus -->
                     <td style="border: none; vertical-align: middle;">
-                        <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
+                        <form action="{{ route('foto.destroy', $foto->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
@@ -605,7 +587,7 @@
 
                     <!-- Tombol Hapus -->
                     <td style="border: none; vertical-align: middle;">
-                        <form action="{{ route('foto.delete', $foto->id) }}" method="POST" style="display: inline-block;">
+                        <form action="{{ route('foto.destroy', $foto->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">

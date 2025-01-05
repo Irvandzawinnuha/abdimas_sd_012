@@ -22,12 +22,13 @@ use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\IndexController;
 
 use App\Http\Controllers\backend\LoginController;
+use App\Http\Controllers\backend\LupaPasswordController;
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\backend\ProfileGuruController;
 use App\Http\Controllers\BeritaPengumumanController;
-
+use App\Http\Controllers\UserController;
 
 
 
@@ -77,20 +78,11 @@ Route::prefix('backend')->group(function () {
     Route::get('/kalender', [KalenderController::class, 'html'])->name('backend.kalender');
     Route::get('/addpost', [AddPostController::class, 'html'])->name('backend.addpost');
 });
-// Forgot Password Routes
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
-// Reset Password Routes
-Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
 
 
 Route::prefix('backend')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard');
 });
-
 
 
 Route::prefix('backend')->group(function () {
@@ -156,8 +148,19 @@ Route::prefix('backend')->group(function () {
     Route::post('/foto-kontribusi/store', [FotoKontribusiController::class, 'store'])->name('foto.store');
     Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
     Route::put('/foto-kontribusi/update/{id}', [FotoKontribusiController::class, 'update'])->name('foto.update');
-    Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.delete');
+    Route::delete('/foto-kontribusi/delete/{id}', [FotoKontribusiController::class, 'destroy'])->name('foto.destroy');
 });
+
+//bagian lupa pasword mail
+Route::post('/send-email', [UserController::class, 'sendDynamicEmail'])->name('send.email');
+
+Route::post('/send-email', [EmailController::class, 'sendDynamicEmail'])->name('send.email');
+
+
+
+
+
+
 
 
 

@@ -281,11 +281,11 @@
 
 <!-- Main Content -->
 <div class="content">
-    <h2 class="fw-bold mb-4">Input Foto Kontribusi</h2>
+    <h2 class="fw-bold mb-4">Profile Guru</h2>
     <p>
-        Pada <b>Foto Kontribusi</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> foto kegiatan 
+        Pada <b> Profile Pendidik dan Tenaga Kependidikan,</b> admin dapat  <b> menambah, menghapus, dan memperbaharui</b> foto kegiatan 
         SD Negeri 012 Babakan Ciparay saat kontribusi kepada masyarakat, dengan mencantumkan dokumentasi 
-        berupa <b>foto kegiatan kontribusi SD Negeri 012 Babakan Ciparay.</b>
+        berupa <b>foto, nama, nip, dan dan status/jabatan Pendidik dan Tenaga Kependidikan.</b>
     </p>
 
             <form action="{{ route('profile.guru.update', $guru->id) }}" method="POST" enctype="multipart/form-data">

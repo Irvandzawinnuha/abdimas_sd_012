@@ -84,10 +84,10 @@
         <div class="content">
             <h3>Galeri Foto dan Video</h3>
             <p>
-                Pada <b>Galeri Foto dan Video,</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> dokumentasi foto dan video terkait aktivitas di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b> foto/video kegiatan di SD Negeri 012 Babakan Ciparay.</b>
-            </p>
-
-            <form id="editForm" action="{{ route('berita.update', $berita->id) }}" method="POST">
+                Pada <b>Galeri Foto dan Video</b>, admin dapat  <b>mmenambah, menghapus, dan memperbaharui</b> dokumentasi foto dan video terkait aktivitas 
+                di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>foto/video kegiatan di SD Negeri 012 Babakan Ciparay.</b>
+        
+                <form id="editForm" action="{{ route('berita.update', $berita->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
