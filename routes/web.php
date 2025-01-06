@@ -24,36 +24,26 @@ use App\Http\Controllers\backend\IndexController;
 use App\Http\Controllers\backend\LoginController;
 use App\Http\Controllers\backend\LupaPasswordController;
 
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\backend\ForgotPasswordController;
+use App\Http\Controllers\backend\ResetPasswordController;
 
-use App\Http\Controllers\backend\ProfileGuruController;
-use App\Http\Controllers\BeritaPengumumanController;
-use App\Http\Controllers\UserController;
-
-
-
-
-
-
-
-
-use App\Http\Controllers\backend\AddPostController;
-use App\Http\Controllers\backend\DaftarController;
-use App\Http\Controllers\backend\ButtonsController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\ProfileGuruController;
+
+use App\Http\Controllers\backend\BeritaPengumumanController;
+use App\Http\Controllers\backend\UserController;
+
+use App\Http\Controllers\backend\DaftarController;
 use App\Http\Controllers\backend\EditController;
-use App\Http\Controllers\backend\KalenderController;
-use App\Http\Controllers\backend\LupaPaswordController;
+
+
 use App\Http\Controllers\backend\EmailBerhasilController;
+
 use App\Http\Controllers\backend\EmailResetController;
-use App\Http\Controllers\backend\FormValidasiController;
-use App\Http\Controllers\backend\IconController;
-use App\Http\Controllers\backend\LandingPageController;
-use App\Http\Controllers\backend\LayoutDarkController;
 use App\Http\Controllers\backend\ResetSandiController;
+
+use App\Http\Controllers\backend\ResetLinkController;
 use App\Http\Controllers\backend\SearchController;
-use App\Http\Controllers\backend\TabelProgressController;
 
 
 // Route backend
@@ -87,12 +77,6 @@ Route::prefix('backend')->group(function () {
 
 
 Route::prefix('backend')->group(function () {
-    Route::get('/berita-pengumuman', [BeritaPengumumanController::class, 'index'])->name('berita.pengumuman.index');
-    Route::get('/kegiatan-ekstrakurikuler', [KegiatanEkstrakurikulerController::class, 'index'])->name('kegiatan.ekstrakurikuler.index');
-    Route::get('/galeri-foto', [GaleriFotoController::class, 'index'])->name('galeri.foto.index');
-});
-
-Route::prefix('backend')->group(function () {
     // Menampilkan daftar guru
     Route::get('/profile-guru', [ProfileGuruController::class, 'index'])->name('profile.guru.index');
 
@@ -113,14 +97,6 @@ Route::prefix('backend')->group(function () {
 });
 
 
-Route::prefix('backend')->group(function () {
-    Route::get('/berita', [BeritaPengumumanController::class, 'index'])->name('berita.index');
-    Route::get('/berita/create', [BeritaPengumumanController::class, 'create'])->name('berita.create');
-    Route::post('/berita', [BeritaPengumumanController::class, 'store'])->name('berita.store');
-    Route::get('/berita/{id}/edit', [BeritaPengumumanController::class, 'edit'])->name('berita.edit');
-    Route::put('/berita/{id}', [BeritaPengumumanController::class, 'update'])->name('berita.update');
-    Route::delete('/berita/{id}', [BeritaPengumumanController::class, 'destroy'])->name('berita.destroy');
-});
 
 
 Route::get('/dashboard', [App\Http\Controllers\backend\DashboardController::class, 'html']);
@@ -132,11 +108,34 @@ Route::prefix('backend')->group(function () {
 
 //Bagian Sign in to account
 // Forgot Password Routes
-Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-// Reset Password Routes
-Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+Route::get('/backend/lupa_password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('backend.lupa_password');
+Route::post('/backend/lupa_password/send', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('backend.lupa_password.send');
+
+Route::get('/lupa_password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/lupa_password/send', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Menampilkan form reset password
+Route::get('/backend/lupa_password', [ForgotPasswordController::class, 'showForm'])->name('backend.lupa_password');
+Route::get('/lupa_password', [ForgotPasswordController::class, 'showForm'])->name('password.request');
+
+// Mengirim email reset password
+Route::post('/backend/lupa_password/send', [ResetLinkController::class, 'sendResetLink'])->name('backend.lupa_password.send');
+
+// Reset Password Routes udh bener
+Route::get('/backend/resetpassword/{token}', [ResetPasswordController::class, 'showResetForm'])->name('backend.password.reset');
+Route::post('/backend/resetpassword', [ResetPasswordController::class, 'reset'])->name('backend.password.update');
+Route::get('/backend/resetpassword/debug', function () {
+    return "Route works!";
+});
+
+Route::get('/test-email', function () {
+    \Illuminate\Support\Facades\Mail::raw('Test email content', function ($message) {
+        $message->to('irvandzwinnuha15@gmail.com')
+                ->subject('Test Email');
+    });
+    return 'Email sent!';
+});
+
 
 
 Route::prefix('backend')->group(function () {
@@ -157,9 +156,16 @@ Route::post('/send-email', [UserController::class, 'sendDynamicEmail'])->name('s
 
 Route::post('/send-email', [EmailController::class, 'sendDynamicEmail'])->name('send.email');
 
-
-
-
+//bagian berita dan pengumuman
+Route::prefix('backend')->group(function () {
+    Route::get('/berita', [BeritaPengumumanController::class, 'index'])->name('berita.index');
+    Route::get('/berita/create', [BeritaPengumumanController::class, 'create'])->name('berita.create');
+    Route::post('/berita', [BeritaPengumumanController::class, 'store'])->name('berita.store');
+    Route::get('/berita/{id}/edit', [BeritaPengumumanController::class, 'edit'])->name('berita.edit');
+    Route::put('/berita/{id}', [BeritaPengumumanController::class, 'update'])->name('berita.update');
+    Route::delete('/berita/{id}', [BeritaPengumumanController::class, 'destroy'])->name('berita.destroy');
+    Route::resource('berita', BeritaPengumumanController::class);
+});
 
 
 

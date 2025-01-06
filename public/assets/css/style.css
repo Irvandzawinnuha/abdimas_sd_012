@@ -41066,10 +41066,10 @@ pre {
 .login-card .login-main .theme-form p {
   margin-bottom: 25px;
   font-size: 14px;
-  color: var(--font-color);
+  color: #000000;
 }
 .login-card .login-main .theme-form p a {
-  color: var(--theme-default);
+  color: #005599;
 }
 @media (max-width: 575.98px) {
   .login-card .login-main .theme-form p {

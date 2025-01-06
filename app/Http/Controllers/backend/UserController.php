@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\backend\Mail;
 use Illuminate\Http\Request;
 use App\Mail\YourMailable; // Import Mailable class (pastikan sudah dibuat)
 

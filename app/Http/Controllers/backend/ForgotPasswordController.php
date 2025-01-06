@@ -1,36 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
     /**
-     * Tampilkan formulir untuk meminta tautan reset password.
+     * Menampilkan form untuk request reset password.
      */
-    public function showLinkRequestForm()
+    public function showForm()
     {
-        return view('auth.passwords.email'); // Pastikan view ini ada
+        return view('backend.lupa_password'); // Blade file untuk form reset password
     }
 
-    /**
-     * Kirim tautan reset password ke email user.
-     */
-    public function sendResetLinkEmail(Request $request)
+        public function sendResetLinkEmail(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
+        $request->validate(['email' => 'required|email']);
 
         $status = Password::sendResetLink(
             $request->only('email')
         );
 
         return $status === Password::RESET_LINK_SENT
-            ? back()->with('status', __($status))
-            : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)]) // Kirim status berhasil
+            : back()->withErrors(['email' => __($status)]); // Kirim error
     }
+
 }

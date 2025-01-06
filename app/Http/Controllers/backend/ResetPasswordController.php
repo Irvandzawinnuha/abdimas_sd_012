@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,9 +16,10 @@ class ResetPasswordController extends Controller
      * @param string $token
      * @return \Illuminate\View\View
      */
+    
     public function showResetForm($token)
     {
-        return view('auth.passwords.reset', ['token' => $token]);
+        return view('backend.reset_password', ['token' => $token]);
     }
 
     /**
@@ -27,6 +28,7 @@ class ResetPasswordController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
     public function reset(Request $request)
     {
         $request->validate([
@@ -34,7 +36,7 @@ class ResetPasswordController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
         ]);
-
+    
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
@@ -44,9 +46,10 @@ class ResetPasswordController extends Controller
                 ])->save();
             }
         );
-
+    
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('backend.login')->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
     }
+
 }

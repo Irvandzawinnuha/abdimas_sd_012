@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\backend\Password;
 
 class LupaPasswordController extends Controller
 {
     public function showRequestForm()
     {
-        return view('auth.lupa_password');
+        return view('lupa_password');
     }
 
     public function sendResetLink(Request $request)

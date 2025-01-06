@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -60,34 +62,40 @@
         </div>
 
         <!-- Content -->
-        <div class="content">
-            <h2>Berita & Pengumuman</h2>
-            <p>
-                Pada <b>Berita & Pengumuman</b>, admin dapat  <b>menambah, menghapus, dan memperbaharui</b> Berita dan Pengumuman terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b> foto, deskripsi kegiatan, tanggal pelaksanaan, dan tempat pelaksanaan.</b>
-            </p>
-            <form action="{{ route('berita.store') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="judul" class="form-label">Judul</label>
-                    <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul berita" required>
-                </div>
-                <div class="mb-3">
-                    <label for="isi" class="form-label">Isi</label>
-                    <textarea class="form-control" id="isi" name="isi" rows="5" placeholder="Masukkan isi berita" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="penulis" class="form-label">Penulis</label>
-                    <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Masukkan nama penulis" required>
-                </div>
-                <div class="mb-3">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
-            </form>
+        @extends('layouts.backend')
+
+@section('content')
+<div class="container">
+    <h2>Tambah Berita dan Pengumuman</h2>
+
+    <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+            <label for="judul" class="form-label">Judul</label>
+            <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul berita" required>
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" placeholder="Masukkan deskripsi" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="tanggal" class="form-label">Tanggal</label>
+            <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+        </div>
+        <div class="mb-3">
+            <label for="tempat" class="form-label">Tempat</label>
+            <input type="text" class="form-control" id="tempat" name="tempat" placeholder="Masukkan tempat">
+        </div>
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
+    </form>
+</div>
+@endsection
+
 
     <script>
         const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');

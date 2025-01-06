@@ -16,11 +16,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name', // Tambahkan kolom ini
-        'last_name',  // Tambahkan kolom ini
+        'first_name',
+        'last_name',
         'email',
         'password',
-        'gender',     // Tambahkan kolom ini
+        'gender',
     ];
 
     /**
@@ -36,13 +36,10 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed', // Pastikan mendukung hashing password
+    ];
 }

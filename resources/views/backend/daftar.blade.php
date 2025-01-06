@@ -17,7 +17,7 @@
     <!-- App css -->
     <style>
         body {
-            font-family: 'Nunito Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
             padding: 84px;
         }
@@ -52,90 +52,93 @@
         }
 
 
-          .form-input {
-              position: relative;
-              width: 100%;
-          }
+        .form-input {
+            position: relative;
+            width: 100%;
+        }
 
-          .show-hide {
-              position: absolute;
-              top: 50%;
-              right: 10px;
-              transform: translateY(-50%);
-              cursor: pointer;
-              color: #888;
-          }
-        button.btn-primary {
-            width: 100%; /* Tombol seragam dengan input */
-            padding: 10px;
-            background-color: #005599;
-            border: none;
-            border-radius: 5px;
-            color: #ffffff;
-            font-size: 16px;
+        .show-hide {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
             cursor: pointer;
-            margin-top: 15px;
+            color: #888;
         }
+        
+    button.btn-primary {
+        width: 100%; /* Tombol seragam dengan input */
+        padding: 10px;
+        background-color: #005599;
+        border: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
 
-        button.btn-primary:hover {
-            background-color: #005599;
-        }
-        .text-center {
-            text-align: center;
-        }
+    button.btn-primary:hover {
+        background-color: #005599;
+    }
 
-        .text-muted {
-            color: #6c757d;
-        }
+    .text-center {
+        text-align: center;
+    }
 
-        .link {
-            color: #005599;
-            text-decoration: none;
-        }
+    .text-muted {
+        color: #6c757d;
+    }
 
-        .link:hover {
-            text-decoration: underline;
-        }
+    .link {
+        color: #005599;
+        text-decoration: none;
+    }
 
-        .checkbox-container {
-          display: flex;
-          align-items: center; /* Menyelaraskan vertikal */
-          gap: 10px; /* Jarak antara checkbox dan teks */
-          margin-top: 10px; /* Jarak dengan elemen sebelumnya */
-        }
+    .link:hover {
+        text-decoration: underline;
+    }
 
-        .checkbox-container .form-check-input {
-          width: 18px;
-          height: 18px;
+    .checkbox-container {
+        display: flex;
+        align-items: center; /* Menyelaraskan vertikal */
+        gap: 10px; /* Jarak antara checkbox dan teks */
+        margin-top: 10px; /* Jarak dengan elemen sebelumnya */
+    }
+
+    .checkbox-container .form-check-input {
+        width: 18px;
+        height: 18px;
           cursor: pointer; /* Menambahkan efek kursor */
-        }
+    }
 
-      .checkbox-container .form-check-label {
-          font-size: 14px;
-          color: #000; /* Warna teks */
-        }
+    .checkbox-container .form-check-label {
+        font-size: 14px;
+        color: #000; /* Warna teks */
+    }
+
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2 class="text-center">Create your account</h2>
-        <p class="text-center text-muted">Enter your personal details to create account</p>
+        <h2 class="text-center">Buat akun Anda</h2>
+        <p class="text-center text-muted">Masukkan detail pribadi Anda untuk membuat akun</p>
         <form method="POST" action="{{ route('backend.daftar.store') }}">
             @csrf
             <div class="form-group">
-                <label>Your Name</label>
+                <label>Nama Anda</label>
                 <div style="display: flex; gap: 10px;">
-                    <input class="form-control" type="text" name="first_name" required="" placeholder="First name">
-                    <input class="form-control" type="text" name="last_name" required="" placeholder="Last name">
+                    <input class="form-control" type="text" name="first_name" required="" placeholder="Nama depan">
+                    <input class="form-control" type="text" name="last_name" required="" placeholder="Nama akhir">
                 </div>
             </div>
             <div class="form-group">
-                <label>Email Address</label>
+                <label>Alamat email</label>
                 <input class="form-control" type="email" name="email" required="" placeholder="example@gmail.com">
             </div>
             <div class="form-group">
-                <label>Password</label>
+                <label>Kata sandi</label>
                 <div class="form-input">
                     <input class="form-control" type="password" name="password" id="password" required="" placeholder="*********">
                     <div class="show-hide" onclick="togglePassword()">
@@ -144,9 +147,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>Gender</label>
+                <label>Jenis Kelamin</label>
                 <select class="form-control" name="gender" required="">
-                    <option value="">Select Gender</option>
+                    <option value="">Pilih Jenis Kelamin</option>
                     <option value="Laki-Laki">Laki-Laki</option>
                     <option value="Perempuan">Perempuan</option>
                 </select>
@@ -154,12 +157,12 @@
 
             <div class="form-group checkbox-container">
                 <input type="checkbox" id="agree" name="agree" required="">
-                <label for="agree">Agree with <a href="#" class="link">Privacy Policy</a></label>
+                <label for="agree">Setuju dengan <a href="{{ route('privacy-policy') }}" class="link">Kebijakan Privasi</a></label>
             </div>
 
-            <button class="btn btn-primary" type="submit">Create Account</button>
+            <button class="btn btn-primary" type="submit">Buat Akun</button>
         </form>
-        <p class="text-center mt-3">Already have an account? <a href="login.html" class="link">Sign in</a></p>
+            <p class="text-center mt-3">Sudah memiliki akun? <a href="{{ route('backend.login') }}" class="link">Masuk</a></p>
     </div>
 
     <!-- JavaScript -->

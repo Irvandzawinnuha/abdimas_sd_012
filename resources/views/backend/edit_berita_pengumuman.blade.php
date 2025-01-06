@@ -80,6 +80,9 @@
             </div>
         </div>
 
+
+        @extends('layouts.backend')
+        @section('content')
         <!-- Main Content -->
         <div class="content">
             <h3>Berita dan Pengumuman</h3>
@@ -87,34 +90,88 @@
                 Pada <b>Berita Pengumuman</b>, admin dapat  <b>menambah, menghapus, memperbarui</b>  Berita dan Pengumuman terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b> foto, deskripsi kegiatan, tanggal pelaksanaan, <b> dan </b>tempat pelaksanaan.</b>
             </p>
 
-            <form id="editForm" action="{{ route('berita.update', $berita->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="mb-3">
-                    <label for="judul" class="form-label">Judul</label>
-                    <input type="text" class="form-control" id="judul" name="judul" value="{{ $berita->judul }}" 
-                        placeholder="Masukkan judul berita" required aria-label="Judul">
-                </div>
-                <div class="mb-3">
-                    <label for="isi" class="form-label">Isi</label>
-                    <textarea class="form-control" id="isi" name="isi" rows="5" 
-                        placeholder="Tulis isi berita pengumuman di sini..." required aria-label="Isi berita">{{ $berita->isi }}</textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="penulis" class="form-label">Penulis</label>
-                    <input type="text" class="form-control" id="penulis" name="penulis" 
-                        value="{{ $berita->penulis }}" placeholder="Masukkan nama penulis" required aria-label="Penulis">
-                </div>
-                <div class="mb-3">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" 
-                        value="{{ $berita->tanggal }}" required aria-label="Tanggal">
-                </div>
-                <button type="submit" class="btn btn-primary" id="submitButton">Simpan</button>
-                <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
-            </form>
+            <form action="{{ route('berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="mb-3">
+            <label for="judul" class="form-label">Judul</label>
+            <input type="text" class="form-control" id="judul" name="judul" value="{{ $berita->judul }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" required>{{ $berita->deskripsi }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="tanggal" class="form-label">Tanggal</label>
+            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $berita->tanggal }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="created_by" class="form-label">Dibuat Oleh</label>
+            <input type="text" class="form-control" id="created_by" name="created_by" value="{{ $berita->created_by }}">
+        </div>
+        <div class="mb-3">
+            <label for="tempat" class="form-label">Tempat</label>
+            <input type="text" class="form-control" id="tempat" name="tempat" value="{{ $berita->tempat }}">
+        </div>
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+            @if ($berita->foto)
+                <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto" class="img-thumbnail mt-2" style="max-width: 200px;">
+            @endif
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
+    </form>
         </div>
     </div>
+
+
+    <script>
+    Dropzone.options.fotoDropzone = {
+        url: "{{ route('berita.upload') }}", // Endpoint untuk upload file
+        method: "POST",
+        maxFiles: 1, // Batasi jumlah file
+        maxFilesize: 2, // Maksimal ukuran file dalam MB
+        acceptedFiles: "image/*", // Hanya menerima file gambar
+        addRemoveLinks: true, // Tambahkan tombol hapus
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}" // Token CSRF Laravel
+        },
+        init: function () {
+            let fotoInput = document.getElementById('fotoInput');
+            
+            // Jika sudah ada file yang diunggah sebelumnya, tampilkan
+            @if($berita->foto)
+                let mockFile = { name: "{{ basename($berita->foto) }}", size: 12345 }; // Mock file
+                this.emit("addedfile", mockFile);
+                this.emit("thumbnail", mockFile, "{{ asset('storage/' . $berita->foto) }}");
+                this.emit("complete", mockFile);
+                this.files.push(mockFile);
+            @endif
+
+            // Saat berhasil upload
+            this.on("success", function (file, response) {
+                fotoInput.value = response.filePath; // Simpan path file ke input hidden
+            });
+
+            // Saat file dihapus
+            this.on("removedfile", function (file) {
+                fotoInput.value = ""; // Hapus path file dari input hidden
+            });
+        }
+    };
+</script>
+
+
+
+
+
+
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>

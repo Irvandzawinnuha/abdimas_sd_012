@@ -23,11 +23,11 @@
             color: #005599;
         }
         .create-account {
-            color: #005599;
-            text-decoration: none;
+            color: #005599; /* Warna teks */
+            text-decoration: none; /* Menghapus garis bawah */
         }
         .create-account:hover {
-            text-decoration: underline;
+            text-decoration: underline; /* Garis bawah saat hover */
         }
     </style>
 </head>
@@ -37,8 +37,8 @@
             <div class="login-main">
                 <form class="theme-form" method="POST" action="{{ route('backend.login.post') }}">
                     @csrf <!-- Laravel CSRF token -->
-                    <h2 class="text-center">Sign in to account</h2> 
-                    <p class="text-center">Enter your email &amp; password to login</p>
+                    <h2 class="text-center">Sign in to account</h2>  <br>
+                    <p class="text-center">Masukkan Alamat Email Anda &amp; kata sandi untuk masuk</p>
 
                     <!-- Display error messages -->
                     @if ($errors->any())
@@ -52,11 +52,11 @@
                     @endif
 
                     <div class="form-group">
-                        <label class="col-form-label">Email Address</label>
+                        <label class="col-form-label">Alamat Email</label>
                         <input class="form-control" type="email" name="email" required placeholder="Test@gmail.com" value="{{ old('email') }}">
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Password</label>
+                        <label class="col-form-label">Katasandi</label>
                         <div class="form-input position-relative">
                             <input class="form-control" type="password" id="password" name="password" required placeholder="*********">
                             <span class="show-hide" onclick="togglePassword()">
@@ -67,17 +67,17 @@
                     <div class="form-group mb-0 checkbox-checked">
                         <div class="form-check checkbox-solid-info">
                             <input class="form-check-input" id="solid6" type="checkbox" name="remember">
-                            <label class="form-check-label" for="solid6">Remember password</label>
+                            <label class="form-check-label" for="solid6">Ingat kata sandi</label>
                         </div>
-                        <a class="link" href="{{ route('password.request') }}">Forgot password?</a>
+                                <a class="link" href="{{ route('password.request') }}">Lupa kata sandi?</a>
                         <div class="text-end mt-3">
-                            <button class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
+                            <button class="btn btn-primary btn-block w-100" type="submit">Masuk</button>
                         </div>
                     </div>
                     
                     <p class="mt-4 mb-0 text-center">
                         Don't have an account?
-                        <a class="create-account" href="{{ route('backend.daftar') }}">Create Account</a>
+                        <a class="create-account" href="{{ route('backend.daftar') }}">Buat Akun</a>
                     </p>
 
                 </form>

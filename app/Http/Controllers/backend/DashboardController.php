@@ -3,21 +3,24 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\FotoKontribusi; // Model untuk tabel foto_kontribusi
-use App\Models\Guru; // Model untuk tabel guru
+use App\Models\FotoKontribusi;
+use App\Models\Guru;
+use App\Models\Berita;
 
 class DashboardController extends Controller
 {
     public function html()
     {
-        // Ambil semua data dari tabel foto_kontribusi
+        // Data Foto Kontribusi
         $dataFoto = FotoKontribusi::all();
 
-        // Ambil data guru dengan pagination
-        $dataGuru = Guru::paginate(10); // 10 adalah jumlah data per halaman
+        // Data Guru
+        $dataGuru = Guru::paginate(10);
 
-        // Kirimkan data ke view dashboard.blade.php
-        return view('backend.dashboard', compact('dataFoto', 'dataGuru'));
+        // Data Berita dan Pengumuman
+        $berita_pengumuman = Berita::latest()->paginate(10); // 10 berita terbaru
+
+        // Kirim semua data ke view
+        return view('backend.dashboard', compact('dataFoto', 'dataGuru', 'berita_pengumuman'));
     }
 }
-

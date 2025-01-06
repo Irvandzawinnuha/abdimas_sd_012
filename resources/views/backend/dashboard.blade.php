@@ -450,33 +450,30 @@
                     <th style="border: none;">Edit</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach ($dataFoto as $foto)
-                <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
-                    <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
-                    <td style="border: none; vertical-align: middle;">{{ $foto->created_at->format('d/m/Y') }}</td>
-                    <td style="border: none; vertical-align: middle;">{{ $foto->created_by }}</td>
-                    <td style="border: none;">
-                        <div style="display: flex; justify-content: center;">
-                        <img src="{{ asset('storage/' . $foto->foto) }}"alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
-                        </div>
-                    </td>
 
-                    <!-- Tombol Hapus -->
-                    <td style="border: none; vertical-align: middle;">
-                        <form action="{{ route('foto.destroy', $foto->id) }}" method="POST" style="display: inline-block;">
+            <tbody>
+                @foreach ($berita_pengumuman as $berita)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $berita->judul }}</td>
+                    <td>{{ $berita->tanggal }}</td>
+                    <td>{{ $berita->created_by }}</td>
+                    <td>
+                        @if ($berita->foto)
+                        <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+                        @else
+                        <span>Tidak Ada Foto</span>
+                        @endif
+                    </td>
+                    <td>
+                        <form action="{{ route('berita.destroy', $berita->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
-                                <i class="bi bi-trash"></i>
-                            </button>
+                            <button class="btn btn-danger">Hapus</button>
                         </form>
                     </td>
-                    <!-- Tombol Edit -->
-                    <td style="border: none; vertical-align: middle;">
-                        <a href="{{ route('foto.edit', $foto->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; background-color: #005599;">
-                            <i class="bi bi-pencil"></i>
-                        </a>
+                    <td>
+                        <a href="{{ route('berita.edit', $berita->id) }}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
                 @endforeach
