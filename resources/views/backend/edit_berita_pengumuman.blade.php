@@ -81,7 +81,6 @@
         </div>
 
 
-        @extends('layouts.backend')
         @section('content')
         <!-- Main Content -->
         <div class="content">
@@ -129,7 +128,7 @@
 
     <script>
     Dropzone.options.fotoDropzone = {
-        url: "{{ route('berita.upload') }}", // Endpoint untuk upload file
+        url: "{{ route('berita.create') }}", // Endpoint untuk upload file
         method: "POST",
         maxFiles: 1, // Batasi jumlah file
         maxFilesize: 2, // Maksimal ukuran file dalam MB

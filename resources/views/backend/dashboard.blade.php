@@ -241,7 +241,8 @@
     </div>
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a href="#" class="nav-link"><i class="bi bi-house-door"></i> Dashboard</a>
+        
+            <a data-bs-target="#foto-kontribusi" href="#foto-kontribusi" class="nav-link"><i class="bi bi-house-door"></i> Dashboard</a>
         </li>
     </ul>
     <div class="section-title">Profil Sekolah</div>
@@ -290,7 +291,7 @@
             <!-- Tabs -->
             <ul class="nav nav-tabs mb-4">
                 <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#foto-kontribusi">Foto Kontribusi</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#foto-kontribusi">Foto Kontribusi</button>
                 </li>
                 <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-guru">Profile Guru</button>
@@ -309,7 +310,7 @@
 
 <!-- Tab Contents -->
 <div class="tab-content">
-    <div class="tab-pane fade show active" id="foto-kontribusi">
+    <div class="tab-pane " id="foto-kontribusi">
         <br>
 
         <!-- Header Foto Kontribusi -->
@@ -420,6 +421,7 @@
         </tbody>
     </table>
 </div>
+</div>
 
 <!-- Pagination -->
 <div class="d-flex justify-content-center mt-3">
@@ -429,12 +431,13 @@
 
     <!--berita-pengumuman -->
     <div class="tab-pane fade" id="berita-pengumuman">
+        
         <br>
         <!-- Header berita-pengumuman -->
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
             <h4 style="margin: 0;">berita pengumuman</h4>
             <!-- Tombol Tambah -->
-            <a href="{{ route('foto.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
+            <a href="{{ route('berita.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
                 Tambah +
             </a>
         </div>
@@ -443,6 +446,8 @@
             <thead>
                 <tr style="background-color: #F8F9FA;">
                     <th style="border: none;">No</th>
+                    <th style="border: none;">Nama</th>
+
                     <th style="border: none;">Created At</th>
                     <th style="border: none;">Created By</th>
                     <th style="border: none;">Foto</th>
@@ -452,32 +457,32 @@
             </thead>
 
             <tbody>
-                @foreach ($berita_pengumuman as $berita)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $berita->judul }}</td>
-                    <td>{{ $berita->tanggal }}</td>
-                    <td>{{ $berita->created_by }}</td>
-                    <td>
-                        @if ($berita->foto)
-                        <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
-                        @else
-                        <span>Tidak Ada Foto</span>
-                        @endif
-                    </td>
-                    <td>
-                        <form action="{{ route('berita.destroy', $berita->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Hapus</button>
-                        </form>
-                    </td>
-                    <td>
-                        <a href="{{ route('berita.edit', $berita->id) }}" class="btn btn-primary">Edit</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
+                    @foreach ($berita_pengumuman as $berita)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $berita->judul }}</td>
+                            <td>{{ $berita->tanggal }}</td>
+                            <td>{{ $berita->created_by }}</td>
+                            <td>
+                                @if ($berita->foto)
+                                    <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
+                                @else
+                                    <span>Tidak Ada Foto</span>
+                                @endif
+                            </td>
+                            <td>
+                                <form action="{{ route('berita.destroy', $berita->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger">Hapus</button>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="{{ route('berita.edit', $berita->id) }}" class="btn btn-primary">Edit</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
         </table>
     </div>
 
@@ -497,7 +502,7 @@
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
             <h4 style="margin: 0;">kegiatan ekstrakurikuler</h4>
             <!-- Tombol Tambah -->
-            <a href="{{ route('foto.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
+            <a href="{{ route('kegiatan-ekstrakurikuler.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
                 Tambah +
             </a>
         </div>
@@ -507,9 +512,10 @@
             <thead>
                 <tr style="background-color: #F8F9FA;">
                     <th style="border: none;">No</th>
-                    <th style="border: none;">Created At</th>
-                    <th style="border: none;">Created By</th>
-                    <th style="border: none;">Foto</th>
+
+                    <th style="border: none;">Created At/Tanggal Publikasi</th>
+                    <th style="border: none;">Created By/Dibuat Oleh</th>
+                    <th style="border: none;">Foto Kontribusi</th>
                     <th style="border: none;">Hapus</th>
                     <th style="border: none;">Edit</th>
                 </tr>
@@ -548,6 +554,12 @@
         </table>
     </div>
 
+
+
+
+
+
+    
     <div class="tab-pane fade" id="galeri-foto">
         <br>
         <!-- Header berita-pengumuman -->

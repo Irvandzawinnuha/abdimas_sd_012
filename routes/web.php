@@ -45,6 +45,9 @@ use App\Http\Controllers\backend\ResetSandiController;
 use App\Http\Controllers\backend\ResetLinkController;
 use App\Http\Controllers\backend\SearchController;
 
+use App\Http\Controllers\backend\KegiatanEkstrakurikulerController;
+
+
 
 // Route backend
 Route::prefix('backend')->group(function () {
@@ -106,6 +109,8 @@ Route::prefix('backend')->group(function () {
 });
 
 
+
+
 //Bagian Sign in to account
 // Forgot Password Routes
 Route::get('/backend/lupa_password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('backend.lupa_password');
@@ -143,7 +148,7 @@ Route::prefix('backend')->group(function () {
 });
 
 Route::prefix('backend')->group(function () {
-    Route::get('/dashboard', [FotoKontribusiController::class, 'index'])->name('foto.index');
+    Route::get('/foto-kontribusi', [FotoKontribusiController::class, 'index'])->name('foto.index');
     Route::get('/foto-kontribusi/create', [FotoKontribusiController::class, 'create'])->name('foto.create');
     Route::post('/foto-kontribusi/store', [FotoKontribusiController::class, 'store'])->name('foto.store');
     Route::get('/foto-kontribusi/edit/{id}', [FotoKontribusiController::class, 'edit'])->name('foto.edit');
@@ -166,6 +171,21 @@ Route::prefix('backend')->group(function () {
     Route::delete('/berita/{id}', [BeritaPengumumanController::class, 'destroy'])->name('berita.destroy');
     Route::resource('berita', BeritaPengumumanController::class);
 });
+
+//bagian kegiatan ekstrakurikuler back end
+Route::prefix('kegiatan-ekstrakurikuler')->group(function () {
+    Route::get('/', [KegiatanEkstrakurikulerController::class, 'index'])->name('kegiatan-ekstrakurikuler.index');
+    Route::get('/create', [KegiatanEkstrakurikulerController::class, 'create'])->name('kegiatan-ekstrakurikuler.create');
+    Route::post('/', [KegiatanEkstrakurikulerController::class, 'store'])->name('kegiatan-ekstrakurikuler.store');
+    Route::get('/{id}/edit', [KegiatanEkstrakurikulerController::class, 'edit'])->name('kegiatan-ekstrakurikuler.edit');
+    Route::put('/{id}', [KegiatanEkstrakurikulerController::class, 'update'])->name('kegiatan-ekstrakurikuler.update');
+    Route::delete('/{id}', [KegiatanEkstrakurikulerController::class, 'destroy'])->name('kegiatan-ekstrakurikuler.destroy');
+});
+
+
+
+
+
 
 
 

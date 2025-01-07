@@ -10,14 +10,6 @@ class Berita extends Model
 
     protected $table = 'berita_pengumuman';
 
-    protected $fillable = [
-        'judul',
-        'isi',
-        'penulis',
-        'tanggal',
-        'created_by',
-        'foto',
-        'tempat',
-    ];
+    protected $fillable =['judul', 'deskripsi', 'foto', 'created_by', 'tanggal_aktivitas', 'tempat_aktivitas'];
     
 }

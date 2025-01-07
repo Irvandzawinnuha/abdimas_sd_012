@@ -36,7 +36,7 @@ class ProfileGuruController extends Controller
     
         Guru::create($data);
     
-        return redirect()->route('profile.guru.index')->with('success', 'Data guru berhasil ditambahkan.');
+        return redirect()->route('backend.dashboard')->with('success', 'Data guru berhasil ditambahkan.');
     }
     
 
@@ -78,7 +78,7 @@ class ProfileGuruController extends Controller
 
     $guru->update($data);
 
-    return redirect()->route('profile.guru.index')->with('success', 'Data guru berhasil diperbarui.');
+    return redirect()->route('backend.dashboard')->with('success', 'Data guru berhasil diperbarui.');
 }
 
 
@@ -95,7 +95,7 @@ public function destroy($id)
 
     $guru->delete();
 
-    return redirect()->route('profile.guru.index')->with('success', 'Data guru berhasil dihapus.');
+    return redirect()->route('backend.dashboard')->with('success', 'Data guru berhasil dihapus.');
 }
 
 }

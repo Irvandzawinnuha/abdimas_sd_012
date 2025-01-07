@@ -38,6 +38,29 @@
         .btn-primary:hover {
             background-color: #005599;
         }
+
+        .dropzone {
+        width: 100%;
+        height: 200px;
+        border: 2px dashed #ddd;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.3s ease;
+        }
+
+        .dropzone:hover {
+            background-color: #e9ecef;
+        }
+
+        .dropzone p {
+            font-size: 16px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -61,31 +84,35 @@
 
         <!-- Content -->
         <div class="content">
-            <h2>Input Kegiatan Ekstrakurikuler</h2>
+            <h2>Kegiatan Ekstrakurikuler</h2>
             <p>
-            Pada <b>Kegiatan Ekstrakurikuler,</b> menambah, menghapus, dan memperbaharui<b> dokumentasi ekstrakurikuler di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>oto kegiatan ekstrakurikuler di SD Negeri 012 Babakan Ciparay.</b>
+                Pada <b>Kegiatan Ekstrakurikuler,</b> menambah, menghapus, dan memperbaharui<b> dokumentasi ekstrakurikuler di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>oto kegiatan ekstrakurikuler di SD Negeri 012 Babakan Ciparay.</b>
             </p>
-            <form action="{{ route('berita.store') }}" method="POST">
+            
+            <form action="{{ route('kegiatan-ekstrakurikuler.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="judul" class="form-label">Judul</label>
-                    <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul berita" required>
-                </div>
+                    <label for="judul" class="form-label">Created At/Tanggal Publikasi</label>
+                    <input type="date" class="form-control" id="tanggal_publikasi" name="tanggal_publikasi" required>
+        
+                    <div class="mb-3">
+                        <label for="created_by" class="form-label">Created By/Dibuat Oleh</label>
+                        <input type="text" class="form-control" id="dibuat_oleh" name="dibuat_oleh" placeholder="Masukkan pembuat (Contoh: Admin)" required>
+                    </div>
+
+
                 <div class="mb-3">
-                    <label for="isi" class="form-label">Isi</label>
-                    <textarea class="form-control" id="isi" name="isi" rows="5" placeholder="Masukkan isi berita" required></textarea>
+                    <label for="fileUpload" class="form-label">Foto Kontribusi</label>
+                    <div id="dropzone" class="dropzone">
+                        <p>Upload foto di sini</p>
+                        <input type="file" id="fileUpload" name="file" class="form-control" accept="image/*" hidden>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="penulis" class="form-label">Penulis</label>
-                    <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Masukkan nama penulis" required>
-                </div>
-                <div class="mb-3">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-                </div>
+
                 <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
+                <a href="{{ route('kegiatan-ekstrakurikuler.store') }}" class="btn btn-secondary">Batal</a>
             </form>
+
         </div>
     </div>
 
@@ -100,5 +127,42 @@
             }
         });
     </script>
+
+
+<script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileUpload');
+
+    dropzone.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.style.backgroundColor = '#e9ecef';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+        dropzone.style.backgroundColor = '#f8f9fa';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.style.backgroundColor = '#f8f9fa';
+        const files = e.dataTransfer.files;
+
+        if (files.length > 0) {
+            fileInput.files = files;
+            dropzone.querySelector('p').textContent = `File "${files[0].name}" siap diupload.`;
+        }
+    });
+
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            dropzone.querySelector('p').textContent = `File "${fileInput.files[0].name}" siap diupload.`;
+        }
+    });
+</script>
+
 </body>
 </html>

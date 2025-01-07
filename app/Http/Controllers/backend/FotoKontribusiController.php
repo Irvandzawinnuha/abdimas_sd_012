@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FotoKontribusi;
 use App\Models\Guru;
+use App\Models\Berita;
+
 
 class FotoKontribusiController extends Controller
 {
@@ -13,8 +15,8 @@ class FotoKontribusiController extends Controller
     {
         $dataFoto = FotoKontribusi::all(); // Ambil data foto kontribusi
         $dataGuru = Guru::paginate(10); // Ambil data guru
-
-        return view('backend.dashboard', compact('dataFoto', 'dataGuru'));
+        $berita_pengumuman = Berita::latest()->paginate(10); // Pagination
+        return view('backend.dashboard', compact('dataFoto', 'dataGuru', 'berita_pengumuman'));
     }
 
     public function create()

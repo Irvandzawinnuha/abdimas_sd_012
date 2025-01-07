@@ -5,20 +5,25 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Berita;
 
-class BeritaTableSeeder extends Seeder
+class BeritaSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
         Berita::create([
             'judul' => 'Berita Pertama',
             'deskripsi' => 'Ini adalah deskripsi berita pertama.',
-            'konten' => 'Ini adalah konten berita pertama.', // Hapus jika kolom ini tidak digunakan
+            'tanggal' => now(),
+            'created_by' => 'Admin',
         ]);
 
         Berita::create([
             'judul' => 'Berita Kedua',
             'deskripsi' => 'Ini adalah deskripsi berita kedua.',
-            'konten' => 'Ini adalah konten berita kedua.',
+            'tanggal' => now(),
+            'created_by' => 'Admin',
         ]);
     }
 }

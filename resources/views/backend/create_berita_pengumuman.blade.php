@@ -62,9 +62,7 @@
         </div>
 
         <!-- Content -->
-        @extends('layouts.backend')
 
-@section('content')
 <div class="container">
     <h2>Tambah Berita dan Pengumuman</h2>
 
@@ -94,7 +92,6 @@
         <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
-@endsection
 
 
     <script>

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class BeritaPengumumanController extends Controller
 
     public function create()
     {
-        return view('backend.berita.create');
+        return view('backend.create_berita_pengumuman');
     }
 
     public function store(Request $request)
@@ -37,13 +38,13 @@ class BeritaPengumumanController extends Controller
 
         Berita::create($data);
 
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil ditambahkan.');
+        return redirect()->route('backend.dashboard')->with('success', 'Berita berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
         $berita = Berita::findOrFail($id);
-        return view('backend.berita.edit', compact('berita'));
+        return view('backend.edit_berita_pengumuman', compact('berita'));
     }
 
     public function update(Request $request, $id)
@@ -69,7 +70,7 @@ class BeritaPengumumanController extends Controller
 
         $berita->update($data);
 
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui.');
+        return redirect()->route('backend.dashboard')->with('success', 'Berita berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -80,6 +81,6 @@ class BeritaPengumumanController extends Controller
         }
         $berita->delete();
 
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus.');
+        return redirect()->route('backend.dashboard')->with('success', 'Berita berhasil dihapus.');
     }
 }
