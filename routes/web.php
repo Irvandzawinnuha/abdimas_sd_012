@@ -182,7 +182,15 @@ Route::prefix('kegiatan-ekstrakurikuler')->group(function () {
     Route::delete('/{id}', [KegiatanEkstrakurikulerController::class, 'destroy'])->name('kegiatan-ekstrakurikuler.destroy');
 });
 
-
+//bagian galeri foto dan video back end
+Route::prefix('backend/galeri')->group(function () {
+    Route::get('/', [GaleriFotoVideoController::class, 'index'])->name('galeri.index');
+    Route::get('/create', [GaleriFotoVideoController::class, 'create'])->name('galeri.create');
+    Route::post('/store', [GaleriFotoVideoController::class, 'store'])->name('galeri.store');
+    Route::get('/edit/{id}', [GaleriFotoVideoController::class, 'edit'])->name('galeri.edit');
+    Route::put('/update/{id}', [GaleriFotoVideoController::class, 'update'])->name('galeri.update');
+    Route::delete('/delete/{id}', [GaleriFotoVideoController::class, 'destroy'])->name('galeri.destroy');
+});
 
 
 

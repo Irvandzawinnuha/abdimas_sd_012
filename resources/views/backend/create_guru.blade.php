@@ -182,39 +182,43 @@
     </style>
 </head>
 <body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo-container">
-                <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
-                <h4>SD Negeri 012 Babakan Ciparay</h4>
-            </div>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active"><i class="fa fa-home"></i> Dashboard</a>
-                </li>
-                <div class="section-title">Profil Sekolah</div>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-image"></i> Foto Kontribusi</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-user"></i> Profil Guru</a>
-                </li>
-                <div class="section-title">Informasi</div>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-bullhorn"></i> Berita dan Pengumuman</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-users"></i> Kegiatan Ekstrakurikuler</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-camera"></i> Galeri Foto dan Video</a>
-                </li>
-            </ul>
-            <div class="logout-link">
-                <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
-            </div>
+
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
+            <h4>SD NEGERI 012 BABAKAN CIPARAY</h4>
         </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link active"><i class="fa fa-home"></i> Dashboard</a>
+            </li>
+        </ul>
+        <div class="section-title">PROFIL SEKOLAH</div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-image"></i> Foto Kontribusi</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-user"></i> Profile Guru</a>
+            </li>
+        </ul>
+        <div class="section-title">INFORMASI</div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-bullhorn"></i> Berita dan Pengumuman</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-users"></i> Kegiatan Ekstrakurikuler</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-camera"></i> Galeri Foto dan Video</a>
+            </li>
+        </ul>
+        <div class="logout-link">
+            <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
+        </div>
+    </div>
+
 
         <!-- Content -->
         <div class="content">

@@ -26,35 +26,43 @@
             display: flex;
             flex-direction: column;
         }
+
+
         .sidebar img {
             width: 80px;
             height: auto;
             display: block;
             margin: 0 auto;
         }
+
         .sidebar h4 {
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 18px; /* Header utama */
+            font-weight: bold; /* Bold hanya untuk header utama */
             text-align: center;
             margin-top: 10px;
             margin-bottom: 20px;
             color: #005599;
         }
+
+
         .sidebar .section-title {
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 14px; /* Kategori seperti "Profil Sekolah" */
+            font-weight: bold; /* Bold untuk kategori */
             color: #000000;
             margin-top: 20px;
             margin-bottom: 10px;
             text-transform: uppercase;
         }
+
         .sidebar ul {
             list-style: none;
             padding: 0;
         }
+
         .sidebar ul li {
             margin-bottom: 15px;
         }
+
         .sidebar ul li a {
             color: #000000;
             text-decoration: none;
@@ -64,28 +72,50 @@
             border-radius: 5px;
             transition: all 0.3s ease;
             font-size: 14px;
+            font-weight: normal; /* Non-bold untuk link biasa */
         }
+
         .sidebar ul li a i {
             margin-right: 10px;
             font-size: 18px;
         }
+
         .sidebar ul li a:hover {
             background-color: #f5f5f5;
             color: #005599;
         }
+
         .logout-link {
             margin-top: auto;
             text-align: center;
             padding-top: 20px;
             border-top: 1px solid #ddd;
         }
+
+        .sidebar ul li a.active {
+            background-color: #f5f5f5;
+            color: #005599; /* Warna teks aktif */
+            font-weight: normal; /* Non-bold untuk link aktif */
+        }
+
+        /* tambahnya cuman dikit bagian ini  */
         .logout-link a {
+            font-weight: normal; /* Non-bold untuk link logout */
             color: #005599;
             font-size: 14px;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
+
         .logout-link a:hover {
             text-decoration: underline;
+            text-decoration: none;
         }
 
         .sidebar .logo-container {
@@ -110,34 +140,34 @@
         }
         
 
-    .logout-link {
-    margin-top: auto;
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
+            .logout-link {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
 
-    .logout-link a {
-          color: #005599; /* Warna biru */
-        font-size: 14px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-          gap: 10px; /* Jarak antara ikon dan teks */
-        padding: 10px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
+        .logout-link a {
+            color: #005599; /* Warna biru */
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Jarak antara ikon dan teks */
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-    .logout-link a i {
-        font-size: 18px;
-    }
+        .logout-link a i {
+            font-size: 18px;
+        }
 
-    .logout-link a:hover {
-          background-color: #f5f5f5; /* Background hover */
-        text-decoration: none;
-    }
+        .logout-link a:hover {
+            background-color: #f5f5f5; /* Background hover */
+            text-decoration: none;
+        }
 
 
         /* Content Styles */
@@ -182,39 +212,45 @@
     </style>
 </head>
 <body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo-container">
-                <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
-                <h4>SD Negeri 012 Babakan Ciparay</h4>
-            </div>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active"><i class="fa fa-home"></i> Dashboard</a>
-                </li>
-                <div class="section-title">Profil Sekolah</div>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-image"></i> Foto Kontribusi</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-user"></i> Profil Guru</a>
-                </li>
-                <div class="section-title">Informasi</div>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-bullhorn"></i> Berita dan Pengumuman</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-users"></i> Kegiatan Ekstrakurikuler</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fa fa-camera"></i> Galeri Foto dan Video</a>
-                </li>
-            </ul>
-            <div class="logout-link">
-                <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
-            </div>
+
+<!-- bagian side bar -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
+            <h4>SD NEGERI 012 BABAKAN CIPARAY</h4>
         </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link active"><i class="fa fa-home"></i> Dashboard</a>
+            </li>
+        </ul>
+        <div class="section-title">PROFIL SEKOLAH</div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-image"></i> Foto Kontribusi</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-user"></i> Profile Guru</a>
+            </li>
+        </ul>
+        <div class="section-title">INFORMASI</div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-bullhorn"></i> Berita dan Pengumuman</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-users"></i> Kegiatan Ekstrakurikuler</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fa fa-camera"></i> Galeri Foto dan Video</a>
+            </li>
+        </ul>
+        <div class="logout-link">
+            <a href="#"><i class="fa fa-sign-out"></i> Log Out</a>
+        </div>
+    </div>
+
+
 
         <!-- Content -->
         <div class="content">

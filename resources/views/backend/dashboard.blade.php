@@ -380,53 +380,57 @@
             Tambah +
         </a>
     </div>
+
     <!-- Tabel Profile Guru -->
-    <div class="table-responsive">
-    <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
-        <thead>
-            <tr style="background-color: #F8F9FA;">
-                <th>No</th>
-                <th>Nama</th>
-                <th>NIP</th>
-                <th>Jabatan</th>
-                <th>Foto</th>
-                <th>Hapus</th>
-                <th>Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($dataGuru as $guru)
-            <tr>
-                <td>{{ $loop->iteration + ($dataGuru->currentPage() - 1) * $dataGuru->perPage() }}</td>
-                <td>{{ $guru->nama }}</td>
-                <td>{{ $guru->nip }}</td>
-                <td>{{ $guru->jabatan }}</td>
-
-                <td>
-                <img src="{{ asset('storage/' . $guru->foto) }}" alt="Foto Guru" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
-                </td>
-
-                <td>
-                    <form action="{{ route('profile.guru.destroy', $guru->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger">Hapus</button>
-                    </form>
-                </td>
-                <td>
-                    <a href="{{ route('profile.guru.edit', $guru->id) }}" class="btn btn-primary">Edit</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+        <div class="table-responsive">
+        <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
+            <thead>
+                <tr style="background-color: #F8F9FA;">
+                    <th style="border: none;">No</th>
+                    <th style="border: none;">Nama</th>
+                    <th style="border: none;">NIP</th>
+                    <th style="border: none;">Jabatan</th>
+                    <th style="border: none;">Foto</th>
+                    <th style="border: none;">Hapus</th>
+                    <th style="border: none;">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dataGuru as $guru)
+                <tr style="vertical-align: middle;">
+                    <td style="border: none; vertical-align: middle;">{{ $loop->iteration + ($dataGuru->currentPage() - 1) * $dataGuru->perPage() }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $guru->nama }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $guru->nip }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $guru->jabatan }}</td>
+                    <td style="border: none; vertical-align: middle;">
+                        <img src="{{ asset('storage/' . $guru->foto) }}" alt="Foto Guru" style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+                    </td>
+                    <td style="border: none; vertical-align: middle;">
+                        <form action="{{ route('profile.guru.destroy', $guru->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td style="border: none; vertical-align: middle;">
+                        <a href="{{ route('profile.guru.edit', $guru->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Pagination -->
 <div class="d-flex justify-content-center mt-3">
     {{ $dataGuru->links() }}
 </div>
+
 
 
     <!--berita-pengumuman -->
@@ -447,7 +451,6 @@
                 <tr style="background-color: #F8F9FA;">
                     <th style="border: none;">No</th>
                     <th style="border: none;">Nama</th>
-
                     <th style="border: none;">Created At</th>
                     <th style="border: none;">Created By</th>
                     <th style="border: none;">Foto</th>
@@ -455,34 +458,37 @@
                     <th style="border: none;">Edit</th>
                 </tr>
             </thead>
-
             <tbody>
-                    @foreach ($berita_pengumuman as $berita)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $berita->judul }}</td>
-                            <td>{{ $berita->tanggal }}</td>
-                            <td>{{ $berita->created_by }}</td>
-                            <td>
-                                @if ($berita->foto)
-                                    <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto" style="width: 100px; height: 100px; object-fit: cover;">
-                                @else
-                                    <span>Tidak Ada Foto</span>
-                                @endif
-                            </td>
-                            <td>
-                                <form action="{{ route('berita.destroy', $berita->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger">Hapus</button>
-                                </form>
-                            </td>
-                            <td>
-                                <a href="{{ route('berita.edit', $berita->id) }}" class="btn btn-primary">Edit</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
+                @foreach ($berita_pengumuman as $berita)
+                <tr style="vertical-align: middle; text-align: center;">
+                    <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $berita->judul }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $berita->tanggal }}</td>
+                    <td style="border: none; vertical-align: middle;">{{ $berita->created_by }}</td>
+                    <td style="border: none; vertical-align: middle;">
+                        @if ($berita->foto)
+                        <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto" style="width: 100px; height: 100px; object-fit: cover; display: block; margin: 0 auto;">
+                        @else
+                        <span>Tidak Ada Foto</span>
+                        @endif
+                    </td>
+                    <td style="border: none; vertical-align: middle;">
+                        <form action="{{ route('berita.destroy', $berita->id) }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td style="border: none; vertical-align: middle;">
+                        <a href="{{ route('berita.edit', $berita->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 

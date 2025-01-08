@@ -9,57 +9,226 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
+    
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #ffffff;
+            background-color: #f8f9fa;
             color: #000000;
         }
 
-        .sidebar {
-            height: 100vh;
-            width: 336px;
-            position: fixed;
-            background-color: #ffffff;
-            border-right: 1px solid #ddd;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /* Sidebar Styles */
+    .sidebar {
+        height: 100vh;
+        width: 336px;
+        position: fixed;
+        background-color: #ffffff;
+        border-right: 1px solid #ddd;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+    }
+    .sidebar img {
+            width: 80px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+    }
+
+    .sidebar h4 {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: #005599;
+        }
+        .sidebar .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: #000000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .sidebar ul li a i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .sidebar ul li a:hover {
+            background-color: #f5f5f5;
+            color: #005599;
         }
 
-        .content {
-            margin-left: 381px;
-            padding: 20px;
-            background-color: #ffffff;
-            min-height: 100vh;
-        }
+    /* Logo Container */
+    .logo-container {
+        display: flex; /* Gunakan flexbox */
+        align-items: center; /* Selaraskan secara vertikal */
+        justify-content: start; /* Selaraskan secara horizontal */
+        gap: 10px; /* Tambahkan jarak antara logo dan tulisan */
+        margin-bottom: 20px; /* Jarak dengan elemen berikutnya */
+    }
 
-        .btn-primary {
-            background-color: #005599;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #005599;
-        }
-    </style>
+    .logo-container img {
+        width: 60px;
+        height: auto;
+    }
+
+    .logo-container h4 {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin: 8px;
+        color: #000;
+    }
+
+    /* Section Titles */
+    .section-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        text-transform: uppercase;
+        margin: 20px 0 10px;
+    }
+
+    /* Navigation Links */
+    .nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav .nav-item {
+        margin-bottom: 10px;
+    }
+
+    .nav .nav-link {
+        color: #000;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 14px;
+    }
+
+    .nav .nav-link i {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .nav .nav-link:hover {
+        background-color: #f5f5f5;
+        color: #005599;
+    }
+
+    .nav .nav-link.active {
+        background-color: #f5f5f5;
+        color: #005599;
+        font-weight: bold;
+    }
+
+    /* Logout Section */
+    .logout-link {
+        margin-top: auto;
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+    }
+
+    .logout-link a {
+        color: #005599;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    .logout-link a:hover {
+        text-decoration: underline;
+    }
+
+    /* Content Area */
+    .content {
+        margin-left: 381px;
+        padding: 20px;
+        background-color: #ffffff;
+        min-height: 100vh;
+    }
+</style>
+
+
 </head>
 <body>
     <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo-container">
-                <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
-                <h4>SD Negeri 012 Babakan Ciparay</h4>
-            </div>
-            <ul class="nav flex-column">
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-home"></i> Dashboard</a></li>
-                <div class="section-title">Profil Sekolah</div>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-image"></i> Foto Kontribusi</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-user"></i> Profil Guru</a></li>
-                <div class="section-title">Informasi</div>
-                <li class="nav-item"><a href="#" class="nav-link active"><i class="fa fa-bullhorn"></i> Berita dan Pengumuman</a></li>
-            </ul>
-            <div class="logout-link"><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></div>
-        </div>
+    
+    <div class="sidebar">
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
+        <h4>SD NEGERI 012 BABAKAN CIPARAY</h4>
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fa fa-home"></i> Dashboard
+            </a>
+        </li>
+    </ul>
+
+    <!-- Section Title -->
+    <div class="section-title">Profil Sekolah</div>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fa fa-image"></i> Foto Kontribusi
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fa fa-user"></i> Profil Guru
+            </a>
+        </li>
+    </ul>
+
+    <!-- Section Title -->
+    <div class="section-title">Informasi</div>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a href="#" class="nav-link active">
+                <i class="fa fa-bullhorn"></i> Berita dan Pengumuman
+            </a>
+        </li>
+    </ul>
+
+    <!-- Logout -->
+    <div class="logout-link">
+        <a href="#">
+            <i class="fa fa-sign-out"></i> Log Out
+        </a>
+    </div>
+</div>
+
+
 
         <!-- Content -->
 
@@ -94,16 +263,18 @@
 </div>
 
 
-    <script>
-        const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');
-        const currentURL = window.location.href;
-        sidebarLinks.forEach(link => {
-            if (link.href === currentURL) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-    </script>
+<script>
+    const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');
+    const currentURL = window.location.href;
+    sidebarLinks.forEach(link => {
+        if (link.href === currentURL) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+</script>
+
+
 </body>
 </html>
