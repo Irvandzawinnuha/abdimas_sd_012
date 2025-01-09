@@ -35,7 +35,8 @@ class ProfileGuruController extends Controller
         }
     
         Guru::create($data);
-    
+
+        // dd($request);
         return redirect()->route('backend.dashboard')->with('success', 'Data guru berhasil ditambahkan.');
     }
     

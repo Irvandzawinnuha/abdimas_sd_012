@@ -86,7 +86,7 @@
         <div class="content">
             <h2>Kegiatan Ekstrakurikuler</h2>
             <p>
-                Pada <b>Kegiatan Ekstrakurikuler,</b> menambah, menghapus, dan memperbaharui<b> dokumentasi ekstrakurikuler di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>oto kegiatan ekstrakurikuler di SD Negeri 012 Babakan Ciparay.</b>
+                Pada <b>Kegiatan Ekstrakurikuler,</b> menambah, menghapus, dan memperbaharui<b> dokumentasi ekstrakurikuler di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>foto kegiatan ekstrakurikuler di SD Negeri 012 Babakan Ciparay.</b>
             </p>
             
             <form action="{{ route('kegiatan-ekstrakurikuler.store') }}" method="POST">
@@ -101,16 +101,13 @@
                     </div>
 
 
-                <div class="mb-3">
-                    <label for="fileUpload" class="form-label">Foto Kontribusi</label>
-                    <div id="dropzone" class="dropzone">
-                        <p>Upload foto di sini</p>
-                        <input type="file" id="fileUpload" name="file" class="form-control" accept="image/*" hidden>
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label">Foto Kontribusi</label>
+                        <input type="file" id="fileUpload" name="file" class="form-control" accept="image/*">
                     </div>
-                </div>
+
 
                 <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ route('kegiatan-ekstrakurikuler.store') }}" class="btn btn-secondary">Batal</a>
             </form>
 
         </div>
@@ -129,40 +126,7 @@
     </script>
 
 
-<script>
-    const dropzone = document.getElementById('dropzone');
-    const fileInput = document.getElementById('fileUpload');
 
-    dropzone.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    dropzone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropzone.style.backgroundColor = '#e9ecef';
-    });
-
-    dropzone.addEventListener('dragleave', () => {
-        dropzone.style.backgroundColor = '#f8f9fa';
-    });
-
-    dropzone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropzone.style.backgroundColor = '#f8f9fa';
-        const files = e.dataTransfer.files;
-
-        if (files.length > 0) {
-            fileInput.files = files;
-            dropzone.querySelector('p').textContent = `File "${files[0].name}" siap diupload.`;
-        }
-    });
-
-    fileInput.addEventListener('change', () => {
-        if (fileInput.files.length > 0) {
-            dropzone.querySelector('p').textContent = `File "${fileInput.files[0].name}" siap diupload.`;
-        }
-    });
-</script>
 
 </body>
 </html>

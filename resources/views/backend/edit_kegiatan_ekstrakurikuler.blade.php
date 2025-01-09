@@ -82,55 +82,47 @@
 
         <!-- Main Content -->
         <div class="content">
-            <h3>Kegiatan Ekstrakurikuler</h3>
+            <h3>Edit Kegiatan Ekstrakurikuler</h3>
             <p>
-                Pada <b>Kegiatan Ekstrakurikuler,</b> menambah, menghapus, dan memperbaharui<b> dokumentasi ekstrakurikuler di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>oto kegiatan ekstrakurikuler di SD Negeri 012 Babakan Ciparay.</b>
+                Pada <b>Kegiatan Ekstrakurikuler</b>, admin dapat memperbarui informasi berupa <b>tanggal publikasi</b>, <b>dibuat oleh</b>, dan <b>foto kontribusi</b>.
             </p>
-            <form id="editForm" action="{{ route('berita.update', $berita->id) }}" method="POST">
+            <form id="editForm" action="{{ route('kegiatan-ekstrakurikuler.update', $kegiatan->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
-                    <label for="judul" class="form-label">Judul</label>
-                    <input type="text" class="form-control" id="judul" name="judul" value="{{ $berita->judul }}" 
-                        placeholder="Masukkan judul berita" required aria-label="Judul">
+                    <label for="tanggal_publikasi" class="form-label">Tanggal Publikasi</label>
+                    <input type="date" class="form-control" id="tanggal_publikasi" name="tanggal_publikasi" 
+                        value="{{ $kegiatan->tanggal_publikasi }}" required aria-label="Tanggal Publikasi">
                 </div>
                 <div class="mb-3">
-                    <label for="isi" class="form-label">Isi</label>
-                    <textarea class="form-control" id="isi" name="isi" rows="5" 
-                        placeholder="Tulis isi berita pengumuman di sini..." required aria-label="Isi berita">{{ $berita->isi }}</textarea>
+                    <label for="dibuat_oleh" class="form-label">Dibuat Oleh</label>
+                    <input type="text" class="form-control" id="dibuat_oleh" name="dibuat_oleh" 
+                        value="{{ $kegiatan->dibuat_oleh }}" placeholder="Masukkan nama pembuat" required aria-label="Dibuat Oleh">
                 </div>
                 <div class="mb-3">
-                    <label for="penulis" class="form-label">Penulis</label>
-                    <input type="text" class="form-control" id="penulis" name="penulis" 
-                        value="{{ $berita->penulis }}" placeholder="Masukkan nama penulis" required aria-label="Penulis">
-                </div>
-                <div class="mb-3">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" 
-                        value="{{ $berita->tanggal }}" required aria-label="Tanggal">
+                    <label for="file" class="form-label">Foto Kontribusi</label>
+                    <input type="file" class="form-control" id="file" name="file" accept="image/*">
+                    @if ($kegiatan->foto_kontribusi)
+                        <p class="mt-2">Foto saat ini: <a href="{{ asset('storage/' . $kegiatan->foto_kontribusi) }}" target="_blank">Lihat Foto</a></p>
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-primary" id="submitButton">Simpan</button>
-                <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
+                <a href="{{ route('kegiatan-ekstrakurikuler.index') }}" class="btn btn-secondary">Batal</a>
             </form>
         </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Validasi Form sebelum Submit
         document.getElementById('editForm').addEventListener('submit', function(event) {
-            const judul = document.getElementById('judul').value.trim();
-            const isi = document.getElementById('isi').value.trim();
-            const penulis = document.getElementById('penulis').value.trim();
-            const tanggal = document.getElementById('tanggal').value;
+            const tanggal = document.getElementById('tanggal_publikasi').value;
+            const dibuatOleh = document.getElementById('dibuat_oleh').value.trim();
 
-            if (!judul || !isi || !penulis || !tanggal) {
+            if (!tanggal || !dibuatOleh) {
                 event.preventDefault();
                 alert('Semua kolom wajib diisi.');
-            } else {
-                if (!confirm('Apakah Anda yakin ingin menyimpan perubahan ini?')) {
-                    event.preventDefault();
-                }
             }
         });
 

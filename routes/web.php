@@ -73,7 +73,7 @@ Route::prefix('backend')->group(function () {
     Route::get('/addpost', [AddPostController::class, 'html'])->name('backend.addpost');
 });
 
-
+//back end dashboard buat mencankup semuanya
 Route::prefix('backend')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard');
 });

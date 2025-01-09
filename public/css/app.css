@@ -118,6 +118,7 @@ h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
+
 /* Welcome Section */
 .welcome {
     padding: 20px;
@@ -564,11 +565,13 @@ h2, h3, h4, h5, h6 {
     line-height: 1.6;
 }
 
+
 /* Responsif untuk layar kecil */
 @media (max-width: 768px) {
     .faq-container {
         grid-template-columns: 1fr; /* Satu kolom pada layar kecil */
     }
+    
 }
 
 .faq-icon {

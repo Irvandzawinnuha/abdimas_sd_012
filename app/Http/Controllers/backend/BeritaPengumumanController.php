@@ -26,7 +26,7 @@ class BeritaPengumumanController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'created_by' => 'nullable|string|max:255',
-            'tanggal' => 'required|date',
+            'tanggal' => 'required|string|max:500',
             'tempat' => 'nullable|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
@@ -40,6 +40,8 @@ class BeritaPengumumanController extends Controller
 
         return redirect()->route('backend.dashboard')->with('success', 'Berita berhasil ditambahkan.');
     }
+
+
 
     public function edit($id)
     {

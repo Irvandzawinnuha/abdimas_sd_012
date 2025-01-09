@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita Pengumuman</title>
+    <title>Berita dan Pengumuman</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
-    
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -17,263 +14,265 @@
             color: #000000;
         }
 
-    /* Sidebar Styles */
-    .sidebar {
-        height: 100vh;
-        width: 336px;
-        position: fixed;
-        background-color: #ffffff;
-        border-right: 1px solid #ddd;
-        padding: 20px;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-    }
-    .sidebar img {
-            width: 80px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-    }
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100vh;
+            width: 381px;
+            position: fixed;
+            background-color: #ffffff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
 
-    .sidebar h4 {
+        .sidebar img {
+            width: 60px;
+            height: auto;
+        }
+
+        .sidebar h4 {
             font-size: 18px;
             font-weight: bold;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            color: #005599;
+            margin-left: 10px;
         }
-        .sidebar .section-title {
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
             font-size: 14px;
             font-weight: bold;
             color: #000000;
-            margin-top: 20px;
-            margin-bottom: 10px;
             text-transform: uppercase;
+            margin: 20px 0 10px;
         }
-        .sidebar ul {
+
+        .nav {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
-        .sidebar ul li {
-            margin-bottom: 15px;
+
+        .nav .nav-item {
+            margin-bottom: 10px;
         }
-        .sidebar ul li a {
-            color: #000000;
+
+        .nav .nav-link {
+            color: #000;
             text-decoration: none;
             display: flex;
             align-items: center;
             padding: 10px 15px;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
             font-size: 14px;
         }
-        .sidebar ul li a i {
+
+        .nav .nav-link i {
+            font-size: 16px;
             margin-right: 10px;
-            font-size: 18px;
         }
-        .sidebar ul li a:hover {
+
+        .nav .nav-link:hover {
             background-color: #f5f5f5;
             color: #005599;
         }
 
-    /* Logo Container */
-    .logo-container {
-        display: flex; /* Gunakan flexbox */
-        align-items: center; /* Selaraskan secara vertikal */
-        justify-content: start; /* Selaraskan secara horizontal */
-        gap: 10px; /* Tambahkan jarak antara logo dan tulisan */
-        margin-bottom: 20px; /* Jarak dengan elemen berikutnya */
-    }
+        .nav .nav-link.active {
+            background-color: #f5f5f5;
+        }
 
-    .logo-container img {
-        width: 60px;
-        height: auto;
-    }
+        .logout-link {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
 
-    .logo-container h4 {
-        font-size: 16px;
-        font-weight: bold;
-        text-align: center;
-        margin: 8px;
-        color: #000;
-    }
+        .logout-link a {
+            color: #005599;
+            font-size: 14px;
+            text-decoration: none;
+        }
 
-    /* Section Titles */
-    .section-title {
-        font-size: 14px;
-        font-weight: bold;
-        color: #000;
-        text-transform: uppercase;
-        margin: 20px 0 10px;
-    }
+        .logout-link a:hover {
+            text-decoration: underline;
+        }
 
-    /* Navigation Links */
-    .nav {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+        .content {
+            margin-left: 381px;
+            padding: 20px;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
 
-    .nav .nav-item {
-        margin-bottom: 10px;
-    }
+        .btn-primary {
+            background-color: #005599;
+            border: none;
+        }
 
-    .nav .nav-link {
-        color: #000;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        padding: 10px 15px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        font-size: 14px;
-    }
+        .btn-primary:hover {
+            background-color: #004080;
+        }
 
-    .nav .nav-link i {
-        font-size: 16px;
-        margin-right: 10px;
-    }
+        .dropzone {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            text-align: center;
+            color: #aaa;
+        }
 
-    .nav .nav-link:hover {
-        background-color: #f5f5f5;
-        color: #005599;
-    }
+        /* Tombol Tambah */
+        button.btn-primary {
+            background-color: transparent;
+            color: #00376b;
+            border: 2px solid #00376b;
+            border-radius: 50px; /* Membuat sudut tombol melingkar */
+            padding: 10px 50px; /* Ukuran padding */
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease; /* Animasi saat hover */
+        }
 
-    .nav .nav-link.active {
-        background-color: #f5f5f5;
-        color: #005599;
-        font-weight: bold;
-    }
+        button.btn-primary:hover {
+            background-color: #00376b;
+            color: #ffffff;
+        }
 
-    /* Logout Section */
-    .logout-link {
-        margin-top: auto;
-        text-align: center;
-        padding-top: 20px;
-        border-top: 1px solid #ddd;
-    }
+        /* Gaya untuk Input Tanggal */
+        input[type="date"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 14px;
+            width: 100%;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
 
-    .logout-link a {
-        color: #005599;
-        font-size: 14px;
-        text-decoration: none;
-    }
+        input[type="date"]::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
 
-    .logout-link a:hover {
-        text-decoration: underline;
-    }
+        input[type="date"]:hover {
+            border-color: #005599;
+        }
 
-    /* Content Area */
-    .content {
-        margin-left: 381px;
-        padding: 20px;
-        background-color: #ffffff;
-        min-height: 100vh;
-    }
-</style>
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #005599;
+            box-shadow: 0 0 5px rgba(0, 85, 153, 0.5);
+        }
 
-
+    </style>
 </head>
 <body>
     <div class="d-flex">
-    
-    <div class="sidebar">
-    <!-- Logo -->
-    <div class="logo-container">
-        <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
-        <h4>SD NEGERI 012 BABAKAN CIPARAY</h4>
-    </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
+                <h4>SD NEGERI 012 BABAKAN CIPARAY</h4>
+            </div>
 
-    <!-- Navigation Links -->
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-home"></i> Dashboard
-            </a>
-        </li>
-    </ul>
+            <!-- Navigation Links -->
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-home"></i> Dashboard
+                    </a>
+                </li>
+            </ul>
 
-    <!-- Section Title -->
-    <div class="section-title">Profil Sekolah</div>
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-image"></i> Foto Kontribusi
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-user"></i> Profil Guru
-            </a>
-        </li>
-    </ul>
+            <div class="section-title">Profil Sekolah</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-image"></i> Foto Kontribusi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-user"></i> Profil Guru
+                    </a>
+                </li>
+            </ul>
 
-    <!-- Section Title -->
-    <div class="section-title">Informasi</div>
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a href="#" class="nav-link active">
-                <i class="fa fa-bullhorn"></i> Berita dan Pengumuman
-            </a>
-        </li>
-    </ul>
+            <div class="section-title">Informasi</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fa fa-bullhorn"></i> Berita dan Pengumuman
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-camera"></i> Galeri Foto dan Video
+                    </a>
+                </li>
+            </ul>
 
-    <!-- Logout -->
-    <div class="logout-link">
-        <a href="#">
-            <i class="fa fa-sign-out"></i> Log Out
-        </a>
-    </div>
-</div>
-
-
+            <div class="logout-link">
+                <a href="#">
+                    <i class="fa fa-sign-out"></i> Log Out
+                </a>
+            </div>
+        </div>
 
         <!-- Content -->
+        <div class="content">
+            <h2>Berita & Pengumuman</h2>
+            <p>
+                Pada <b>Berita & Pengumuman</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> Berita dan Pengumuman terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>foto, deskripsi kegiatan, tanggal pelaksanaan, dan tempat pelaksanaan</b>.
+            </p>
 
-<div class="container">
-    <h2>Tambah Berita dan Pengumuman</h2>
+            <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="created_at" class="form-label">Created At/Tanggal Publikasi</label>
+                    <input type="date" class="form-control" id="created_at" name="created_at" required>
+                </div>
+                <div class="mb-3">
+                    <label for="created_by" class="form-label">Created By/Dibuat Oleh</label>
+                    <input type="text" class="form-control" id="created_by" name="created_by" placeholder="Masukkan pembuat (Contoh: Admin)" required>
+                </div>
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto Berita dan Pengumuman</label>
+                    <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+                </div>
+                <div class="mb-3">
+                    <label for="judul" class="form-label">Judul</label>
+                    <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul berita dan pengumuman" required>
+                </div>
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label">Deskripsi</label>
+                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Masukkan deskripsi" required></textarea>
+                </div>
 
-    <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="mb-3">
-            <label for="judul" class="form-label">Judul</label>
-            <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan judul berita" required>
-        </div>
-        <div class="mb-3">
-            <label for="deskripsi" class="form-label">Deskripsi</label>
-            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" placeholder="Masukkan deskripsi" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="tanggal" class="form-label">Tanggal</label>
-            <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-        </div>
-        <div class="mb-3">
-            <label for="tempat" class="form-label">Tempat</label>
-            <input type="text" class="form-control" id="tempat" name="tempat" placeholder="Masukkan tempat">
-        </div>
-        <div class="mb-3">
-            <label for="foto" class="form-label">Foto</label>
-            <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
-        </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="{{ route('berita.index') }}" class="btn btn-secondary">Batal</a>
-    </form>
-</div>
+                <div class="mb-3">
+                    <label for="tanggal" class="form-label">Tanggal Aktivitas</label>
+                    <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Masukkan tanggal aktivitas (contoh: 11 Januari 2025)" required>
+                </div>
 
 
-<script>
-    const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');
-    const currentURL = window.location.href;
-    sidebarLinks.forEach(link => {
-        if (link.href === currentURL) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-</script>
+                <div class="mb-3">
+                    <label for="tempat" class="form-label">Tempat Aktivitas</label>
+                    <input type="text" class="form-control" id="tempat" name="tempat" placeholder="Masukkan tempat aktivitas" required>
+                </div>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+            </form>
+        </div>
+    </div>
+
 
 
 </body>

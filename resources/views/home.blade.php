@@ -6,8 +6,485 @@
     <title>SD Negeri 012 Babakan Ciparay</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+.navbar .logo img {
+    height: 50px;
+}
+
+/*nama sekolah */ 
+.school-name {
+    color: black;
+    font-size: 1.5em;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 4px;
+    border-radius: 5px;
+}
+
+.nav-links li .btn {
+    background-color: #005599;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+.nav-links li a:hover {
+    background-color: white;
+    color: #005599;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.nav-links .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Sub Navbar */
+.sub-navbar {
+    background-color: #005599;
+    padding: 10px 0;
+}
+
+.sub-nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+}
+
+.sub-nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Welcome Section */
+.welcome {
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.welcome .text h3 {
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 0;
+}
+
+.welcome .text h2 {
+    font-size: 50px;
+    color: #000000;
+    margin: 20px 0;
+    width: 450px;
+    text-transform: uppercase;
+}
+
+.welcome .text p {
+    font-size: 15px;
+    font-style: italic;
+    margin-bottom: 45px;
+}
+
+.welcome .text .btn {
+    background-color: #005599;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+.welcome .text .btn:hover {
+    background-color: #073d69;
+    color: #ffffff;
+    transition: 1s;
+}
+
+.welcome .image img {
+    border-radius: 15px;
+    max-width: 700px;
+    float: right;
+}
+
+
+/* Pencapaian Section */
+.pencapaian {
+    background-color: #2f4b7c;
+    padding: 20px 0; 
+    color: #ffffff;
+}
+
+
+.pencapaian-title {
+    font-size: 36px; 
+    font-weight: bold; 
+    text-align: center; 
+    color: #ffffff; 
+    margin-bottom: 30px; 
+}
+
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+}
+
+/* buat kolom yang ada warna biru*/
+.card .card-bg {
+    background-color: #2f4b7c;
+    height: 150px;
+}
+
+
+.card p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+.visi-misi {
+    padding: 20px;
+    background-color: #ffffff; 
+}
+
+.visi-misi .container {
+    display: block; 
+    text-align: center; 
+}
+
+.visi, .misi {
+    flex: 1; 
+    margin: 0 10px; 
+}
+
+/*buat bagian visi misi*/
+.visi h2, .misi h2 {
+    font-size: 1.8em; 
+    color: #000000; 
+    margin-bottom: 10px; 
+}
+
+.visi p, .misi p {
+    margin-bottom: 20px; 
+    line-height: 1.6; 
+}
+
+.misi .misi-card {
+    display: flex;
+    gap: 10px;
+    text-align: left;
+}
+
+.misi .misi-card .body {
+    font-size: 15px;
+    width: 33%;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 13px 37px rgba(92,107,121,.1);
+    border-radius: 13px;;
+    text-align: left;
+}
+
+/* visi misi */
+.kontak {
+    padding: 20px;
+    background-color: #ffffff; 
+}
+
+.kontak h2 {
+    font-size: 45px;
+    margin-top: 30px; 
+}
+
+.kontak h3 {
+    font-weight: 500;
+}
+
+.kontak p {
+    font-style: italic;
+}
+
+.kontak iframe {
+    border-radius: 35px;
+}
+
+
+/* Footer */
+.footer {
+    background-image: url('../assets/buat foto fitur abdimas/bagianBawah_sd.png'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 70px 0 40px; 
+}
+
+.footer-contact {
+    width: 50%;
+    padding: 5px;
+}
+
+.footer-contact .contact-info {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-contact .contact-info .icon {
+    font-size: 20px;
+    background-color: #005599;
+    border-radius: 100%;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.footer-contact .contact-info .text {
+    font-size: 15px;
+}
+
+.footer-contact .contact-info .text p {
+    margin-bottom: 10px;
+}
+
+.footer-contact .contact-info .text b {
+    font-size: 15px;
+}
+
+/* bagian tulisan Tentang SD Negeri 012 Babakan Ciparay bagian paling bawah*/
+.footer-info {
+    width: 50%;
+    padding: 15px 5px 5px;
+    margin-bottom: auto;
+    margin-right: 51px
+}
+
+.footer-info h3 {
+    margin: 0;
+}
+
+.footer-info .about {
+    margin-top: 40px;
+    letter-spacing: 1px;
+    line-height: 2rem;
+    margin-bottom: 50px;
+}
+
+.footer-contact {
+    width: 50%;
+    padding: 5px;
+}
+
+/* .footer-socmed */
+.footer-socmed {
+    display: flex;
+}
+
+.footer-socmed-split {
+    width: 50%;
+}
+
+.footer-socmed .contact-info {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* logo sosmed*/
+.footer-socmed .contact-info .icon {
+    font-size: 20px;
+    background-color: #1b3f63;
+    border-radius: 100%;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.footer-socmed .contact-info .text {
+    font-size: 15px;
+}
+
+.footer-socmed .contact-info .text p {
+    margin-bottom: 10px;
+}
+
+.footer .footer-maps iframe {
+    border-radius: 35px;
+}
+
+      /* Media Queries */
+@media (max-width: 1024px) {
+    /* Tablet */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .welcome {
+        flex-direction: column;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .footer .footer-contact,
+    .footer .footer-info,
+    .footer .footer-maps {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .nav-links li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .welcome {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .welcome .text h2 {
+        font-size: 28px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer .footer-contact,
+    .footer .footer-info,
+    .footer .footer-maps {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra Small Devices */
+    .navbar .logo img {
+        height: 40px;
+    }
+
+    .welcome .text h2 {
+        font-size: 24px;
+    }
+
+    .welcome .text p {
+        font-size: 14px;
+    }
+
+    .footer .footer-contact,
+    .footer .footer-info,
+    .footer .footer-maps {
+        text-align: center;
+        padding: 10px;
+    }
+}
+    </style>
+
 </head>
 <body>
     
@@ -266,6 +743,7 @@
             </div>
     </div>
 </footer>
+
 
 </body>
 </html>

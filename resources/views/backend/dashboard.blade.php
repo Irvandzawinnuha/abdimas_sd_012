@@ -503,69 +503,83 @@
 
 
     <div class="tab-pane fade" id="kegiatan-ekstrakurikuler">
-        <br>
-        <!-- Header berita-pengumuman -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-            <h4 style="margin: 0;">kegiatan ekstrakurikuler</h4>
-            <!-- Tombol Tambah -->
-            <a href="{{ route('kegiatan-ekstrakurikuler.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
-                Tambah +
-            </a>
-        </div>
-
-        <!-- Tabel berita-pengumuman -->
-        <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
-            <thead>
-                <tr style="background-color: #F8F9FA;">
-                    <th style="border: none;">No</th>
-
-                    <th style="border: none;">Created At/Tanggal Publikasi</th>
-                    <th style="border: none;">Created By/Dibuat Oleh</th>
-                    <th style="border: none;">Foto Kontribusi</th>
-                    <th style="border: none;">Hapus</th>
-                    <th style="border: none;">Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($dataFoto as $foto)
-                <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
-                    <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
-                    <td style="border: none; vertical-align: middle;">{{ $foto->created_at->format('d/m/Y') }}</td>
-                    <td style="border: none; vertical-align: middle;">{{ $foto->created_by }}</td>
-                    <td style="border: none;">
-                        <div style="display: flex; justify-content: center;">
-                        <img src="{{ asset('storage/' . $foto->foto) }}"alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
-                        </div>
-                    </td>
-
-                    <!-- Tombol Hapus -->
-                    <td style="border: none; vertical-align: middle;">
-                        <form action="{{ route('foto.destroy', $foto->id) }}" method="POST" style="display: inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </form>
-                    </td>
-                    <!-- Tombol Edit -->
-                    <td style="border: none; vertical-align: middle;">
-                        <a href="{{ route('foto.edit', $foto->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; background-color: #005599;">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <br>
+    <!-- Header Kegiatan Ekstrakurikuler -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+        <h4 style="margin: 0;">Kegiatan Ekstrakurikuler</h4>
+        <!-- Tombol Tambah -->
+        <a href="{{ route('kegiatan-ekstrakurikuler.create') }}" class="btn btn-outline-primary" style="border-radius: 50px; padding: 10px 20px;">
+            Tambah +
+        </a>
     </div>
 
+    <!-- Tabel Kegiatan Ekstrakurikuler -->
+    <table class="table text-center" style="border-collapse: separate; border-spacing: 0 10px;">
+        <thead>
+            <tr style="background-color: #F8F9FA;">
+                <th style="border: none;">No</th>
+                <th style="border: none;">Tanggal Publikasi</th>
+                <th style="border: none;">Dibuat Oleh</th>
+                <th style="border: none;">Foto Kontribusi</th>
+                <th style="border: none;">Hapus</th>
+                <th style="border: none;">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($dataFoto as $foto)
+            <tr style="background-color: #FFFFFF; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                <td style="border: none; vertical-align: middle;">{{ $loop->iteration }}</td>
+                <td style="border: none; vertical-align: middle;">{{ \Carbon\Carbon::parse($foto->tanggal_publikasi)->format('d/m/Y') }}</td>
+                <td style="border: none; vertical-align: middle;">{{ $foto->dibuat_oleh }}</td>
+                <td style="border: none;">
+                    <div style="display: flex; justify-content: center;">
+                        <img src="{{ asset('storage/' . $foto->foto_kontribusi) }}" alt="Foto" style="border-radius: 10px; width: 100px; height: 100px; object-fit: cover;">
+                    </div>
+                </td>
+
+                <!-- Tombol Hapus -->
+                <td style="border: none; vertical-align: middle;">
+                    <form action="{{ route('kegiatan-ekstrakurikuler.destroy', $foto->id) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" style="border-radius: 50%; width: 40px; height: 40px;">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+
+                <!-- Tombol Edit -->
+                <td style="border: none; vertical-align: middle;">
+                    <a href="{{ route('kegiatan-ekstrakurikuler.edit', $foto->id) }}" class="btn btn-primary" style="border-radius: 50%; width: 40px; height: 40px; background-color: #005599;">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="tab-pane fade" id="galeri-foto">
         <br>
         <!-- Header berita-pengumuman -->
