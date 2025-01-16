@@ -15,7 +15,7 @@ class FotoKontribusiController extends Controller
     {
         $dataFoto = FotoKontribusi::all(); // Ambil data foto kontribusi
         $dataGuru = Guru::paginate(10); // Ambil data guru
-        $berita_pengumuman = Berita::latest()->paginate(10); // Pagination
+        $berita_pengumuman = Berita::latest()->paginate(3); // Pagination
         return view('backend.dashboard', compact('dataFoto', 'dataGuru', 'berita_pengumuman'));
     }
 
@@ -38,7 +38,7 @@ class FotoKontribusiController extends Controller
             'foto' => $path,
         ]);
 
-        return redirect()->route('foto.index')->with('success', 'Foto berhasil ditambahkan.');
+        return redirect()->route('backend.dashboard')->with('success', 'Foto berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -73,7 +73,7 @@ class FotoKontribusiController extends Controller
     // Update data
     $foto->update($data);
 
-    return redirect()->route('foto.index')->with('success', 'Foto berhasil diperbarui.');
+    return redirect()->route('backend.dashboard')->with('success', 'Foto berhasil diperbarui.');
 }
 
     public function destroy($id)
@@ -81,6 +81,6 @@ class FotoKontribusiController extends Controller
         $foto = FotoKontribusi::findOrFail($id);
         $foto->delete();
 
-        return redirect()->route('foto.index')->with('success', 'Foto berhasil dihapus.');
+        return redirect()->route('backend.dashboard')->with('success', 'Foto berhasil dihapus.');
     }
 }

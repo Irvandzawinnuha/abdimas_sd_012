@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\FotoKontribusi;
 use App\Models\Guru;
 use App\Models\Berita;
+use App\Models\Extracurricular;
+use App\Models\GaleriFotoVideo;
 
 class DashboardController extends Controller
 {
@@ -15,12 +17,18 @@ class DashboardController extends Controller
         $dataFoto = FotoKontribusi::all();
 
         // Data Guru
-        $dataGuru = Guru::paginate(10);
+        $dataGuru = Guru::paginate(3);
 
         // Data Berita dan Pengumuman
-        $berita_pengumuman = Berita::latest()->paginate(10); // 10 berita terbaru
+        $berita_pengumuman = Berita::latest()->paginate(3); //3 berita terbaru
+
+        // Data Ekstrakurikuler
+        $dataEkskul = Extracurricular::all();
+
+        // Data Galeri
+        $dataGaleri = GaleriFotoVideo::all();
 
         // Kirim semua data ke view
-        return view('backend.dashboard', compact('dataFoto', 'dataGuru', 'berita_pengumuman'));
+        return view('backend.dashboard', compact('dataFoto', 'dataGuru', 'berita_pengumuman', 'dataEkskul', 'dataGaleri'));
     }
 }

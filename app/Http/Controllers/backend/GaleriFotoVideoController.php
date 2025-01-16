@@ -1,50 +1,54 @@
 <?php
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers\Backend;
+
+use App\Http\Controllers\Controller;
 use App\Models\GaleriFotoVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class GaleriFotoVideoController extends Controller
 {
+    public function index()
+    {
+        $dataGaleri = GaleriFotoVideo::orderBy('created_at', 'desc')->get();
+        return view('backend.dashboard', compact('dataGaleri'));
+    }
+
     public function create()
     {
-        return view('create_foto_video');
+        return view('backend.create_foto_video');
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'media' => 'required|file|mimes:jpeg,png,jpg,mp4|max:10240',
             'created_by' => 'required|string|max:255',
-            'created_at' => 'required|date',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'created_at' => 'required|date'
         ]);
 
         $path = null;
-        if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('galeri_foto_video', 'public');
+        if ($request->hasFile('media')) {
+            $path = $request->file('media')->store('galeri', 'public');
         }
 
         GaleriFotoVideo::create([
-            'created_by' => $request->created_by,
-            'created_at' => $request->created_at,
             'foto' => $path,
+            'created_by' => $request->created_by,
+            'created_at' => $request->created_at
         ]);
 
-        return redirect()->route('galeri.index')->with('success', 'Data berhasil ditambahkan.');
-    }
-
-    public function index()
-    {
-        $galeri = GaleriFotoVideo::all();
-        return view('index_galeri_foto_video', compact('galeri'));
+        return redirect()->route('backend.dashboard')
+            ->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($id)
     {
         $galeri = GaleriFotoVideo::findOrFail($id);
-        return view('edit_galeri_foto_video', compact('galeri'));
+        return view('backend.edit_galeri_foto_video', compact('galeri'));
     }
+    
 
     public function update(Request $request, $id)
     {
@@ -72,7 +76,7 @@ class GaleriFotoVideoController extends Controller
             'foto' => $galeri->foto,
         ]);
 
-        return redirect()->route('galeri.index')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('backend.dashboard')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -85,6 +89,6 @@ class GaleriFotoVideoController extends Controller
 
         $galeri->delete();
 
-        return redirect()->route('galeri.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('backend.dashboard')->with('success', 'Data berhasil dihapus.');
     }
 }

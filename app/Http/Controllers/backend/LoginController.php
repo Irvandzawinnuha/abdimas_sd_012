@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\backend\Auth;
-use Illuminate\Support\backend\Hash;
-use Illuminate\Support\backend\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -39,10 +40,14 @@ class LoginController extends Controller
         }
 
         // Cek email dan password
-        $user = \App\Models\User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user) {
             return redirect()->back()->withErrors(['error' => 'Email tidak ditemukan.'])->withInput();
+        }
+
+        if (!$user->is_active) {
+            return redirect()->back()->withErrors(['error' => 'Akun belum diverifikasi. Silakan cek email Anda.'])->withInput();
         }
 
         if (!Hash::check($request->password, $user->password)) {

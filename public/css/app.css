@@ -19,105 +19,170 @@ h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
-/* Navbar */
+/* Navbar Styles */
 .navbar {
     background-color: #ffffff;
-    padding: 15px;
+    padding: 15px 0;
+    box-shadow: none;
 }
 
-.navbar .logo img {
-    height: 50px;
+.navbar .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
 }
 
-/*nama sekolah */ 
-.school-name {
-    color: black;
-    font-size: 1.5em;
-    margin-left: 20px;
-    text-align: center;
-}
-
-.nav-links {
-    list-style: none;
+/* Logo Styles */
+.logo {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 12px;
 }
 
-.nav-links li {
-    position: relative;
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.school-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .nav-links li a {
-    color: black;
+    color: #000000;
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px 4px;
-    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 0;
 }
 
-.nav-links li .btn {
-    background-color: #005599;
-    color: #ffffff;
-    border-radius: 25px;
-    padding: 15px 30px;
-    text-decoration: none;
-}
-
-.nav-links li a:hover {
-    background-color: white;
+.nav-links li a:hover,
+.nav-links li a.active {
     color: #005599;
-    transition: background-color 0.3s ease;
 }
 
-.nav-links .dropdown-content {
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
-    background-color: white;
+    top: 100%;
+    left: 0;
+    background: white;
     min-width: 220px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 0;
+    z-index: 1000;
+    margin-top: 8px;
 }
 
-.nav-links .dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
     display: block;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
     display: block;
+    padding: 12px 20px;
+    color: #333;
+    font-size: 0.95rem;
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background: #f8f9fa;
+}
+
+/* PPDB Button */
+.btn {
+    background-color: #1e4c9a;
+    color: white !important;
+    padding: 10px 25px !important;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #004480;
 }
 
 /* Sub Navbar */
 .sub-navbar {
-    background-color: #005599;
-    padding: 10px 0;
+    background-color: #1e4c9a;
+    padding: 12px 0;
+}
+
+.sub-navbar .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
 }
 
 .sub-nav-links {
-    list-style: none;
     display: flex;
-    justify-content: space-around;
-    margin-left: auto;
+    justify-content: flex-end;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .sub-nav-links li a {
     color: white;
     text-decoration: none;
-    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
-.logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.sub-nav-links li a:hover {
+    opacity: 1;
 }
 
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links li a {
+        font-size: 0.9rem;
+    }
+
+    .school-name {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-links {
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 6px 15px !important;
+    }
+}
 
 /* Welcome Section */
 .welcome {
@@ -170,17 +235,17 @@ h2, h3, h4, h5, h6 {
 /* Pencapaian Section */
 .pencapaian {
     background-color: #2f4b7c;
-    padding: 20px 0; 
+    padding: 20px 0;
     color: #ffffff;
 }
 
 
 .pencapaian-title {
-    font-size: 36px; 
-    font-weight: bold; 
-    text-align: center; 
-    color: #ffffff; 
-    margin-bottom: 30px; 
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
 }
 
 
@@ -216,29 +281,29 @@ h2, h3, h4, h5, h6 {
 
 .visi-misi {
     padding: 20px;
-    background-color: #ffffff; 
+    background-color: #ffffff;
 }
 
 .visi-misi .container {
-    display: block; 
-    text-align: center; 
+    display: block;
+    text-align: center;
 }
 
 .visi, .misi {
-    flex: 1; 
-    margin: 0 10px; 
+    flex: 1;
+    margin: 0 10px;
 }
 
 /*buat bagian visi misi*/
 .visi h2, .misi h2 {
-    font-size: 1.8em; 
-    color: #000000; 
-    margin-bottom: 10px; 
+    font-size: 1.8em;
+    color: #000000;
+    margin-bottom: 10px;
 }
 
 .visi p, .misi p {
-    margin-bottom: 20px; 
-    line-height: 1.6; 
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 .misi .misi-card {
@@ -260,12 +325,12 @@ h2, h3, h4, h5, h6 {
 /* visi misi */
 .kontak {
     padding: 20px;
-    background-color: #ffffff; 
+    background-color: #ffffff;
 }
 
 .kontak h2 {
     font-size: 45px;
-    margin-top: 30px; 
+    margin-top: 30px;
 }
 
 .kontak h3 {
@@ -283,44 +348,93 @@ h2, h3, h4, h5, h6 {
 
 /* Footer */
 .footer {
-    background-image: url('../assets/buat foto fitur abdimas/bagianBawah_sd.png'); 
+    background-image: url('../assets/buat foto fitur abdimas/bagianBawah_sd.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     color: white;
-    padding: 70px 0 40px; 
+    padding: 70px 0 40px;
 }
 
+/* Kontak Info */
 .footer-contact {
     width: 50%;
     padding: 5px;
 }
 
 .footer-contact .contact-info {
-    color: #ffffff;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .footer-contact .contact-info .icon {
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
     background-color: #005599;
-    border-radius: 100%;
-    padding: 10px 15px;
-    margin-right: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.footer-contact .contact-info .icon i {
+    font-size: 16px;
+    color: white;
 }
 
 .footer-contact .contact-info .text {
-    font-size: 15px;
+    flex: 1;
 }
 
-.footer-contact .contact-info .text p {
-    margin-bottom: 10px;
+.footer-contact .contact-info .text p,
+.footer-contact .contact-info .text b {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .footer-contact .contact-info .text b {
-    font-size: 15px;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Tentang Sekolah */
+.footer-info {
+    width: 50%;
+    padding: 15px 5px 5px;
+    margin-bottom: auto;
+    margin-right: 51px;
+}
+
+.footer-info h3 {
+    font-size: 18px;
+    margin: 0 0 15px 0;
+}
+
+.footer-info .about {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Maps */
+.footer .footer-maps iframe {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+}
+
+/* Link Styles */
+.footer a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.footer a:hover {
+    opacity: 0.8;
 }
 
 /* bagian tulisan Tentang SD Negeri 012 Babakan Ciparay bagian paling bawah*/
@@ -571,7 +685,7 @@ h2, h3, h4, h5, h6 {
     .faq-container {
         grid-template-columns: 1fr; /* Satu kolom pada layar kecil */
     }
-    
+
 }
 
 .faq-icon {
@@ -677,7 +791,7 @@ h2, h3, h4, h5, h6 {
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
-    
+
 }
 /* .facility-item{
     box-shadow: 0 .75rem 2rem 9px rgb(0 0 0 / 8%);
@@ -796,7 +910,7 @@ h2, h3, h4, h5, h6 {
 
 .facility-section-background .staff-stats {
     display: flex;
-    gap: 20px; 
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -907,3 +1021,904 @@ h2, h3, h4, h5, h6 {
 .news-card .read-more:hover {
     background-color: #0056b3; /* Warna biru lebih gelap saat hover */
 }
+
+/* Visi Misi Section */
+.visi-misi-section {
+    padding: 40px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.visi-misi-section h2 {
+    text-align: center;
+    color: #1e4c9a;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.visi-section, .misi-section, .tujuan-section {
+    margin-bottom: 40px;
+}
+
+.visi-section h3, .misi-section h3, .tujuan-section h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.visi-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.misi-section ol, .tujuan-section ol {
+    padding-left: 20px;
+}
+
+.misi-section li, .tujuan-section li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* Styles untuk Academic Section */
+.academic-section {
+    padding: 40px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Styles untuk Contact Section */
+.contact-section {
+    padding: 40px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Styles untuk Extracurricular Section */
+.extracurricular-section {
+    padding: 40px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Tambahkan style lainnya sesuai kebutuhan masing-masing halaman */
+
+/* News Detail Styles */
+.breadcrumb {
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.breadcrumb a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Hamburger Menu Styles - Update */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 1000;
+    margin-left: 20px;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background-color: #1e4c9a;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile Menu Styles - Update */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    padding: 80px 20px 20px;
+    z-index: 99;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu .nav-links,
+.mobile-menu .sub-nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mobile-menu .nav-links {
+    margin-bottom: 20px;
+}
+
+.mobile-menu .sub-nav-links {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.mobile-menu .nav-links a,
+.mobile-menu .sub-nav-links a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 15px 0;
+    font-size: 15px;
+    border-bottom: 1px solid #f5f5f5;
+    width: 100%;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu .nav-links a:hover,
+.mobile-menu .nav-links a.active,
+.mobile-menu .sub-nav-links a:hover,
+.mobile-menu .sub-nav-links a.active {
+    color: #005599;
+}
+
+.mobile-menu .dropdown-content {
+    display: none;
+    padding-left: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.mobile-menu .dropdown.active .dropdown-content {
+    display: block;
+}
+
+.mobile-menu .dropdown-content a {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-menu .dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Styles - Update */
+@media (max-width: 992px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar .nav-links {
+        display: none;
+    }
+
+    .sub-navbar {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .mobile-menu .nav-links,
+    .mobile-menu .sub-nav-links {
+        display: flex;
+    }
+
+    .mobile-menu .nav-links li,
+    .mobile-menu .sub-nav-links li {
+        width: 100%;
+    }
+
+    /* Adjust PPDB button in mobile */
+    .mobile-menu .btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 20px;
+        padding: 12px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu .nav-links a,
+    .mobile-menu .sub-nav-links a {
+        font-size: 14px;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-menu {
+        padding: 60px 15px 20px;
+    }
+
+    .mobile-menu .nav-links,
+    .mobile-menu .sub-nav-links {
+        gap: 5px;
+    }
+
+    .mobile-menu .nav-links a,
+    .mobile-menu .sub-nav-links a {
+        padding: 8px 0;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    /* Welcome Section */
+    .welcome .container {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .welcome .text h2 {
+        font-size: 35px;
+        width: 100%;
+    }
+
+    .welcome .text h3 {
+        font-size: 25px;
+    }
+
+    .welcome .image img {
+        max-width: 100%;
+        float: none;
+        margin-top: 30px;
+    }
+
+    /* Visi Misi Section */
+    .visi-misi .container {
+        padding: 20px;
+    }
+
+    .visi-misi .misi-card {
+        flex-direction: column;
+    }
+
+    .misi-card .body {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* Kontak Section */
+    .kontak .container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .kontak .contact-detail {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .kontak .contact-maps {
+        width: 100% !important;
+    }
+
+    .kontak iframe {
+        width: 100% !important;
+    }
+
+    /* Footer Section */
+    .footer .container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer-contact,
+    .footer-info {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .footer-maps {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome .text h2 {
+        font-size: 30px;
+    }
+
+    .welcome .text h3 {
+        font-size: 22px;
+    }
+
+    .welcome .text p {
+        font-size: 14px;
+    }
+
+    .visi-misi h2 {
+        font-size: 28px;
+    }
+
+    .kontak h2 {
+        font-size: 35px;
+    }
+
+    .kontak h3 {
+        font-size: 20px;
+    }
+
+    .footer-info h3 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome .text h2 {
+        font-size: 25px;
+    }
+
+    .welcome .text h3 {
+        font-size: 20px;
+    }
+
+    .welcome .text p {
+        font-size: 13px;
+    }
+
+    .visi-misi h2 {
+        font-size: 24px;
+    }
+
+    .kontak h2 {
+        font-size: 30px;
+    }
+
+    .kontak h3 {
+        font-size: 18px;
+    }
+
+    .kontak p {
+        font-size: 13px;
+    }
+
+    .footer-info .about {
+        font-size: 13px;
+    }
+}
+
+/* Academic Section Responsive */
+@media (max-width: 992px) {
+    .academic-section {
+        padding: 30px 20px;
+    }
+
+    .academic-section .container {
+        flex-direction: column;
+    }
+
+    .academic-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .academic-info {
+        padding: 20px;
+    }
+
+    .academic-info h2 {
+        font-size: 28px;
+    }
+
+    .academic-info h3 {
+        font-size: 20px;
+    }
+
+    .academic-schedule {
+        overflow-x: auto;
+    }
+
+    .schedule-table {
+        min-width: 800px;
+    }
+
+    .academic-activities {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .academic-section {
+        padding: 20px 15px;
+    }
+
+    .academic-info h2 {
+        font-size: 24px;
+    }
+
+    .academic-info h3 {
+        font-size: 18px;
+    }
+
+    .academic-info p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .academic-activities {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-card {
+        padding: 15px;
+    }
+
+    .activity-card h4 {
+        font-size: 16px;
+    }
+
+    .activity-card p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 576px) {
+    .academic-info h2 {
+        font-size: 22px;
+    }
+
+    .academic-info h3 {
+        font-size: 16px;
+    }
+
+    .academic-info p {
+        font-size: 13px;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .activity-card {
+        padding: 12px;
+    }
+
+    .activity-card h4 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .activity-card p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+
+/* News Section Responsive */
+@media (max-width: 992px) {
+    .news-card {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .news-card .news-image {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .news-card .news-content {
+        padding: 0;
+    }
+
+    .news-card .news-title {
+        font-size: 1.3rem;
+    }
+
+    .news-card .news-snippet {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .news-card .read-more {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-card {
+        margin: 15px;
+    }
+
+    .news-card .news-image {
+        height: 180px;
+    }
+
+    .news-card .news-title {
+        font-size: 1.2rem;
+    }
+
+    .news-card .news-date {
+        font-size: 0.8rem;
+    }
+
+    .news-card .news-snippet {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .news-card .read-more {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .news-card {
+        margin: 10px;
+        padding: 12px;
+    }
+
+    .news-card .news-image {
+        height: 160px;
+    }
+
+    .news-card .news-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .news-card .news-date {
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+    }
+
+    .news-card .news-snippet {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+
+    .news-card .read-more {
+        padding: 7px 14px;
+        font-size: 0.85rem;
+    }
+
+    /* News Detail Page */
+    .news-detail {
+        padding: 15px;
+    }
+
+    .news-detail .news-title {
+        font-size: 1.3rem;
+    }
+
+    .news-detail .news-meta {
+        font-size: 0.8rem;
+    }
+
+    .news-detail .news-content {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .news-detail img {
+        margin: 10px 0;
+    }
+}
+
+/* News Detail Section Responsive */
+@media (max-width: 992px) {
+    .news-detail-section {
+        padding: 20px;
+    }
+
+    .news-detail-container {
+        width: 100%;
+    }
+
+    .news-detail-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .news-detail-content {
+        padding: 0;
+    }
+
+    .news-detail-title {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .news-detail-meta {
+        margin-bottom: 20px;
+    }
+
+    .news-detail-text {
+        font-size: 1rem;
+    }
+
+    /* Related News */
+    .related-news {
+        margin-top: 40px;
+    }
+
+    .related-news-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .related-news-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .news-detail-section {
+        padding: 15px;
+    }
+
+    .news-detail-title {
+        font-size: 1.5rem;
+    }
+
+    .news-detail-meta {
+        font-size: 0.9rem;
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+    }
+
+    .news-detail-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .news-detail-image {
+        margin-bottom: 15px;
+    }
+
+    /* Related News */
+    .related-news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .related-news-card {
+        padding: 15px;
+    }
+
+    .related-news-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .news-detail-section {
+        padding: 10px;
+    }
+
+    .news-detail-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .news-detail-meta {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+    .news-detail-text {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .news-detail-image {
+        margin-bottom: 12px;
+    }
+
+    /* Share Buttons */
+    .share-buttons {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .share-button {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* Related News */
+    .related-news {
+        margin-top: 30px;
+    }
+
+    .related-news-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .related-news-card {
+        padding: 12px;
+    }
+
+    .related-news-card h3 {
+        font-size: 1rem;
+    }
+
+    .related-news-card p {
+        font-size: 0.85rem;
+    }
+
+    .related-news-date {
+        font-size: 0.8rem;
+    }
+}
+
+/* Extracurricular Section Responsive */
+@media (max-width: 992px) {
+    .extracurricular-section {
+        padding: 30px 20px;
+    }
+
+    .extracurricular-container {
+        flex-direction: column;
+    }
+
+    .extracurricular-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .extracurricular-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .activity-card {
+        padding: 15px;
+    }
+
+    .activity-card img {
+        height: 200px;
+    }
+
+    .activity-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .activity-description {
+        font-size: 0.95rem;
+    }
+
+    .activity-schedule {
+        font-size: 0.9rem;
+    }
+
+    .activity-instructor {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .extracurricular-section {
+        padding: 20px 15px;
+    }
+
+    .extracurricular-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .extracurricular-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .activity-card {
+        padding: 12px;
+    }
+
+    .activity-card img {
+        height: 180px;
+    }
+
+    .activity-card h3 {
+        font-size: 1.2rem;
+        margin: 12px 0;
+    }
+
+    .activity-description {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .activity-meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .activity-schedule,
+    .activity-instructor {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .extracurricular-section {
+        padding: 15px 10px;
+    }
+
+    .extracurricular-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .activity-card {
+        padding: 10px;
+    }
+
+    .activity-card img {
+        height: 160px;
+    }
+
+    .activity-card h3 {
+        font-size: 1.1rem;
+        margin: 10px 0;
+    }
+
+    .activity-description {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .activity-meta {
+        gap: 6px;
+    }
+
+    .activity-schedule,
+    .activity-instructor {
+        font-size: 0.8rem;
+    }
+
+    .activity-meta i {
+        font-size: 0.9rem;
+    }
+}
+

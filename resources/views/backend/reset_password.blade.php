@@ -69,35 +69,56 @@
 </head>
 <body>
     <div class="container">
-        <h3>Atur Ulang Kata Sandi Anda</h3> 
-            
+        <h3>Atur Ulang Kata Sandi Anda</h3>
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('backend.password.update') }}" method="POST">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+
             <div class="mb-3">
                 <label for="password" class="form-label">Kata Sandi Baru</label>
-                <br>
                 <div class="position-relative">
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan kata sandi baru" required>
+                    <input type="password" name="password" id="password" class="form-control" 
+                           placeholder="Masukkan kata sandi baru" required>
                     <i class="bi bi-eye-slash toggle-password" onclick="togglePassword('password')"></i>
                 </div>
             </div>
+
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Ketik Ulang Kata Sandi</label>
                 <div class="position-relative">
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Ketik ulang kata sandi baru" required>
+                    <input type="password" name="password_confirmation" id="password_confirmation" 
+                           class="form-control" placeholder="Ketik ulang kata sandi baru" required>
                     <i class="bi bi-eye-slash toggle-password" onclick="togglePassword('password_confirmation')"></i>
                 </div>
             </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="rememberPassword">
-                <label class="form-check-label" for="rememberPassword">Ingat kata sandi</label>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Simpan</button>
+
+            <button type="submit" class="btn btn-primary w-100">Reset Password</button>
         </form>
 
         <div class="footer-link">
-                Tidak memiliki akun? <a href="{{ route('backend.daftar') }}">Buat Akun</a>
+            <a href="{{ route('backend.login') }}">Kembali ke Halaman Login</a>
         </div>
     </div>
 

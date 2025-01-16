@@ -8,6 +8,13 @@ use App\Models\Extracurricular; // Pastikan model sudah dibuat
 
 class KegiatanEkstrakurikulerController extends Controller
 {
+
+        public function index()
+    {
+        $dataEkskul = Extracurricular::all();
+        return view('backend.dashboard', compact('dataEkskul'));
+    }
+
     /**
      * Menampilkan halaman form tambah kegiatan ekstrakurikuler.
      */
@@ -26,16 +33,13 @@ class KegiatanEkstrakurikulerController extends Controller
 
         // Simpan file jika ada
         $filePath = "";
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads/foto_kontribusi', $fileName, 'public'); // Menyimpan ke storage
+        if ($request->hasFile('foto')) {
+            $filePath = $request->file('foto')->store('ekstrakurikuler', 'public');
         }
-
         // Simpan data ke database
         Extracurricular::create([
-            'tanggal_publikasi' => $request->input('tanggal_publikasi'),
-            'dibuat_oleh' => $request->input('dibuat_oleh'),
+            'created_at' => $request->input('created_at'),
+            'CreatedBy' => $request->input('CreatedBy'),
             'foto_kontribusi' => $filePath,
         ]);
 
@@ -58,15 +62,9 @@ class KegiatanEkstrakurikulerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validasi input
-        $request->validate([
-            'tanggal_publikasi' => 'required|date',
-            'dibuat_oleh' => 'required|string|max:255',
-            'file' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
 
         $kegiatan = Extracurricular::findOrFail($id);
-
+        $filePath = '';
         // Update file jika ada file baru
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -81,10 +79,18 @@ class KegiatanEkstrakurikulerController extends Controller
             $kegiatan->foto_kontribusi = $filePath;
         }
 
-        // Update data lainnya
-        $kegiatan->tanggal_publikasi = $request->input('tanggal_publikasi');
-        $kegiatan->dibuat_oleh = $request->input('dibuat_oleh');
-        $kegiatan->save();
+        $filePath = "";
+        if ($request->hasFile('foto')) {
+            $filePath = $request->file('foto')->store('ekstrakurikuler', 'public');
+        }
+        
+        $kegiatan->update([
+            'created_at' => $request->input('created_at'),
+            'CreatedBy' => $request->input('CreatedBy'),
+            'foto_kontribusi' => $filePath . ''
+        ]);
+
+
 
         return redirect()->route('backend.dashboard')->with('success', 'Kegiatan ekstrakurikuler berhasil diperbarui.');
     }

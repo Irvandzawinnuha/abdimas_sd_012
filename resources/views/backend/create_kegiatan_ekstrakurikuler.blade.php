@@ -1,132 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kegiatan Ekstrakurikuler</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-        }
+@include('backend.partials.head')
+@include('backend.partials.sidebar')
+<!-- Main Content -->
+<div class="content">
+    <h3>Tambah Kegiatan Ekstrakurikuler</h3>
+    <p>
+        Pada <b>Kegiatan Ekstrakurikuler</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> kegiatan ekstrakurikuler
+        terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>foto, nama kegiatan, deskripsi kegiatan, dan jadwal kegiatan</b>.
+    </p>
 
-        .sidebar {
-            height: 100vh;
-            width: 336px;
-            position: fixed;
-            background-color: #ffffff;
-            border-right: 1px solid #ddd;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .content {
-            margin-left: 381px;
-            padding: 20px;
-            background-color: #ffffff;
-            min-height: 100vh;
-        }
-
-        .btn-primary {
-            background-color: #005599;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #005599;
-        }
-
-        .dropzone {
-        width: 100%;
-        height: 200px;
-        border: 2px dashed #ddd;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f8f9fa;
-        cursor: pointer;
-        position: relative;
-        transition: background-color 0.3s ease;
-        }
-
-        .dropzone:hover {
-            background-color: #e9ecef;
-        }
-
-        .dropzone p {
-            font-size: 16px;
-            color: #888;
-        }
-    </style>
-</head>
-<body>
-    <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo-container">
-                <img src="{{ asset('logo_sd.png') }}" alt="Logo SD Negeri 012">
-                <h4>SD Negeri 012 Babakan Ciparay</h4>
-            </div>
-            <ul class="nav flex-column">
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-home"></i> Dashboard</a></li>
-                <div class="section-title">Profil Sekolah</div>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-image"></i> Foto Kontribusi</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-user"></i> Profil Guru</a></li>
-                <div class="section-title">Informasi</div>
-                <li class="nav-item"><a href="#" class="nav-link active"><i class="fa fa-bullhorn"></i> Berita dan Pengumuman</a></li>
-            </ul>
-            <div class="logout-link"><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></div>
+    <form action="{{ route('kegiatan-ekstrakurikuler.store') }}" method="POST" enctype="multipart/form-data" id="createForm">
+        @csrf
+        <div class="mb-3">
+            <label for="created_at" class="form-label">Created At/Tanggal Publikasi</label>
+            <input type="date" class="form-control" id="created_at" name="created_at" required>
+        </div>
+        <div class="mb-3">
+            <label for="created_by" class="form-label">Created By/Dibuat Oleh</label>
+            <input type="text" class="form-control" id="Created By" name="CreatedBy"
+                placeholder="Masukkan pembuat (Contoh: Admin)" required>
+        </div>
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto Kegiatan</label>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+            <small class="text-muted">Format yang didukung: JPG, PNG. Maksimal 2MB</small>
+        </div>
+        <div class="mb-3">
+            <label for="nama_kegiatan" class="form-label">Nama Kegiatan</label>
+            <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan"
+                placeholder="Masukkan nama kegiatan ekstrakurikuler" required>
+        </div>
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi Kegiatan</label>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
+                placeholder="Masukkan deskripsi kegiatan" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="jadwal" class="form-label">Jadwal Kegiatan</label>
+            <input type="text" class="form-control" id="jadwal" name="jadwal"
+                placeholder="Masukkan jadwal kegiatan (contoh: Setiap Jumat, 15:00-17:00)" required>
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <h2>Kegiatan Ekstrakurikuler</h2>
-            <p>
-                Pada <b>Kegiatan Ekstrakurikuler,</b> menambah, menghapus, dan memperbaharui<b> dokumentasi ekstrakurikuler di SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>foto kegiatan ekstrakurikuler di SD Negeri 012 Babakan Ciparay.</b>
-            </p>
-            
-            <form action="{{ route('kegiatan-ekstrakurikuler.store') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="judul" class="form-label">Created At/Tanggal Publikasi</label>
-                    <input type="date" class="form-control" id="tanggal_publikasi" name="tanggal_publikasi" required>
-        
-                    <div class="mb-3">
-                        <label for="created_by" class="form-label">Created By/Dibuat Oleh</label>
-                        <input type="text" class="form-control" id="dibuat_oleh" name="dibuat_oleh" placeholder="Masukkan pembuat (Contoh: Admin)" required>
-                    </div>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="{{ route('backend.dashboard') }}#kegiatan-ekstrakurikuler" class="btn btn-secondary">Batal</a>
+    </form>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('createForm').addEventListener('submit', function(event) {
+        const created_at = document.getElementById('created_at').value;
+        const created_by = document.getElementById('created_by').value.trim();
+        const foto = document.getElementById('foto').value;
+        const nama_kegiatan = document.getElementById('nama_kegiatan').value.trim();
+        const deskripsi = document.getElementById('deskripsi').value.trim();
+        const jadwal = document.getElementById('jadwal').value.trim();
 
-                    <div class="mb-3">
-                        <label for="fileUpload" class="form-label">Foto Kontribusi</label>
-                        <input type="file" id="fileUpload" name="file" class="form-control" accept="image/*">
-                    </div>
-
-
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </form>
-
-        </div>
-    </div>
-
-    <script>
-        const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');
-        const currentURL = window.location.href;
-        sidebarLinks.forEach(link => {
-            if (link.href === currentURL) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
+        if (!created_at || !created_by || !foto || !nama_kegiatan || !deskripsi || !jadwal) {
+            event.preventDefault();
+            alert('Semua kolom wajib diisi.');
+        } else {
+            if (!confirm('Apakah Anda yakin ingin menyimpan data ini?')) {
+                event.preventDefault();
             }
-        });
-    </script>
+        }
+    });
 
+    // Hamburger menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger-menu');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
 
+        if (hamburger && sidebar && overlay) {
+            hamburger.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
 
+                // Animasi hamburger
+                const spans = this.querySelectorAll('span');
+                spans[0].style.transform = sidebar.classList.contains('active') ?
+                    'rotate(45deg) translate(5px, 5px)' : '';
+                spans[1].style.opacity = sidebar.classList.contains('active') ? '0' : '1';
+                spans[2].style.transform = sidebar.classList.contains('active') ?
+                    'rotate(-45deg) translate(7px, -7px)' : '';
+            });
 
+            // Tutup sidebar ketika overlay diklik
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+
+                // Reset hamburger animation
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = '';
+            });
+
+            // Tutup sidebar ketika klik di luar
+            document.addEventListener('click', function(event) {
+                if (!sidebar.contains(event.target) &&
+                    !hamburger.contains(event.target) &&
+                    sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+
+                    // Reset hamburger animation
+                    const spans = hamburger.querySelectorAll('span');
+                    spans[0].style.transform = '';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = '';
+                }
+            });
+        }
+    });
+</script>
 </body>
+
 </html>

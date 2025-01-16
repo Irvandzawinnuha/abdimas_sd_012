@@ -21,12 +21,12 @@ class ProfileGuruController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'nip' => 'required|numeric|unique:guru,nip',
-            'jabatan' => 'required|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        // $request->validate([
+        //     'nama' => 'required|string|max:255',
+        //     'nip' => 'required|numeric',
+        //     'jabatan' => 'required|string|max:255',
+        //     'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        // ]);
     
         $data = $request->only(['nama', 'nip', 'jabatan']);
     
@@ -42,18 +42,11 @@ class ProfileGuruController extends Controller
     
 
 
-
-
-
     public function edit($id)
     {
         $guru = Guru::findOrFail($id);
         return view('backend.edit_guru', compact('guru')); // Menampilkan form edit guru
     }
-
-
-
-
 
 
 
@@ -63,7 +56,7 @@ class ProfileGuruController extends Controller
 
     $request->validate([
         'nama' => 'required|string|max:255',
-        'nip' => 'required|numeric|unique:guru,nip,' . $id,
+        'nip' => 'required|string',
         'jabatan' => 'required|string|max:255',
         'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ]);

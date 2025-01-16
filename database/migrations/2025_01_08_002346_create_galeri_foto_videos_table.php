@@ -11,7 +11,6 @@ class CreateGaleriFotoVideosTable extends Migration
         Schema::create('galeri_foto_videos', function (Blueprint $table) {
             $table->id();
             $table->string('created_by'); // Dibuat oleh
-            $table->date('tanggal_publikasi'); // Tanggal publikasi (sebagai pengganti created_at manual)
             $table->string('foto')->nullable(); // Path foto
             $table->timestamps(); // created_at & updated_at otomatis
         });
@@ -22,4 +21,3 @@ class CreateGaleriFotoVideosTable extends Migration
         Schema::dropIfExists('galeri_foto_videos');
     }
 }
-

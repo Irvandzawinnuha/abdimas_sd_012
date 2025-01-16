@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\backend\FotoKontribusiController;
+use App\Models\FotoKontribusi;
+
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
@@ -13,7 +16,8 @@ class ProfilController extends Controller
 
     public function histori()
     {
-        return view('profil_histori'); 
+        $dataFoto = FotoKontribusi::all();
+        return view('profil_histori', compact('dataFoto'));
     }
 
     public function fasilitas()
@@ -25,4 +29,6 @@ class ProfilController extends Controller
     {
         return view('visi-misi'); // bagian visi-misi sekolah
     }
+
+
 }

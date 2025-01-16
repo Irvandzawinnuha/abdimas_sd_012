@@ -14,8 +14,8 @@ class Extracurricular extends Model
 
     // Kolom yang dapat diisi secara massal
     protected $fillable = [
-        'tanggal_publikasi', // Tanggal publikasi
-        'dibuat_oleh',     // Nama pembuat
         'foto_kontribusi', // Path foto kontribusi
+        'CreatedBy',
+        'created_at'
     ];
 }

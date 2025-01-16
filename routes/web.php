@@ -46,6 +46,9 @@ use App\Http\Controllers\backend\ResetLinkController;
 use App\Http\Controllers\backend\SearchController;
 
 use App\Http\Controllers\backend\KegiatanEkstrakurikulerController;
+use App\Http\Controllers\backend\EmailController;
+
+use App\Http\Controllers\Backend\GaleriFotoVideoController;
 
 
 
@@ -56,7 +59,8 @@ Route::prefix('backend')->group(function () {
     // Login Routes
     Route::get('/login', [LoginController::class, 'html'])->name('backend.login');
     Route::post('/login', [LoginController::class, 'login'])->name('backend.login.post');
-    Route::post('/logout', [LoginController::class, 'logout'])->name('backend.logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('backend.logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('backend.logout.post');
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'html'])->name('backend.dashboard')->middleware('auth');
@@ -71,6 +75,22 @@ Route::prefix('backend')->group(function () {
     Route::get('/editprofil', [EditController::class, 'html'])->name('backend.editprofil');
     Route::get('/kalender', [KalenderController::class, 'html'])->name('backend.kalender');
     Route::get('/addpost', [AddPostController::class, 'html'])->name('backend.addpost');
+
+    // Pindahkan route verifikasi ke sini
+    Route::get('/verify-email/{token}', [DaftarController::class, 'verifyEmail'])->name('verify.email');
+
+    // Lupa Password & Reset Password Routes
+    Route::controller(LupaPasswordController::class)->group(function () {
+        Route::get('/lupa-password', 'showForm')->name('backend.lupa_password');
+        Route::post('/lupa-password/send', 'sendResetLink')->name('backend.lupa_password.send');
+    });
+
+    Route::controller(ResetPasswordController::class)->group(function () {
+        Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])
+            ->name('backend.password.reset');
+        Route::post('/reset-password/update', [ResetPasswordController::class, 'reset'])
+            ->name('backend.password.update');
+    });
 });
 
 //back end dashboard buat mencankup semuanya
@@ -116,9 +136,6 @@ Route::prefix('backend')->group(function () {
 Route::get('/backend/lupa_password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('backend.lupa_password');
 Route::post('/backend/lupa_password/send', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('backend.lupa_password.send');
 
-Route::get('/lupa_password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/lupa_password/send', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
 // Menampilkan form reset password
 Route::get('/backend/lupa_password', [ForgotPasswordController::class, 'showForm'])->name('backend.lupa_password');
 Route::get('/lupa_password', [ForgotPasswordController::class, 'showForm'])->name('password.request');
@@ -136,7 +153,7 @@ Route::get('/backend/resetpassword/debug', function () {
 Route::get('/test-email', function () {
     \Illuminate\Support\Facades\Mail::raw('Test email content', function ($message) {
         $message->to('irvandzwinnuha15@gmail.com')
-                ->subject('Test Email');
+            ->subject('Test Email');
     });
     return 'Email sent!';
 });
@@ -160,6 +177,8 @@ Route::prefix('backend')->group(function () {
 Route::post('/send-email', [UserController::class, 'sendDynamicEmail'])->name('send.email');
 
 Route::post('/send-email', [EmailController::class, 'sendDynamicEmail'])->name('send.email');
+
+Route::post('/send-reset-password-email', [EmailController::class, 'sendResetPasswordEmail'])->name('send.reset_password.email');
 
 //bagian berita dan pengumuman
 Route::prefix('backend')->group(function () {
@@ -192,6 +211,14 @@ Route::prefix('backend/galeri')->group(function () {
     Route::delete('/delete/{id}', [GaleriFotoVideoController::class, 'destroy'])->name('galeri.destroy');
 });
 
+// Route untuk galeri foto video
+Route::get('/galeri-foto-video', [GaleriFotoVideoController::class, 'index'])->name('galeri.index');
+Route::get('/galeri-foto-video/create', [GaleriFotoVideoController::class, 'create'])->name('create_foto_video');
+Route::post('/galeri-foto-video', [GaleriFotoVideoController::class, 'store'])->name('galeri.store');
+Route::get('/galeri-foto-video/{id}/edit', [GaleriFotoVideoController::class, 'edit'])->name('galeri.edit');
+Route::put('/galeri-foto-video/{id}', [GaleriFotoVideoController::class, 'update'])->name('galeri.update');
+Route::delete('/galeri-foto-video/{id}', [GaleriFotoVideoController::class, 'destroy'])->name('galeri.destroy');
+
 
 
 
@@ -206,7 +233,7 @@ Route::prefix('backend/galeri')->group(function () {
 // Route Utama
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Route Profile
+// Route Profil  sekolah
 Route::prefix('profil')->group(function () {
     Route::get('/', [ProfilController::class, 'index'])->name('profil');
     Route::get('/histori', [ProfilController::class, 'histori'])->name('histori');
@@ -249,3 +276,6 @@ Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('
 //bagian news detail atau berita pengumuman semuanya
 Route::get('news_detail', [NewsDetailController::class, 'index'])->name('news_detail');
 
+if (app()->environment('local')) {
+    Route::get('/backend/check-verification/{email}', [DaftarController::class, 'checkVerificationStatus']);
+}

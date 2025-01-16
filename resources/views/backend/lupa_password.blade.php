@@ -99,7 +99,24 @@
     <div class="form-container">
         <h3>Lupa Kata Sandi</h3>
         <p>Jangan khawatir, kami akan menanganinya.</p>
-        <form action="{{ route('backend.lupa_password.send') }}" method="POST">
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('backend.lupa_password.send') }}">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
