@@ -28,6 +28,7 @@ class BeritaPengumumanController extends Controller
             'created_by' => 'nullable|string|max:255',
             'tanggal' => 'required|string|max:500',
             'tempat' => 'nullable|string|max:255',
+            'konten' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 

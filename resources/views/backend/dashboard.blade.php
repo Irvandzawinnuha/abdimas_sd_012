@@ -60,8 +60,7 @@
                                 <td data-label="Tanggal">{{ $foto->created_at->format('d/m/Y') }}</td>
                                 <td data-label="Dibuat Oleh">{{ $foto->created_by }}</td>
                                 <td data-label="Foto">
-                                    <img src="{{ asset('storage/' . $foto->foto) }}" alt="Foto"
-                                        class="img-thumbnail">
+                                    <img src="{{ asset('storage/' . $foto->foto) }}" alt="Foto" class="img-thumbnail">
                                 </td>
                                 <td data-label="Hapus">
                                     <form action="{{ route('foto.destroy', $foto->id) }}" method="POST">
@@ -159,7 +158,7 @@
                         <tr>
                             <th>No</th>
                             <th>Judul</th>
-                            <th>Kategori</th>
+                            <th>konten</th>
                             <th>Deskripsi</th>
                             <th>Gambar</th>
                             <th>Hapus</th>
@@ -171,7 +170,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $berita->judul }}</td>
-                                <td>{{ $berita->kategori }}</td>
+                                <td>{{ $berita->konten }}</td>
                                 <td>{{ Str::limit($berita->deskripsi, 100) }}</td>
                                 <td>
                                     <img src="{{ asset('storage/' . $berita->foto) }}" alt="Foto Berita"

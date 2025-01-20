@@ -50,6 +50,9 @@ use App\Http\Controllers\backend\EmailController;
 
 use App\Http\Controllers\Backend\GaleriFotoVideoController;
 
+//bagian sitemaps
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 
 // Route backend
@@ -221,6 +224,14 @@ Route::delete('/galeri-foto-video/{id}', [GaleriFotoVideoController::class, 'des
 
 
 
+//bagian sitemaps
+Route::get('/sitemap', function () {
+    return Sitemap::create()
+        ->add(Url::create('/'))
+        ->add(Url::create('/about'))
+        ->add(Url::create('/contact'))
+        ->toResponse(request());
+});
 
 
 
@@ -229,8 +240,7 @@ Route::delete('/galeri-foto-video/{id}', [GaleriFotoVideoController::class, 'des
 
 
 
-
-// Route Utama
+// Route Utama front end landing page sd
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Route Profil  sekolah
