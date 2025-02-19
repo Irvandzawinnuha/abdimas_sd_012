@@ -1,120 +1,297 @@
 @include('backend.partials.head')
 @include('backend.partials.sidebar')
-<!-- Main Content -->
-<div class="content">
-    <h3>Tambah Kegiatan Ekstrakurikuler</h3>
-    <p>
-        Pada <b>Kegiatan Ekstrakurikuler</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> kegiatan ekstrakurikuler
-        terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>foto, nama kegiatan, deskripsi kegiatan, dan jadwal kegiatan</b>.
-    </p>
 
-    <form action="{{ route('kegiatan-ekstrakurikuler.store') }}" method="POST" enctype="multipart/form-data" id="createForm">
-        @csrf
-        <div class="mb-3">
-            <label for="created_at" class="form-label">Created At/Tanggal Publikasi</label>
-            <input type="date" class="form-control" id="created_at" name="created_at" required>
-        </div>
-        <div class="mb-3">
-            <label for="created_by" class="form-label">Created By/Dibuat Oleh</label>
-            <input type="text" class="form-control" id="Created By" name="CreatedBy"
-                placeholder="Masukkan pembuat (Contoh: Admin)" required>
-        </div>
-        <div class="mb-3">
-            <label for="foto" class="form-label">Foto Kegiatan</label>
-            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
-            <small class="text-muted">Format yang didukung: JPG, PNG. Maksimal 2MB</small>
-        </div>
-        <div class="mb-3">
-            <label for="nama_kegiatan" class="form-label">Nama Kegiatan</label>
-            <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan"
-                placeholder="Masukkan nama kegiatan ekstrakurikuler" required>
-        </div>
-        <div class="mb-3">
-            <label for="deskripsi" class="form-label">Deskripsi Kegiatan</label>
-            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
-                placeholder="Masukkan deskripsi kegiatan" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="jadwal" class="form-label">Jadwal Kegiatan</label>
-            <input type="text" class="form-control" id="jadwal" name="jadwal"
-                placeholder="Masukkan jadwal kegiatan (contoh: Setiap Jumat, 15:00-17:00)" required>
-        </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
 
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="{{ route('backend.dashboard') }}#kegiatan-ekstrakurikuler" class="btn btn-secondary">Batal</a>
-    </form>
+<div class="main-wrapper">
+    <!-- Main Content -->
+    <div class="content">
+        <h3>Tambah Kegiatan Ekstrakurikuler</h3>
+        <p>
+            Pada <b>Kegiatan Ekstrakurikuler</b>, admin dapat <b>menambah, menghapus, dan memperbaharui</b> kegiatan ekstrakurikuler
+            terkait SD Negeri 012 Babakan Ciparay dengan mencantumkan informasi berupa <b>foto, nama kegiatan, deskripsi kegiatan, dan jadwal kegiatan</b>.
+        </p>
+
+        <form action="{{ route('kegiatan-ekstrakurikuler.store') }}" method="POST" enctype="multipart/form-data" id="createForm">
+            @csrf
+            <div class="mb-4">
+                <label class="form-label">Nama Kegiatan</label>
+                <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan"
+                    placeholder="Masukkan nama kegiatan (Contoh: Pramuka)" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Tanggal Publikasi</label>
+                <div class="position-relative">
+                    <input type="text" class="form-control flatpickr" id="created_at" name="created_at" 
+                        placeholder="Pilih tanggal" required readonly style="background-color: white;">
+                    <span class="position-absolute end-0 top-50 translate-middle-y pe-3">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Dibuat Oleh</label>
+                <input type="text" class="form-control" id="CreatedBy" name="CreatedBy"
+                    placeholder="Masukkan pembuat (Contoh: Admin)" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Foto Kegiatan</label>
+                <div class="upload-box border rounded-3 p-5 text-center" style="border-style: dashed !important;">
+                    <p class="text-muted mb-0">Upload foto disini</p>
+                    <input type="file" class="form-control d-none" id="foto" name="foto[]" multiple accept="image/*" required>
+                </div>
+                <div id="preview" class="mt-3 d-flex flex-wrap gap-2"></div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Tambah</button>
+            </div>
+        </form>
+    </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.getElementById('createForm').addEventListener('submit', function(event) {
-        const created_at = document.getElementById('created_at').value;
-        const created_by = document.getElementById('created_by').value.trim();
-        const foto = document.getElementById('foto').value;
-        const nama_kegiatan = document.getElementById('nama_kegiatan').value.trim();
-        const deskripsi = document.getElementById('deskripsi').value.trim();
-        const jadwal = document.getElementById('jadwal').value.trim();
+<style>
+.main-wrapper {
+    margin-left: 250px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
 
-        if (!created_at || !created_by || !foto || !nama_kegiatan || !deskripsi || !jadwal) {
-            event.preventDefault();
-            alert('Semua kolom wajib diisi.');
-        } else {
-            if (!confirm('Apakah Anda yakin ingin menyimpan data ini?')) {
-                event.preventDefault();
+.content {
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+form {
+    width: 100%;
+}
+
+.content > h3,
+.content > p,
+.content > form {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.upload-box {
+    cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-primary {
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.upload-box:hover {
+    background-color: #f8f9fa;
+}
+
+.img-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 991.98px) {
+    .main-wrapper {
+        margin-left: 0;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .mb-4 {
+        margin-bottom: 1rem !important;
+    }
+    
+    .upload-box {
+        min-height: 150px;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .content > h3,
+    .content > p,
+    .content > form {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .img-preview {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+.flatpickr-calendar {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.flatpickr-day.selected {
+    background: #0d6efd;
+    border-color: #0d6efd;
+}
+.flatpickr-day:hover {
+    background: #e6e6e6;
+}
+.flatpickr-current-month {
+    padding-top: 15px !important;
+}
+.flatpickr-monthDropdown-months {
+    background: transparent;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadBox = document.querySelector('.upload-box');
+    const fileInput = document.getElementById('foto');
+    const preview = document.getElementById('preview');
+
+    uploadBox.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        preview.innerHTML = '';
+        
+        for(let i = 0; i < e.target.files.length; i++) {
+            const file = e.target.files[i];
+            if (file) {
+                const reader = new FileReader();
+                const div = document.createElement('div');
+                div.className = 'position-relative';
+                
+                reader.onload = function(e) {
+                    div.innerHTML = `
+                        <img src="${e.target.result}" class="img-preview">
+                        <p class="small text-muted mb-0 mt-1">${file.name}</p>
+                    `;
+                }
+                reader.readAsDataURL(file);
+                preview.appendChild(div);
             }
         }
+        
+        uploadBox.querySelector('p').textContent = 
+            `${e.target.files.length} file${e.target.files.length > 1 ? 's' : ''} selected`;
     });
 
     // Hamburger menu functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.querySelector('.hamburger-menu');
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.sidebar-overlay');
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mainWrapper = document.querySelector('.main-wrapper');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
 
-        if (hamburger && sidebar && overlay) {
-            hamburger.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-                overlay.classList.toggle('active');
+    if (hamburger && sidebar && overlay) {
+        hamburger.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
 
-                // Animasi hamburger
-                const spans = this.querySelectorAll('span');
-                spans[0].style.transform = sidebar.classList.contains('active') ?
-                    'rotate(45deg) translate(5px, 5px)' : '';
-                spans[1].style.opacity = sidebar.classList.contains('active') ? '0' : '1';
-                spans[2].style.transform = sidebar.classList.contains('active') ?
-                    'rotate(-45deg) translate(7px, -7px)' : '';
-            });
+            const spans = this.querySelectorAll('span');
+            spans[0].style.transform = sidebar.classList.contains('active') ?
+                'rotate(45deg) translate(5px, 5px)' : '';
+            spans[1].style.opacity = sidebar.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = sidebar.classList.contains('active') ?
+                'rotate(-45deg) translate(7px, -7px)' : '';
+        });
 
-            // Tutup sidebar ketika overlay diklik
-            overlay.addEventListener('click', function() {
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = '';
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!sidebar.contains(event.target) &&
+                !hamburger.contains(event.target) &&
+                sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
 
-                // Reset hamburger animation
                 const spans = hamburger.querySelectorAll('span');
                 spans[0].style.transform = '';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = '';
-            });
+            }
+        });
+    }
 
-            // Tutup sidebar ketika klik di luar
-            document.addEventListener('click', function(event) {
-                if (!sidebar.contains(event.target) &&
-                    !hamburger.contains(event.target) &&
-                    sidebar.classList.contains('active')) {
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
+    if (hamburger && mainWrapper) {
+        hamburger.addEventListener('click', function() {
+            if (window.innerWidth > 991.98) {
+                mainWrapper.style.marginLeft = 
+                    mainWrapper.style.marginLeft === '0px' ? '250px' : '0px';
+            }
+        });
+    }
 
-                    // Reset hamburger animation
-                    const spans = hamburger.querySelectorAll('span');
-                    spans[0].style.transform = '';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = '';
-                }
-            });
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 991.98) {
+            mainWrapper.style.marginLeft = 
+                sidebar.classList.contains('active') ? '0px' : '250px';
+        } else {
+            mainWrapper.style.marginLeft = '0px';
         }
     });
-</script>
-</body>
 
+    flatpickr(".flatpickr", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "l, d F Y",
+        defaultDate: new Date(),
+        locale: {
+            firstDayOfWeek: 1,
+            weekdays: {
+                shorthand: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
+                longhand: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+            },
+            months: {
+                shorthand: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
+                longhand: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+            }
+        }
+    });
+});
+</script>
+
+</body>
 </html>

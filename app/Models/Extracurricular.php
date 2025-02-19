@@ -14,8 +14,12 @@ class Extracurricular extends Model
 
     // Kolom yang dapat diisi secara massal
     protected $fillable = [
-        'foto_kontribusi', // Path foto kontribusi
+        'nama_kegiatan',
         'CreatedBy',
-        'created_at'
+        'foto_kontribusi'
+    ];
+
+    protected $casts = [
+        'foto_kontribusi' => 'array'
     ];
 }

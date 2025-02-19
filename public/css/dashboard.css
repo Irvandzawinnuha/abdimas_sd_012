@@ -460,3 +460,53 @@ body {
 .sidebar-overlay {
     transition: opacity 0.3s ease-in-out;
 }
+
+/* Galeri Grid Styles */
+.galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    width: 200px;  /* Sesuaikan dengan kebutuhan */
+    aspect-ratio: 1;
+}
+
+.galeri-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.galeri-item img,
+.galeri-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.galeri-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.galeri-item .overlay span {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .galeri-grid {
+        width: 160px;
+    }
+}

@@ -10,6 +10,17 @@ class Berita extends Model
 
     protected $table = 'berita_pengumuman';
 
-    protected $fillable =['judul', 'deskripsi', 'foto', 'created_by', 'tanggal_aktivitas', 'tempat_aktivitas'];
-    
+    protected $fillable = [
+        'judul',
+        'deskripsi',
+        'konten',
+        'created_by',
+        'tanggal',
+        'tempat',
+        'foto'
+    ];
+
+    protected $casts = [
+        'foto' => 'array'
+    ];
 }

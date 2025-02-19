@@ -15,8 +15,9 @@ class CreateKegiatanEkstrakurikulerTable extends Migration
     {
         Schema::create('kegiatan_ekstrakurikuler', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_kegiatan'); // Nama ekstrakurikuler (Pramuka, Paskibra, dll)
             $table->string('CreatedBy');
-            $table->string('foto_kontribusi'); // Kolom untuk menyimpan path file foto
+            $table->json('foto_kontribusi')->nullable(); // Ubah menjadi JSON untuk multiple images
             $table->timestamps();// Kolom untuk created_at dan updated_at
         });
     }

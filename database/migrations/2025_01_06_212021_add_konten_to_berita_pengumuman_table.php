@@ -12,14 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('berita_pengumuman', function (Blueprint $table) {
-            $table->text('konten')->nullable()->after('judul'); // Tambahkan kolom 'konten' setelah 'judul'
+            if (!Schema::hasColumn('berita_pengumuman', 'konten')) {
+                $table->text('konten')->nullable()->after('judul');
+            }
         });
     }
     
     public function down(): void
     {
         Schema::table('berita_pengumuman', function (Blueprint $table) {
-            $table->dropColumn('konten');
+            if (Schema::hasColumn('berita_pengumuman', 'konten')) {
+                $table->dropColumn('konten');
+            }
         });
     }
     

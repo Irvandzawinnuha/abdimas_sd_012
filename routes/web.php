@@ -254,7 +254,7 @@ Route::prefix('profil')->group(function () {
 Route::get('/academic', [AcademicController::class, 'index'])->name('academic');
 
 // Route Berita
-Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::resource('news', NewsController::class);
 
 // Route Galeri
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
@@ -283,9 +283,8 @@ Route::get('/testimonials', [TestimonialsController::class, 'index'])->name('tes
 //privacy-policy
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy');
 
-//bagian news detail atau berita pengumuman semuanya
-Route::get('news_detail', [NewsDetailController::class, 'index'])->name('news_detail');
-
 if (app()->environment('local')) {
     Route::get('/backend/check-verification/{email}', [DaftarController::class, 'checkVerificationStatus']);
 }
+
+Route::get('/news_detail/{id}', [NewsDetailController::class, 'index'])->name('news_detail');

@@ -10,8 +10,12 @@ class GaleriFotoVideo extends Model
     use HasFactory;
 
     protected $fillable = [
+        'kategori',
         'created_by',
-        'created_at',
-        'foto',
+        'foto'
+    ];
+
+    protected $casts = [
+        'foto' => 'array'
     ];
 }

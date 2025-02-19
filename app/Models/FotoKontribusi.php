@@ -10,5 +10,5 @@ class FotoKontribusi extends Model
     use HasFactory;
 
     protected $table = 'foto_kontribusi'; // Nama tabel di database
-    protected $fillable = ['created_by', 'foto']; // Kolom-kolom yang bisa diisi
+    protected $fillable = ['created_by', 'foto', 'created_at']; // Kolom-kolom yang bisa diisi
 }

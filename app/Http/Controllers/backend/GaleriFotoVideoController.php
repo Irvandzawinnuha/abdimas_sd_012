@@ -23,21 +23,29 @@ class GaleriFotoVideoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'media' => 'required|file|mimes:jpeg,png,jpg,mp4|max:10240',
+            'foto.*' => 'required|file|mimes:jpeg,png,jpg,mp4|max:10240',
             'created_by' => 'required|string|max:255',
-            'created_at' => 'required|date'
+            'created_at' => 'required|date',
+            'kategori' => 'required|string',
         ]);
 
-        $path = null;
-        if ($request->hasFile('media')) {
-            $path = $request->file('media')->store('galeri', 'public');
+        $paths = [];
+        if ($request->hasFile('foto')) {
+            foreach($request->file('foto') as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $folder = in_array($extension, ['jpg', 'jpeg', 'png', 'gif']) ? 'galeri/images' : 'galeri/videos';
+                $paths[] = $file->store($folder, 'public');
+            }
         }
 
-        GaleriFotoVideo::create([
-            'foto' => $path,
+        $galeri = new GaleriFotoVideo([
+            'foto' => $paths,
             'created_by' => $request->created_by,
-            'created_at' => $request->created_at
+            'kategori' => $request->kategori,
         ]);
+        
+        $galeri->created_at = $request->created_at;
+        $galeri->save();
 
         return redirect()->route('backend.dashboard')
             ->with('success', 'Data berhasil ditambahkan');
@@ -48,7 +56,6 @@ class GaleriFotoVideoController extends Controller
         $galeri = GaleriFotoVideo::findOrFail($id);
         return view('backend.edit_galeri_foto_video', compact('galeri'));
     }
-    
 
     public function update(Request $request, $id)
     {
@@ -56,39 +63,62 @@ class GaleriFotoVideoController extends Controller
 
         $request->validate([
             'created_by' => 'required|string|max:255',
+            'foto.*' => 'nullable|file|mimes:jpeg,png,jpg,mp4|max:10240',
+            'hapus_foto' => 'nullable|array',
             'created_at' => 'required|date',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'kategori' => 'required|string',
         ]);
 
-        if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($galeri->foto) {
-                Storage::disk('public')->delete($galeri->foto);
-            }
+        $existingPhotos = $galeri->foto ?? [];
 
-            $path = $request->file('foto')->store('galeri_foto_video', 'public');
-            $galeri->foto = $path;
+        // Handle photo deletion
+        if ($request->has('hapus_foto')) {
+            foreach ($request->hapus_foto as $index) {
+                if (isset($existingPhotos[$index])) {
+                    Storage::disk('public')->delete($existingPhotos[$index]);
+                    unset($existingPhotos[$index]);
+                }
+            }
+            $existingPhotos = array_values($existingPhotos);
         }
 
-        $galeri->update([
-            'created_by' => $request->created_by,
-            'created_at' => $request->created_at,
-            'foto' => $galeri->foto,
-        ]);
+        // Handle new photos
+        if ($request->hasFile('foto')) {
+            foreach($request->file('foto') as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $folder = in_array($extension, ['jpg', 'jpeg', 'png', 'gif']) ? 'galeri/images' : 'galeri/videos';
+                $existingPhotos[] = $file->store($folder, 'public');
+            }
+        }
 
-        return redirect()->route('backend.dashboard')->with('success', 'Data berhasil diperbarui.');
+        // Update data biasa
+        $galeri->fill([
+            'foto' => $existingPhotos,
+            'created_by' => $request->created_by,
+            'kategori' => $request->kategori,
+        ]);
+        
+        $galeri->created_at = $request->created_at;
+        $galeri->save();
+
+        return redirect()->route('backend.dashboard')
+            ->with('success', 'Data berhasil diperbarui');
     }
 
     public function destroy($id)
     {
         $galeri = GaleriFotoVideo::findOrFail($id);
 
+        // Delete all associated files
         if ($galeri->foto) {
-            Storage::disk('public')->delete($galeri->foto);
+            foreach ($galeri->foto as $path) {
+                Storage::disk('public')->delete($path);
+            }
         }
 
         $galeri->delete();
 
-        return redirect()->route('backend.dashboard')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('backend.dashboard')
+            ->with('success', 'Data berhasil dihapus');
     }
 }

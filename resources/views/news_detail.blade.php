@@ -2,76 +2,73 @@
 
 <section class="news-section">
     <div class="container" style="display: block;"> <br>
-
         <div class="breadcrumb" style="font-size: 25px;"> <br> <br>
-            <a href="/">Beranda</a> &gt;&gt; <a href="/news">Berita dan Pengumuman</a> &gt;&gt; <span
-                style="font-weight: 600; color:#000000;">Mewujudkan Pendidikan Berkualitas Melalui Inovasi dan
-                Kerjasama</span> <br>
+            <a href="/">Beranda</a> &gt;&gt; <a href="{{ route('news.index') }}">Berita dan Pengumuman</a> &gt;&gt; 
+            <span style="font-weight: 600; color:#000000;">{{ $news->judul }}</span> <br>
         </div>
 
         <div class="news-detail"> <br>
-            <img src ="{{ asset('assets/buat foto fitur abdimas/galeri foto dan video/ss_3.png') }}" alt="Gambar Berita"
-                style="width: 700px; max-height: 400px; object-fit: cover; margin-bottom: 20px; border-radius: 10px;  height: 744px; width: 100%;">
+            <!-- Gambar Utama -->
+            <img src="{{ asset('storage/' . ($news->foto[0] ?? '')) }}" alt="{{ $news->judul }}" 
+                style="width: 700px; max-height: 400px; object-fit: cover; margin-bottom: 20px; border-radius: 10px; height: 744px; width: 100%;">
 
-            <h1 style="font-size: 2rem; font-weight: 600; margin-bottom: 20px; color: #333;">Mewujudkan Pendidikan
-                Berkualitas Melalui Inovasi dan Kerjasama</h1>
-            <p style="font-size: 0.9rem; color: #000000; margin-bottom: 20px;"><i class="fa fa-calendar"></i> 13
-                November 2024</p>
+            <!-- Galeri Gambar Tambahan -->
+            @if(count($news->foto) > 1)
+            <div class="image-gallery" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
+                @foreach($news->foto as $index => $foto)
+                    @if($index > 0) {{-- Skip gambar utama --}}
+                    <img src="{{ asset('storage/' . $foto) }}" 
+                         alt="{{ $news->judul }} - Gambar {{ $index + 1 }}"
+                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; cursor: pointer;"
+                         onclick="showFullImage(this.src)">
+                    @endif
+                @endforeach
+            </div>
+            @endif
 
-            <p style="font-size: 1rem; line-height: 1.8; color: #000000; margin-bottom: 20px;">
-                Bandung, 10 Januari 2024 — Dalam menghadapi tantangan pendidikan di era digital, SDN 012 Babakan
-                Ciparay telah menunjukkan langkah-langkah progresif untuk bertransformasi menjadi lembaga pendidikan
-                yang tidak hanya mengutamakan kualitas akademik, tetapi juga pembentukan karakter siswa melalui
-                berbagai inovasi pembelajaran dan kerjasama dengan berbagai pihak. Sekolah ini memegang teguh visi
-                untuk menciptakan generasi yang tidak hanya cerdas, tetapi juga memiliki kepribadian yang baik, siap
-                menghadapi dunia global dengan keterampilan yang mumpuni. <br> <br> <br>
-
-                Membangun Pondasi Pendidikan yang Kuat
-                Sejak awal berdirinya, SDN 012 Babakan Ciparay telah berfokus pada pengembangan pondasi pendidikan
-                yang kuat bagi siswa. Dengan motto "Menumbuhkan Cinta Belajar, Menyiapkan Generasi Berkarakter,"
-                sekolah ini berusaha menciptakan lingkungan belajar yang kondusif dan mendukung setiap siswa untuk
-                berkembang sesuai dengan potensi mereka. Kepala Sekolah SDN 012 Babakan Ciparay, Ibu Siti Nurhayati,
-                menjelaskan, "Pendidikan yang baik dimulai dari lingkungan yang baik. Kami selalu berusaha
-                memberikan fasilitas yang memadai serta pengajaran yang menarik dan relevan dengan perkembangan
-                zaman." <br> <br> <br>
-
-                Untuk mencapainya, SDN 012 Babakan Ciparay telah mengimplementasikan berbagai inovasi dalam
-                pengajaran yang tidak hanya terbatas pada aspek akademik, tetapi juga pada pengembangan karakter
-                siswa. Salah satu program unggulan yang sedang digalakkan adalah Pengembangan Karakter Positif.
-                Program ini bertujuan untuk membentuk siswa yang memiliki sikap jujur, disiplin, bertanggung jawab,
-                dan peduli terhadap sesama. Program ini dilaksanakan melalui kegiatan-kegiatan rutin di sekolah,
-                seperti Pendidikan Karakter yang melibatkan orang tua, serta kegiatan sosial yang melatih empati
-                siswa terhadap kondisi sosial sekitar. <br><br><br>
-
-                Kemitraan dengan Universitas Pendidikan Indonesia: Meningkatkan Kualitas Pengajaran
-                Sejalan dengan perkembangan pendidikan yang semakin berbasis pada teknologi, SDN 012 Babakan Ciparay
-                juga aktif melakukan kemitraan dengan berbagai pihak, termasuk dengan Universitas Pendidikan
-                Indonesia (UPI). Kemitraan ini dimulai pada tahun 2023, dengan tujuan untuk meningkatkan kualitas
-                pendidikan di tingkat sekolah dasar, khususnya dalam hal pengajaran berbasis teknologi dan metode
-                pembelajaran yang lebih efektif. Pada bulan Desember 2023, UPI mengadakan pelatihan untuk guru-guru
-                SDN 012 Babakan Ciparay yang berfokus pada pemanfaatan teknologi dalam pembelajaran. <br><br><br>
-
-                "Melalui kemitraan dengan UPI, kami berharap para guru kami dapat memanfaatkan teknologi untuk
-                meningkatkan efektivitas dan interaktivitas dalam mengajar. Salah satunya adalah penggunaan platform
-                pembelajaran digital yang memudahkan siswa untuk mengakses materi pelajaran secara lebih fleksibel
-                dan menyenangkan," ujar Ibu Siti Nurhayati. Salah satu hasil dari kemitraan ini adalah penggunaan
-                aplikasi e-learning yang memungkinkan siswa untuk mengakses tugas, latihan, dan materi ajar secara
-                daring, yang sangat bermanfaat di era pembelajaran digital seperti sekarang ini. <br><br><br>
-
-                Selain itu, UPI juga memberikan program bimbingan dan workshop tentang metode pengajaran yang
-                berbasis pada kebutuhan siswa, serta cara-cara untuk mengembangkan kreativitas siswa melalui
-                penugasan proyek yang bersifat kolaboratif. Kerjasama ini diharapkan dapat membantu meningkatkan
-                kualitas pengajaran serta memberi pengalaman baru bagi para guru untuk terus berkembang dalam
-                profesinya. <br><br><br>
+            <h1 style="font-size: 2rem; font-weight: 600; margin-bottom: 20px; color: #333;">{{ $news->judul }}</h1>
+            <p style="font-size: 0.9rem; color: #000000; margin-bottom: 20px;">
+                <i class="fa fa-calendar"></i> {{ $news->tanggal }}
             </p>
+
             <p style="font-size: 1rem; line-height: 1.8; color: #000000; margin-bottom: 20px;">
-                Untuk mencapai visi ini, SDN 012 Babakan Ciparay terus memperkuat perannya sebagai sekolah berbasis
-                karakter dan inovasi. Program unggulan seperti "Menumbuhkan Cinta Belajar, Mencintai Generasi
-                Berkarakter" telah berhasil memperkuat kualitas pembelajaran siswa dalam membangun masa depan yang
-                cerah. <br><br><br>
+                {!! nl2br(e($news->konten)) !!}
             </p>
         </div>
     </div>
+
+    <!-- Modal untuk menampilkan gambar full -->
+    <div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 1000;">
+        <span style="position: absolute; right: 30px; top: 15px; color: white; font-size: 40px; cursor: pointer; font-weight: bold;" onclick="closeModal()">&times;</span>
+        <img id="modalImage" style="max-width: 90%; max-height: 90%; margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 5px;">
+    </div>
 </section>
+
+<script>
+function showFullImage(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = "block";
+    modalImg.src = src;
+}
+
+function closeModal() {
+    document.getElementById('imageModal').style.display = "none";
+}
+
+// Tutup modal ketika mengklik di luar gambar
+document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Tambahkan keyboard support
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+</script>
 
 @include('partials.footer')

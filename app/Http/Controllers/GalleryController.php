@@ -2,44 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GaleriFotoVideo;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
     public function index()
     {
-        // Data galeri kategori
-        // $gallery = [
-        //     'Acara Sekolah' => [
-        //         'https://example.com/foto1.jpg',
-        //         'https://example.com/foto2.jpg',
-        //         'https://example.com/foto3.jpg',
-        //         'https://example.com/foto4.jpg',
-        //     ],
-        //     'Prestasi Siswa' => [
-        //         'https://example.com/prestasi1.jpg',
-        //         'https://example.com/prestasi2.jpg',
-        //         'https://example.com/prestasi3.jpg',
-        //         'https://example.com/prestasi4.jpg',
-        //     ],
-        //     'Kontribusi Kepada Masyarakat' => [
-        //         'https://example.com/masyarakat1.jpg',
-        //         'https://example.com/masyarakat2.jpg',
-        //         'https://example.com/masyarakat3.jpg',
-        //         'https://example.com/masyarakat4.jpg',
-        //     ],
-        //     'Kegiatan P5' => [
-        //         'https://example.com/p5_1.jpg',
-        //         'https://example.com/p5_2.jpg',
-        //         'https://example.com/p5_3.jpg',
-        //     ],
-        //     'Kemitraan' => [
-        //         'https://example.com/kemitraan1.jpg',
-        //         'https://example.com/kemitraan2.jpg',
-        //         'https://example.com/kemitraan3.jpg',
-        //     ],
-        // ];
+        // Mengambil dan mengelompokkan data galeri berdasarkan kategori
+        $gallery = GaleriFotoVideo::all()
+            ->groupBy('kategori')
+            ->map(function ($group) {
+                return [
+                    'images' => $group->pluck('foto')->flatten()->filter(),
+                    'created_by' => $group->pluck('created_by')->unique()
+                ];
+            });
 
         return view('gallery', compact('gallery'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'kategori' => 'required|string',
+            'created_by' => 'required|string',
+            'foto.*' => 'required|file|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $paths = [];
+        if ($request->hasFile('foto')) {
+            foreach($request->file('foto') as $file) {
+                $path = $file->store('gallery/' . strtolower(str_replace(' ', '-', $request->kategori)), 'public');
+                $paths[] = $path;
+            }
+        }
+
+        GaleriFotoVideo::create([
+            'kategori' => $request->kategori,
+            'created_by' => $request->created_by,
+            'foto' => $paths
+        ]);
+
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
 }

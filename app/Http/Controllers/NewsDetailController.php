@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class NewsDetailController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return view('news_detail');
+        $news = News::findOrFail($id);
+        return view('news_detail', compact('news'));
     }
 }

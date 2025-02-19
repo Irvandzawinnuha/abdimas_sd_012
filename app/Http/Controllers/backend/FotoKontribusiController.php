@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\FotoKontribusi;
 use App\Models\Guru;
 use App\Models\Berita;
+use Illuminate\Support\Facades\Storage;
 
 
 class FotoKontribusiController extends Controller
@@ -29,6 +30,7 @@ class FotoKontribusiController extends Controller
         $request->validate([
             'created_by' => 'required|string',
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'created_at' => 'required|date',
         ]);
 
         $path = $request->file('foto')->store('foto_kontribusi', 'public');
@@ -36,6 +38,7 @@ class FotoKontribusiController extends Controller
         FotoKontribusi::create([
             'created_by' => $request->created_by,
             'foto' => $path,
+            'created_at' => $request->created_at,
         ]);
 
         return redirect()->route('backend.dashboard')->with('success', 'Foto berhasil ditambahkan.');
@@ -48,33 +51,32 @@ class FotoKontribusiController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $foto = FotoKontribusi::findOrFail($id);
+    {
+        $foto = FotoKontribusi::findOrFail($id);
 
-    $request->validate([
-        'created_by' => 'required|string',
-        'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-    ]);
+        $request->validate([
+            'created_by' => 'required|string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'created_at' => 'required|date',
+        ]);
 
-    $data = [
-        'created_by' => $request->created_by,
-    ];
+        $data = [
+            'created_by' => $request->created_by,
+            'created_at' => $request->created_at,
+        ];
 
-    // Jika ada file baru, ganti file lama
-    if ($request->hasFile('foto')) {
-        // Hapus file lama jika ada
-        if ($foto->foto) {
-            \Storage::disk('public')->delete($foto->foto);
+        // Jika ada file baru, ganti file lama
+        if ($request->hasFile('foto')) {
+            if ($foto->foto) {
+                Storage::disk('public')->delete($foto->foto);
+            }
+            $data['foto'] = $request->file('foto')->store('foto_kontribusi', 'public');
         }
-        // Simpan file baru
-        $data['foto'] = $request->file('foto')->store('foto_kontribusi', 'public');
+
+        $foto->update($data);
+
+        return redirect()->route('backend.dashboard')->with('success', 'Foto berhasil diperbarui.');
     }
-
-    // Update data
-    $foto->update($data);
-
-    return redirect()->route('backend.dashboard')->with('success', 'Foto berhasil diperbarui.');
-}
 
     public function destroy($id)
     {

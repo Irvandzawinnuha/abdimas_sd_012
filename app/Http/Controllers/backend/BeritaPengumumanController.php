@@ -25,24 +25,27 @@ class BeritaPengumumanController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'created_by' => 'nullable|string|max:255',
-            'tanggal' => 'required|string|max:500',
-            'tempat' => 'nullable|string|max:255',
-            'konten' => 'nullable|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'konten' => 'required|string',
+            'created_by' => 'required|string|max:255',
+            'tanggal' => 'required|string|max:255',
+            'tempat' => 'required|string|max:255',
+            'foto.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $data = $request->except('foto');
+        $paths = [];
+
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('berita', 'public');
+            foreach($request->file('foto') as $file) {
+                $paths[] = $file->store('berita', 'public');
+            }
         }
 
+        $data['foto'] = $paths;
         Berita::create($data);
 
         return redirect()->route('backend.dashboard')->with('success', 'Berita berhasil ditambahkan.');
     }
-
-
 
     public function edit($id)
     {
@@ -52,25 +55,28 @@ class BeritaPengumumanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $berita = Berita::findOrFail($id);
-
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'created_by' => 'nullable|string|max:255',
-            'tanggal' => 'required|date',
-            'tempat' => 'nullable|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'konten' => 'required|string',
+            'created_by' => 'required|string|max:255',
+            'tanggal' => 'required|string|max:255',
+            'tempat' => 'required|string|max:255',
+            'foto.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->except('foto');
+        $berita = Berita::findOrFail($id);
+        $data = $request->except(['foto', 'existing_photos']);
+        
+        $paths = $request->existing_photos ?? [];
+
         if ($request->hasFile('foto')) {
-            if ($berita->foto) {
-                Storage::disk('public')->delete($berita->foto);
+            foreach($request->file('foto') as $file) {
+                $paths[] = $file->store('berita', 'public');
             }
-            $data['foto'] = $request->file('foto')->store('berita', 'public');
         }
 
+        $data['foto'] = $paths;
         $berita->update($data);
 
         return redirect()->route('backend.dashboard')->with('success', 'Berita berhasil diperbarui.');
@@ -79,11 +85,14 @@ class BeritaPengumumanController extends Controller
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
+        
         if ($berita->foto) {
-            Storage::disk('public')->delete($berita->foto);
+            foreach ($berita->foto as $path) {
+                Storage::disk('public')->delete($path);
+            }
         }
+        
         $berita->delete();
-
         return redirect()->route('backend.dashboard')->with('success', 'Berita berhasil dihapus.');
     }
 }

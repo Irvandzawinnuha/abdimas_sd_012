@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('deskripsi');
-            $table->string('foto')->nullable(); // Untuk menyimpan path foto
-            $table->string('created_by')->nullable(); // Siapa yang membuat
-            $table->string('tanggal')->nullable(); // Tanggal aktivitas
-            $table->string('tempat')->nullable(); // Tempat aktivitas
-            $table->timestamps(); // created_at dan updated_at
+            $table->text('konten');
+            $table->string('created_by');
+            $table->string('tanggal');
+            $table->string('tempat');
+            $table->json('foto')->nullable(); // Ubah menjadi json untuk multiple images
+            $table->timestamps();
         });
     }
 

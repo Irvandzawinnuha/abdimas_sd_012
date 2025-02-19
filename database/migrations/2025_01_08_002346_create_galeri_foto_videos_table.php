@@ -10,9 +10,10 @@ class CreateGaleriFotoVideosTable extends Migration
     {
         Schema::create('galeri_foto_videos', function (Blueprint $table) {
             $table->id();
+            $table->string('kategori'); // Acara Sekolah, Prestasi Siswa, dll
             $table->string('created_by'); // Dibuat oleh
-            $table->string('foto')->nullable(); // Path foto
-            $table->timestamps(); // created_at & updated_at otomatis
+            $table->json('foto')->nullable(); // Ubah menjadi json untuk menyimpan multiple files
+            $table->timestamps(); // Kembali menggunakan timestamps() default Laravel
         });
     }
 

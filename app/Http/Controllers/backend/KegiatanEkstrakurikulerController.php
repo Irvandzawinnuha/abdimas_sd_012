@@ -4,12 +4,12 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Extracurricular; // Pastikan model sudah dibuat
+use App\Models\Extracurricular;
+use Illuminate\Support\Facades\Storage;
 
 class KegiatanEkstrakurikulerController extends Controller
 {
-
-        public function index()
+    public function index()
     {
         $dataEkskul = Extracurricular::all();
         return view('backend.dashboard', compact('dataEkskul'));
@@ -23,38 +23,46 @@ class KegiatanEkstrakurikulerController extends Controller
         return view('backend.create_kegiatan_ekstrakurikuler');
     }
 
-
     /**
      * Menyimpan data kegiatan ekstrakurikuler ke dalam database.
      */
-
     public function store(Request $request)
     {
-
-        // Simpan file jika ada
-        $filePath = "";
-        if ($request->hasFile('foto')) {
-            $filePath = $request->file('foto')->store('ekstrakurikuler', 'public');
-        }
-        // Simpan data ke database
-        Extracurricular::create([
-            'created_at' => $request->input('created_at'),
-            'CreatedBy' => $request->input('CreatedBy'),
-            'foto_kontribusi' => $filePath,
+        $request->validate([
+            'nama_kegiatan' => 'required|string',
+            'CreatedBy' => 'required|string',
+            'foto.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'created_at' => 'required|date',
         ]);
 
-        // Redirect ke halaman dashboard atau lainnya
-        return redirect()->route('backend.dashboard')->with('success', 'Kegiatan ekstrakurikuler berhasil ditambahkan.');
-    }
+        $paths = [];
+        if ($request->hasFile('foto')) {
+            foreach($request->file('foto') as $file) {
+                $paths[] = $file->store('kegiatan_ekstrakurikuler', 'public');
+            }
+        }
 
+        // Buat instance baru dengan timestamp yang spesifik
+        $kegiatan = new Extracurricular([
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'CreatedBy' => $request->CreatedBy,
+            'foto_kontribusi' => $paths,
+        ]);
+        
+        // Set created_at secara manual
+        $kegiatan->created_at = $request->created_at;
+        $kegiatan->save();
+
+        return redirect()->route('backend.dashboard')->with('success', 'Kegiatan berhasil ditambahkan.');
+    }
 
     /**
      * Menampilkan halaman edit kegiatan ekstrakurikuler.
      */
     public function edit($id)
     {
-        $kegiatan = Extracurricular::findOrFail($id); // Mengambil data berdasarkan id
-        return view('backend.edit_kegiatan_ekstrakurikuler', ['kegiatan' => $kegiatan]);
+        $kegiatan = Extracurricular::findOrFail($id);
+        return view('backend.edit_kegiatan_ekstrakurikuler', compact('kegiatan'));
     }
 
     /**
@@ -62,54 +70,52 @@ class KegiatanEkstrakurikulerController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $kegiatan = Extracurricular::findOrFail($id);
-        $filePath = '';
-        // Update file jika ada file baru
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads/foto_kontribusi', $fileName, 'public'); // Menyimpan ke storage
-
-            // Hapus file lama jika ada
-            if ($kegiatan->foto_kontribusi) {
-                \Storage::disk('public')->delete($kegiatan->foto_kontribusi);
-            }
-
-            $kegiatan->foto_kontribusi = $filePath;
-        }
-
-        $filePath = "";
-        if ($request->hasFile('foto')) {
-            $filePath = $request->file('foto')->store('ekstrakurikuler', 'public');
-        }
-        
-        $kegiatan->update([
-            'created_at' => $request->input('created_at'),
-            'CreatedBy' => $request->input('CreatedBy'),
-            'foto_kontribusi' => $filePath . ''
+        $request->validate([
+            'nama_kegiatan' => 'required|string',
+            'CreatedBy' => 'required|string',
+            'foto.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'created_at' => 'required|date',
         ]);
 
+        $kegiatan = Extracurricular::findOrFail($id);
+        $data = $request->except(['foto', 'existing_photos']);
+        
+        $paths = $request->existing_photos ?? [];
 
+        if ($request->hasFile('foto')) {
+            foreach($request->file('foto') as $file) {
+                $paths[] = $file->store('kegiatan_ekstrakurikuler', 'public');
+            }
+        }
 
-        return redirect()->route('backend.dashboard')->with('success', 'Kegiatan ekstrakurikuler berhasil diperbarui.');
+        // Update data biasa
+        $kegiatan->fill([
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'CreatedBy' => $request->CreatedBy,
+            'foto_kontribusi' => $paths,
+        ]);
+        
+        // Set created_at secara manual
+        $kegiatan->created_at = $request->created_at;
+        $kegiatan->save();
+
+        return redirect()->route('backend.dashboard')->with('success', 'Kegiatan berhasil diperbarui.');
     }
 
-    
     /**
      * Menghapus data kegiatan ekstrakurikuler.
      */
     public function destroy($id)
     {
         $kegiatan = Extracurricular::findOrFail($id);
-
-        // Hapus file foto jika ada
+        
         if ($kegiatan->foto_kontribusi) {
-            \Storage::disk('public')->delete($kegiatan->foto_kontribusi);
+            foreach ($kegiatan->foto_kontribusi as $path) {
+                Storage::disk('public')->delete($path);
+            }
         }
-
+        
         $kegiatan->delete();
-
-        return redirect()->route('backend.dashboard')->with('success', 'Kegiatan ekstrakurikuler berhasil dihapus.');
+        return redirect()->route('backend.dashboard')->with('success', 'Kegiatan berhasil dihapus.');
     }
 }
