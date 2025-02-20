@@ -54,7 +54,7 @@
                     </a>
                 </div>
                 <div class="text">
-                    <p><a href="https://www.admin.com" target="_blank">www.admin.com</a></p>
+                    <p><a href="https://www.admin.com" target="_blank">www.sdn012babakanciparay.sch.id</a></p>
                 </div>
             </div>
         </div>
