@@ -32,8 +32,8 @@
     <div id="kalender-akademik" class="tab-content" style="display: none; margin-top: 20px;">
         <div style="text-align: center;">
             <img src="https://sdn012babakanciparay.sch.id/assets/buat foto fitur abdimas/informasi akademik/kalender_akademik.png" 
-                 alt="Kalender Akademik Semester Ganjil 2023/2024" 
-                 style="max-width: 80%; height: auto; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin: auto;">
+                alt="Kalender Akademik Semester Ganjil 2023/2024" 
+                style="max-width: 80%; height: auto; border: 1px solid #ccc; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin: auto;">
         </div>
         <br><br><br>
     </div>
